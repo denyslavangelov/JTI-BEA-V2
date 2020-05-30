@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Brandlist_Export_Assistant.Classes
+namespace Brandlist_Export_Assistant_V2
 {
     public class Countries
     {
         public static Dictionary<string, string> ExportCountries(string excelCountry)
         {
-            Dictionary<string, string> countries = new Dictionary<string, string>();
+            var countries = new Dictionary<string, string>();
 
-            List<string> list = new List<string>();
+            const string fileName = "Resources\\Countries.txt";
 
-            string fileName = "Resources\\Countries.txt";
-
-            const Int32 BufferSize = 128;
+            const int bufferSize = 128;
             using (var fileStream = File.OpenRead(fileName))
-            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize))
+            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, bufferSize))
             {
-                String line;
+                string line;
                 while ((line = streamReader.ReadLine()) != null)
                 {
                     var country = line.Substring(0, line.Length - 3);
@@ -39,15 +36,15 @@ namespace Brandlist_Export_Assistant.Classes
 
         public static List<string> ExportLanguages(string projectCountry)
         {
-            List<string> languagesList = new List<string>();
+            var languagesList = new List<string>();
 
-            string fileName = "Resources\\Countries_iField.txt";
+            const string fileName = "Resources\\Countries_iField.txt";
 
-            const Int32 BufferSize = 128;
+            const int BufferSize = 128;
             using (var fileStream = File.OpenRead(fileName))
             using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize))
             {
-                String line;
+                string line;
                 while ((line = streamReader.ReadLine()) != null)
                 {
                     var country = line.Split('$')[0].Trim();
@@ -56,10 +53,7 @@ namespace Brandlist_Export_Assistant.Classes
                     {
                         var languages = line.Split('$')[1].Trim().Split(',');
 
-                        foreach (var language in languages)
-                        {
-                            languagesList.Add(language);
-                        }
+                        languagesList.AddRange(languages);
                     }
                 }
 

@@ -1,10 +1,7 @@
-﻿using Brandlist_Export_Assistant.Classes;
+﻿using System.Collections.Generic;
 using Brandlist_Export_Assistant_V2.Classes.Brand;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 
-namespace Brandlist_Export_Assistant_V2.Classes
+namespace Brandlist_Export_Assistant_V2.Classes.Brandlists
 {
     public class Brandlist
     {

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Brandlist_Export_Assistant_V2
@@ -34,21 +29,28 @@ namespace Brandlist_Export_Assistant_V2
                     this.BackColor = Color.Crimson;
                     break;
                 case AlertType.Error:
-                    //this.BackColor = Color.F/irebrick;
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
+        }
+
+        public sealed override Color BackColor
+        {
+            get => base.BackColor;
+            set => base.BackColor = value;
         }
 
         public static string WrapText(string text, int width, bool overflow)
         {
-            StringBuilder result = new StringBuilder();
+            var result = new StringBuilder();
 
-            int index = 0;
-            int column = 0;
+            var index = 0;
+            var column = 0;
 
             while (index < text.Length)
             {
-                int spaceIndex = text.IndexOfAny(new[] { ' ', '\t', '\r', '\n' }, index);
+                var spaceIndex = text.IndexOfAny(new[] { ' ', '\t', '\r', '\n' }, index);
 
                 if (spaceIndex == -1)
                 {
@@ -71,10 +73,10 @@ namespace Brandlist_Export_Assistant_V2
             {
                 if (!overflow && word.Length > width)
                 {
-                    int wordIndex = 0;
+                    var wordIndex = 0;
                     while (wordIndex < word.Length)
                     {
-                        string subWord = word.Substring(wordIndex, Math.Min(width, word.Length - wordIndex));
+                        var subWord = word.Substring(wordIndex, Math.Min(width, word.Length - wordIndex));
                         AddWord(subWord);
                         wordIndex += subWord.Length;
                     }
@@ -119,7 +121,7 @@ namespace Brandlist_Export_Assistant_V2
             ShowAlert.Start();
         }
 
-        int interval = 0;
+        private int interval = 0;
 
         private void ShowAlert_Tick(object sender, EventArgs e)
         {

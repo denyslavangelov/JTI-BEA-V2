@@ -1,8 +1,6 @@
-﻿using Brandlist_Export_Assistant.Classes;
-using Microsoft.Office.Interop.Excel;
+﻿using Microsoft.Office.Interop.Excel;
 
-
-namespace Brandlist_Export_Assistant_V2.Classes
+namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
 {
     public class Excel
     {
@@ -16,11 +14,11 @@ namespace Brandlist_Export_Assistant_V2.Classes
             WorksheetsCount = VisibleWorksheetsCount(Worksheets);
         }
         
-        public int VisibleWorksheetsCount(Sheets Worksheets)
+        public int VisibleWorksheetsCount(Sheets worksheets)
         {
             var count = 0;
 
-            foreach (Worksheet sheet in Worksheets)
+            foreach (Worksheet sheet in worksheets)
             {
                 if (sheet.Visible == XlSheetVisibility.xlSheetVisible)
                 {

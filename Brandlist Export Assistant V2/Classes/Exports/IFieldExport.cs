@@ -1,11 +1,10 @@
-﻿using Brandlist_Export_Assistant_V2;
-using Brandlist_Export_Assistant_V2.Classes;
-using Brandlist_Export_Assistant_V2.Classes.Brandlists;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
+using Brandlist_Export_Assistant_V2.Classes.Brandlists;
+using Brandlist_Export_Assistant_V2.Controls;
 
-namespace Brandlist_Export_Assistant.Classes
+namespace Brandlist_Export_Assistant_V2.Classes.Exports
 {
     public class IFieldExport : Export
     {
@@ -22,7 +21,7 @@ namespace Brandlist_Export_Assistant.Classes
         private string RRPCoreList { get; set; }
         private string RRPBIList { get; set; }
 
-        public override string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\iFieldExport\";
+        public virtual string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\iFieldExport\";
 
         public IFieldExport(TobaccoBrandlist tobaccoBrandList, RRPBrandlist rrpBrandlist, ProjectSettingsControl projectSettingsControl): base(tobaccoBrandList, rrpBrandlist)
         {
@@ -113,7 +112,7 @@ namespace Brandlist_Export_Assistant.Classes
             }
         }
 
-        public override void ExportData()
+        public virtual void ExportData()
         {
             if (!Directory.Exists(Dir))
             {
@@ -122,9 +121,9 @@ namespace Brandlist_Export_Assistant.Classes
 
             if (ProjectSettings.TobaccoExport)
             {
-                ExportTobaccoBrands(tobaccoBrandlist);
-                ExportTobaccoSubBrands(tobaccoBrandlist);
-                ExportTobaccoSubBrandsNoImage(tobaccoBrandlist);
+                ExportTobaccoBrands(TobaccoBrandlist);
+                ExportTobaccoSubBrands(TobaccoBrandlist);
+                ExportTobaccoSubBrandsNoImage(TobaccoBrandlist);
 
                 CreateTXT(TobaccoBrands, "TobaccoBrandsList");
                 CreateTXT(TobaccoSubBrands, "TobaccoSubBrandsList");
@@ -133,11 +132,11 @@ namespace Brandlist_Export_Assistant.Classes
 
             if (ProjectSettings.RRPExport)
             {
-                ExportRRPBrands(rrpBrandlist);
-                ExportRRPSubBrands(rrpBrandlist);
-                ExportRRPSubBrandsNoImage(rrpBrandlist);
-                ExportRRPCoreList(rrpBrandlist);
-                ExportRRPBIList(rrpBrandlist);
+                ExportRRPBrands(RrpBrandlist);
+                ExportRRPSubBrands(RrpBrandlist);
+                ExportRRPSubBrandsNoImage(RrpBrandlist);
+                ExportRRPCoreList(RrpBrandlist);
+                ExportRRPBIList(RrpBrandlist);
 
                 CreateTXT(RRPBrands, "RRPBrandsList");
                 CreateTXT(RRPSubBrands, "RRPSubBrandsList");

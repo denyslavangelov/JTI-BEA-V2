@@ -1,33 +1,31 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Brandlist_Export_Assistant.Classes;
 using Brandlist_Export_Assistant_V2.Classes;
 using Brandlist_Export_Assistant_V2.Classes.Brandlists;
+using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
+using Brandlist_Export_Assistant_V2.Controls;
 using Guna.UI.WinForms;
 
 namespace Brandlist_Export_Assistant_V2
 {
     public partial class MainForm : Form
     {
-        private Excel excel;
-        private TobaccoSheet tobaccoSheet;
-        private RRPSheet rrpSheet;
+        public Excel Excel { get; private set; }
+        public TobaccoSheet Sheet { get; private set; }
+        public RRPSheet RRPSheet { get; private set; }
+        public TobaccoBrandlist TobaccoBrandlist { get; private set; }
+        public RRPBrandlist RrpBrandlist { get; private set; }
 
-        private TobaccoBrandlist tobaccoBrandlist;
-        private RRPBrandlist rrpBrandlist;
+        public ProjectSettingsControl SettingsControl { get; private set; }
+        public TobaccoSelectionControl SelectionControl { get; private set; }
+        public RRPSelectionControl RRPSelectionControl { get; private set; }
+        public DataExportControl FinalExportControl { get; private set; }
 
-        private ProjectSettingsControl projectSettingsControl;
-        private TobaccoSelectionControl tobaccoSelectionControl;
-        private RRPSelectionControl RRPSelectionControl;
-        private DataExportControl finalExportControl;
-        
-        private readonly Color GreenIndicator = ColorTranslator.FromHtml("#57B894");
-        private readonly Color LowOpacityLabel = ColorTranslator.FromHtml("#646577");
-        private readonly Color HighOpacityLabel = ColorTranslator.FromHtml("#C5C7D3");
+        public Color GreenIndicator { get; } = ColorTranslator.FromHtml("#57B894");
+        public Color LowOpacityLabel { get; } = ColorTranslator.FromHtml("#646577");
+        public Color HighOpacityLabel { get; } = ColorTranslator.FromHtml("#C5C7D3");
 
         public Stages CurrentStage { get; set; }
 
@@ -45,10 +43,10 @@ namespace Brandlist_Export_Assistant_V2
 
         private void UpdateColumnSelectionIcons()
         {
-            if (tobaccoSelectionControl != null) {
-                if (tobaccoSelectionControl.Visible)
+            if (SelectionControl != null) {
+                if (SelectionControl.Visible)
                 {
-                    if (tobaccoSelectionControl.GreenIconsCount >= tobaccoSelectionControl.FieldsToFillCount)
+                    if (SelectionControl.GreenIconsCount >= SelectionControl.FieldsToFillCount)
                     {
                         tbIcon.Image = Properties.Resources.green;
                         tbIcon.Tag = "Green";
@@ -83,7 +81,7 @@ namespace Brandlist_Export_Assistant_V2
         {
             if (!loadingBarImage.Visible)
             {
-                OpenFileDialog fileDialog = new OpenFileDialog
+                var fileDialog = new OpenFileDialog
                 {
                     Filter = "Excel | *.xlsx",
                     FilterIndex = 0,
@@ -109,7 +107,7 @@ namespace Brandlist_Export_Assistant_V2
         public async Task ExecuteAsync(OpenFileDialog fileDialog)
         {
             await Task.Run(() => {
-                excel = new Excel(fileDialog.FileName);
+                Excel = new Excel(fileDialog.FileName);
             });
         }
 
@@ -135,23 +133,7 @@ namespace Brandlist_Export_Assistant_V2
 
         #region Update Stages and Next Button
 
-        private void NextButton_Click(object sender, EventArgs e)
-        {
-            switch (CurrentStage)
-            {
-                case Stages.LoadBrandlist:
-                    UpdateStage(Stages.ProjectSettings);
-                    break;
-                case Stages.ProjectSettings:
-                    UpdateStage(Stages.ColumnSelection);
-                    break;
-                case Stages.ColumnSelection:
-                    UpdateStage(Stages.Import);
-                    break;
-            }
-        }
-
-        private void UpdateStagesVisualzation(Stages currentStage)
+        private void UpdateStagesVisualization(Stages currentStage)
         {
             switch (currentStage)
             {
@@ -209,22 +191,22 @@ namespace Brandlist_Export_Assistant_V2
                 case Stages.ProjectSettings:
                     CurrentStage = Stages.ProjectSettings;
 
-                    projectSettingsControl = new ProjectSettingsControl(this, excel);
-                    this.Controls.Add(projectSettingsControl);
+                    SettingsControl = new ProjectSettingsControl(this, Excel);
+                    this.Controls.Add(SettingsControl);
 
-                    UpdateStagesVisualzation(CurrentStage);
+                    UpdateStagesVisualization(CurrentStage);
 
                     uploadButton.Visible = false;
                     break;
                 case Stages.TobaccoSelection:
                     CurrentStage = Stages.TobaccoSelection;
 
-                    this.Controls.Remove(projectSettingsControl);
+                    this.Controls.Remove(SettingsControl);
 
                     if (ProjectSettings.TobaccoExport)
                     {
-                        tobaccoSheet = new TobaccoSheet(excel, ProjectSettings.TobaccoSheetName);
-                        tobaccoSelectionControl = new TobaccoSelectionControl(tobaccoSheet, this);
+                        Sheet = new TobaccoSheet(Excel, ProjectSettings.TobaccoSheetName);
+                        SelectionControl = new TobaccoSelectionControl(Sheet, this);
 
                         if (!ProjectSettings.RRPExport)
                         {
@@ -232,25 +214,25 @@ namespace Brandlist_Export_Assistant_V2
                             this.rbPanel.Visible = false;
                         }
 
-                        this.Controls.Add(tobaccoSelectionControl);
+                        this.Controls.Add(SelectionControl);
 
-                        ShowCurrenctControl(tobaccoSelectionControl, RRPSelectionControl);
+                        ShowCurrentControl(SelectionControl, RRPSelectionControl);
                     }
 
                     columnSelectionPanel.Visible = true;
 
                     UpdateColumnSelectionIcons();
-                    UpdateStagesVisualzation(CurrentStage);
+                    UpdateStagesVisualization(CurrentStage);
                     break;
                 case Stages.RRPSelection:
                     CurrentStage = Stages.RRPSelection;
 
-                    this.Controls.Remove(projectSettingsControl);
+                    this.Controls.Remove(SettingsControl);
 
                     if (ProjectSettings.RRPExport)
                     {
-                        rrpSheet = new RRPSheet(excel, ProjectSettings.RRPSheetName);
-                        RRPSelectionControl = new RRPSelectionControl(rrpSheet, this);
+                        RRPSheet = new RRPSheet(Excel, ProjectSettings.RRPSheetName);
+                        RRPSelectionControl = new RRPSelectionControl(RRPSheet, this);
 
                         if (!ProjectSettings.TobaccoExport)
                         {
@@ -266,51 +248,51 @@ namespace Brandlist_Export_Assistant_V2
                         columnSelectionPanel.Visible = true;
 
                         UpdateColumnSelectionIcons();
-                        ShowCurrenctControl(RRPSelectionControl, tobaccoSelectionControl);
+                        ShowCurrentControl(RRPSelectionControl, SelectionControl);
                     } 
                     else
                     {
                         UpdateStage(Stages.Import);
                     }
 
-                    UpdateStagesVisualzation(CurrentStage);
+                    UpdateStagesVisualization(CurrentStage);
                     break;
                 case Stages.Import:
-                    excel.ExcelApplication.Quit();
+                    Excel.ExcelApplication.Quit();
 
                     CurrentStage = Stages.Import;
 
-                    if (tobaccoSelectionControl != null)
+                    if (SelectionControl != null)
                     {
-                        this.Controls.Remove(tobaccoSelectionControl);
+                        this.Controls.Remove(SelectionControl);
 
-                        tobaccoBrandlist = new TobaccoBrandlist()
+                        TobaccoBrandlist = new TobaccoBrandlist()
                         {
-                            ExportCustomProperty = tobaccoSelectionControl.ecpSwitch.Checked
+                            ExportCustomProperty = SelectionControl.ecpSwitch.Checked
                         };
 
-                        tobaccoBrandlist.PopulateBrands(tobaccoSheet, tobaccoSelectionControl);
+                        TobaccoBrandlist.PopulateBrands(Sheet, SelectionControl);
                     }
 
                     if (RRPSelectionControl != null)
                     {
                         this.Controls.Remove(RRPSelectionControl);
 
-                        rrpBrandlist = new RRPBrandlist();
-                        rrpBrandlist.PopulateBrands(rrpSheet, RRPSelectionControl);
+                        RrpBrandlist = new RRPBrandlist();
+                        RrpBrandlist.PopulateBrands(RRPSheet, RRPSelectionControl);
                     }
 
-                    finalExportControl = new DataExportControl(this,tobaccoBrandlist, rrpBrandlist, excel, projectSettingsControl);
-                    this.Controls.Add(finalExportControl);
+                    FinalExportControl = new DataExportControl(this,TobaccoBrandlist, RrpBrandlist, Excel, SettingsControl);
+                    this.Controls.Add(FinalExportControl);
 
                     columnSelectionPanel.Visible = false;
 
-                    UpdateStagesVisualzation(CurrentStage);
+                    UpdateStagesVisualization(CurrentStage);
                     break;
                 case Stages.Final:
                     CurrentStage = Stages.Final;
 
-                    UpdateStagesVisualzation(CurrentStage);
+                    UpdateStagesVisualization(CurrentStage);
                     break;
             }
         }
@@ -318,7 +300,7 @@ namespace Brandlist_Export_Assistant_V2
 
         #region ColumnSelectionPanels
 
-        public void ShowCurrenctControl(Control currentControl, Control previousControl)
+        public void ShowCurrentControl(Control currentControl, Control previousControl)
         {
             string currentControlInitials;
             string previousControlInitials;
@@ -360,14 +342,9 @@ namespace Brandlist_Export_Assistant_V2
 
         protected void CloseButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            Application.Exit();
         }
         #endregion
-
-        private void GunaTransfarantPictureBox1_Click(object sender, EventArgs e)
-        {
-            timer1.Start();
-        }
 
         private void UploadButton_MouseEnter(object sender, EventArgs e)
         {
@@ -389,15 +366,15 @@ namespace Brandlist_Export_Assistant_V2
         {
             try
             {
-                if (excel != null && excel.ExcelApplication.Worksheets.Count > 0)
+                if (Excel != null && Excel.ExcelApplication.Worksheets.Count > 0)
                 {
-                    excel.ExcelApplication.Quit();
+                    Excel.ExcelApplication.Quit();
                 }
-            } catch (Exception)
-            {
-                return;
             }
-            
+            catch (Exception)
+            {
+                // ignored
+            }
         }
     }
 }

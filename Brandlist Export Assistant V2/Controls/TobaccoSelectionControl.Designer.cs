@@ -1,4 +1,4 @@
-﻿namespace Brandlist_Export_Assistant_V2
+﻿namespace Brandlist_Export_Assistant_V2.Controls
 {
     partial class TobaccoSelectionControl
     {

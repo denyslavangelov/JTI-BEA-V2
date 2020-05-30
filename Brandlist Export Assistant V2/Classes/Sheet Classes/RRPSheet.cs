@@ -1,12 +1,10 @@
-﻿using Brandlist_Export_Assistant.Classes;
-using Brandlist_Export_Assistant_V2.Classes;
-using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.Office.Interop.Excel;
 
-namespace Brandlist_Export_Assistant_V2
+namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
 {
     public class RRPSheet
     {
@@ -24,7 +22,7 @@ namespace Brandlist_Export_Assistant_V2
 
             SetColumnIndexes(Data);
 
-            ProjectSettings.CountryName = Data.SelectMany(x => x.Value).ElementAt(this.CountryCoulmnIndex).Value.ElementAt(this.CountryCoulmnIndex);
+            ProjectSettings.CountryName = Data.SelectMany(x => x.Value).ElementAt(this.CountryColumnIndex).Value.ElementAt(this.CountryColumnIndex);
             ProjectSettings.Wave = Regex.Match(this.Sheet.Name, @"(W\d{1,1})").Groups[1].Value;
             ProjectSettings.CountryCode = Countries.ExportCountries(Regex.Replace(ProjectSettings.CountryName, @"\s+", "")).FirstOrDefault(x => x.Key == Regex.Replace(ProjectSettings.CountryName, @"\s+", "")).Value;
         }
@@ -52,7 +50,7 @@ namespace Brandlist_Export_Assistant_V2
 
         public int CustomPropertyColumnIndex { get; set; }
 
-        public int CountryCoulmnIndex { get; set; }
+        public int CountryColumnIndex { get; set; }
 
         public int ProductGroupColumnIndex { get; set; }
 
@@ -103,7 +101,7 @@ namespace Brandlist_Export_Assistant_V2
             {
                 var rowData = new string[rangeColumn + 1];
 
-                for (int c = 1; c <= rangeColumn + 1; c++)
+                for (var c = 1; c <= rangeColumn + 1; c++)
                 {
                     rowData[c - 1] = Convert.ToString(values[rowIndex + 1, c]);
                 }
@@ -145,7 +143,7 @@ namespace Brandlist_Export_Assistant_V2
                         StatusColumnIndex = inner.Key;
                         break;
                     case "Market":
-                        CountryCoulmnIndex = inner.Key;
+                        CountryColumnIndex = inner.Key;
                         break;
                     case "Product Group":
                         ProductGroupColumnIndex = inner.Key;

@@ -410,7 +410,6 @@
       <DependentUpon>TobaccoSelectionControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Enums\Status.cs" />
-    <Compile Include="ICollectData.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
