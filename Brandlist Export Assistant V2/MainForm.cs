@@ -284,7 +284,7 @@ namespace Brandlist_Export_Assistant_V2
                     {
                         this.Controls.Remove(tobaccoSelectionControl);
 
-                        tobaccoBrandlist = new TobaccoBrandlist(tobaccoSheet)
+                        tobaccoBrandlist = new TobaccoBrandlist()
                         {
                             ExportCustomProperty = tobaccoSelectionControl.ecpSwitch.Checked
                         };
@@ -296,7 +296,7 @@ namespace Brandlist_Export_Assistant_V2
                     {
                         this.Controls.Remove(RRPSelectionControl);
 
-                        rrpBrandlist = new RRPBrandlist(rrpSheet);
+                        rrpBrandlist = new RRPBrandlist();
                         rrpBrandlist.PopulateBrands(rrpSheet, RRPSelectionControl);
                     }
 

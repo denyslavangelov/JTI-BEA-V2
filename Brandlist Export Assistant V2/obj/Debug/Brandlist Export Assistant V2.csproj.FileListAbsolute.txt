@@ -199,3 +199,15 @@ C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.csproj.CopyComplete
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.exe
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.pdb
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.csprojAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Alert.resources
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.DataExportControl.resources
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.ProjectSettingsControl.resources
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.RRPSelectionControl.resources
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.TobaccoSelectionControl.resources
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.MainForm.resources
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Properties.Resources.resources
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.csproj.GenerateResource.cache
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.exe
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.pdb
