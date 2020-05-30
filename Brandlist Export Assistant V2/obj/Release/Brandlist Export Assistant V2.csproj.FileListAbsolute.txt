@@ -1,0 +1,9 @@
+C:\Users\Denislav.Angelov\Desktop\Brandlist Export Assistant V2\Brandlist Export Assistant V2\obj\Release\Brandlist Export Assistant V2.csprojAssemblyReference.cache
+C:\Users\Denislav.Angelov\Desktop\Brandlist Export Assistant V2\Brandlist Export Assistant V2\obj\Release\Brandlist_Export_Assistant_V2.DataExportControl.resources
+C:\Users\Denislav.Angelov\Desktop\Brandlist Export Assistant V2\Brandlist Export Assistant V2\obj\Release\Brandlist_Export_Assistant_V2.ProjectSettingsControl.resources
+C:\Users\Denislav.Angelov\Desktop\Brandlist Export Assistant V2\Brandlist Export Assistant V2\obj\Release\Brandlist_Export_Assistant_V2.RRPSelectionControl.resources
+C:\Users\Denislav.Angelov\Desktop\Brandlist Export Assistant V2\Brandlist Export Assistant V2\obj\Release\Brandlist_Export_Assistant_V2.TobaccoSelectionControl.resources
+C:\Users\Denislav.Angelov\Desktop\Brandlist Export Assistant V2\Brandlist Export Assistant V2\obj\Release\Brandlist_Export_Assistant_V2.MainForm.resources
+C:\Users\Denislav.Angelov\Desktop\Brandlist Export Assistant V2\Brandlist Export Assistant V2\obj\Release\Brandlist_Export_Assistant_V2.Properties.Resources.resources
+C:\Users\Denislav.Angelov\Desktop\Brandlist Export Assistant V2\Brandlist Export Assistant V2\obj\Release\Brandlist Export Assistant V2.csproj.GenerateResource.cache
+C:\Users\Denislav.Angelov\Desktop\Brandlist Export Assistant V2\Brandlist Export Assistant V2\obj\Release\Brandlist Export Assistant V2.csproj.CoreCompileInputs.cache
