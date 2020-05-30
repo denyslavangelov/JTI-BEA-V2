@@ -8,6 +8,7 @@ using Brandlist_Export_Assistant_V2;
 using Brandlist_Export_Assistant_V2.Classes;
 using Brandlist_Export_Assistant_V2.Classes.Brand;
 using Brandlist_Export_Assistant_V2.Classes.Brandlists;
+using Brandlist_Export_Assistant_V2.Enums;
 using MDMLib;
 
 namespace Brandlist_Export_Assistant.Classes
@@ -166,8 +167,8 @@ namespace Brandlist_Export_Assistant.Classes
             var masterBrandListName = $"List_Main_Brands_HUN";
             var mastersubBrandListName = $"List_SubBrands_HUN";
 
-            var mainBrandListName = $"List_Main_Brands_" + tobaccoBrandlist.CountryCode;
-            var subBrandListName = $"List_SubBrands_" + tobaccoBrandlist.CountryCode;
+            var mainBrandListName = $"List_Main_Brands_" + ProjectSettings.CountryCode;
+            var subBrandListName = $"List_SubBrands_" + ProjectSettings.CountryCode;
 
             var xxxMainListName = "List_Main_Brands_XXX";
             var xxxSubBrandListName = "List_SubBrands_XXX";
@@ -183,7 +184,6 @@ namespace Brandlist_Export_Assistant.Classes
                 }
             }
             
-
             IElements listMainBrands = MDD_Document.CreateElements(mainBrandListName, "Brand");
             MDD_Document.Types.Add(listMainBrands, 0);
 
@@ -324,7 +324,7 @@ namespace Brandlist_Export_Assistant.Classes
             {
                 MDD_Document.Languages.Current = MDD_Document.Languages[i].Name;
 
-                category.Label = TobaccoBrandList.CountryName;
+                category.Label = ProjectSettings.CountryName;
                 country_Q.Label = "Country";
             }
 
@@ -336,18 +336,32 @@ namespace Brandlist_Export_Assistant.Classes
             var ryoProducts = tobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.RYO).Select(x => x.TrackerCode);
             var myoProducts = tobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.MYO).Select(x => x.TrackerCode);
 
-            category.Properties["ShortName"] = "TEST";
-            category.Properties["SurveyLang"] = "";
+            category.Properties["ShortName"] = ProjectSettings.CountryCode;
             category.Properties["DayLimit"] = "1";
             category.Properties["WeekLimit"] = "7";
+
+            switch (ProjectSettings.ProjectType)
+            {
+                case ProjectType.Incidence:
+                    category.Properties["ProjectType"] = "{incidence}";
+                    break;
+                case ProjectType.OneTracker:
+                    category.Properties["ProjectType"] = "{onetracker}";
+                    break;
+                case ProjectType.Tracker:
+                    category.Properties["ProjectType"] = "{tracker}";
+                    break;
+                default:
+                    category.Properties["ProjectType"] = "{tracker}";
+                    break;
+            }
+
+            category.Properties["ImagesLink"] = ProjectSettings.Methodology == Methodology.CAWI ? $"https://images1.ipsosinteractive.com/GOHBG/Programs/JTI/Tracker/{ProjectSettings.CountryName}/{ProjectSettings.ProjectType}/" : "";
+            category.Properties["CurrentWave"] = ProjectSettings.Wave;
             category.Properties["OtherResponse"] = "{" + other + "}";
             category.Properties["NoneResponse"] = "{" + none + "}";
             category.Properties["DKResponse"] = "{" + dontKnow + "}";
             category.Properties["NoneDK"] = "{" + none + "," + dontKnow + "}";
-            category.Properties["ProjectType"] = "{tracker}";
-            category.Properties["ImagesLink"] = "";
-            category.Properties["SharedAssetsLink"] = "";
-            category.Properties["CurrentWave"] = TobaccoBrandList.CurrentWave;
             category.Properties["OtherResponses"] = "{" + string.Join(",", tobaccoBrandlist.Brands.First(x => x.BrandCode == "9997").SubBrandList.Select(x => x.TrackerCode)) + "}";
             category.Properties["RMC_Products"] = "{" + string.Join(",", rmcProducts) + "}";
             category.Properties["MYO_Products"] = "{" + string.Join(",", myoProducts) + "}";
@@ -366,7 +380,7 @@ namespace Brandlist_Export_Assistant.Classes
             if (!Validator.IsFileOpen(this, mddDirectory) && IsSuccessful)
             {
                 MDD_Document.Save(Dir + MDDFile.ShortName);
-                //MDD_Document.Save(mddDirectory + ".mdd");
+                MDD_Document.Save(mddDirectory + ".mdd");
             }
             else
             {
@@ -374,10 +388,6 @@ namespace Brandlist_Export_Assistant.Classes
             }
 
             MDD_Document.Close();
-
-            //Process.Start(MDDFile.Path);
-
-            //ui.mddRestartBtn.PerformClick();
         }
 
         private void CreateAndOpenDocument()

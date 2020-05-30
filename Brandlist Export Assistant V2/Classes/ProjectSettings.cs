@@ -1,8 +1,10 @@
-﻿using Brandlist_Export_Assistant_V2.Enums;
+﻿using Brandlist_Export_Assistant.Classes;
+using Brandlist_Export_Assistant_V2.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Brandlist_Export_Assistant_V2.Classes
@@ -18,6 +20,7 @@ namespace Brandlist_Export_Assistant_V2.Classes
         public static Platform Platform { get; set; }
         public static string TobaccoSheetName { get; set; }
         public static string RRPSheetName { get; set; }
+        public static string CountryCode { get; set; }
 
         public static void SetProjectSettings(bool rrpExport, bool tobaccoExport, Methodology methodology, ProjectType projectType, Platform platform,string tobaccoSheetName,string rrpSheetName)
         {

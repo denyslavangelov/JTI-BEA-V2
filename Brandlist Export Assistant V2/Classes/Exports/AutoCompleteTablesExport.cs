@@ -55,7 +55,7 @@ namespace Brandlist_Export_Assistant.Classes
                 PopulateRRPCodes();
             }
 
-            string fileName = "AutoComplete_Tables1337.xlsx";
+            string fileName = "AutoComplete_Tables.xlsx";
 
             if (File.Exists(Dir + fileName))
             {
@@ -119,6 +119,11 @@ namespace Brandlist_Export_Assistant.Classes
             string[] brandNamesArray;
             string[] brandNamesLocalArray;
 
+            if (mddDocument.Length > 14)
+            {
+                mddDocument = mddDocument.Substring(0, 14);
+            }
+
             if (ProjectSettings.TobaccoExport)
             {
                 brandCodesArray = this.TobaccoBrandCodes.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
@@ -158,6 +163,7 @@ namespace Brandlist_Export_Assistant.Classes
                 brandNamesLocalArray = this.RRPBrandNamesLocal.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
                 Worksheet globalRRPBrandsSheet = workBook.Sheets.Add();
+
                 globalRRPBrandsSheet.Name = mddDocument + "_RRP_AC_SP_Global";
 
                 globalRRPBrandsSheet.Cells[1, "A"].Value2 = "precode";

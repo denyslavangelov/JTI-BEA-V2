@@ -20,10 +20,11 @@ namespace Brandlist_Export_Assistant_V2.Classes
 
             Data = CollectData(Sheet);
 
+            SetColumnIndexes(Data);
+
             ProjectSettings.CountryName = Data.SelectMany(x => x.Value).ElementAt(this.CountryCoulmnIndex).Value.ElementAt(this.CountryCoulmnIndex);
             ProjectSettings.Wave = Regex.Match(this.Sheet.Name, @"(W\d{1,1})").Groups[1].Value;
-
-            SetColumnIndexes(Data);
+            ProjectSettings.CountryCode = Countries.ExportCountries(Regex.Replace(ProjectSettings.CountryName, @"\s+", "")).FirstOrDefault(x => x.Key == Regex.Replace(ProjectSettings.CountryName, @"\s+", "")).Value;
         }
 
         private Excel Excel { get; set; }

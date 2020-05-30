@@ -23,13 +23,13 @@ namespace Brandlist_Export_Assistant_V2.Classes
         public Brandlist(TobaccoSheet sheet)
         {
             ProjectSettings.CountryName = sheet.Data.SelectMany(x => x.Value).ElementAt(sheet.CountryCoulmnIndex).Value.ElementAt(sheet.CountryCoulmnIndex);
-            ProjectSettings.Wave = Regex.Match(sheet.Sheet.Name, @"(W\d{1,1})").Groups[1].Value;
+           // ProjectSettings.Wave = Regex.Match(sheet.Sheet.Name, @"(W\d{1,1})").Groups[1].Value;
         }
 
         public Brandlist(RRPSheet sheet)
         {
             ProjectSettings.CountryName = sheet.Data.SelectMany(x => x.Value).ElementAt(sheet.CountryCoulmnIndex).Value.ElementAt(sheet.CountryCoulmnIndex);
-            ProjectSettings.Wave = Regex.Match(sheet.Sheet.Name, @"(W\d{1,1})").Groups[1].Value;
+           // ProjectSettings.Wave = Regex.Match(sheet.Sheet.Name, @"(W\d{1,1})").Groups[1].Value;
         }
     }
 }
