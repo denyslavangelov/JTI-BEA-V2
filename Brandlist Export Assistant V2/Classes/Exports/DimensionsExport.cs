@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
-using Brandlist_Export_Assistant_V2;
-using Brandlist_Export_Assistant_V2.Classes;
 using Brandlist_Export_Assistant_V2.Classes.Brand;
 using Brandlist_Export_Assistant_V2.Classes.Brandlists;
+using Brandlist_Export_Assistant_V2.Controls;
 using Brandlist_Export_Assistant_V2.Enums;
 using MDMLib;
 
-namespace Brandlist_Export_Assistant.Classes
+namespace Brandlist_Export_Assistant_V2.Classes.Exports
 {
 
     public class DimensionsExport : Export
@@ -39,9 +36,9 @@ namespace Brandlist_Export_Assistant.Classes
 
         private bool IsSuccessful { get; set; }
 
-        public override string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\DimensionsExport\";
+        public virtual string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\DimensionsExport\";
 
-        public override void ExportData()
+        public virtual void ExportData()
         {
             if (!Directory.Exists(Dir))
             {
@@ -62,7 +59,7 @@ namespace Brandlist_Export_Assistant.Classes
             SaveAndOpen();
         }
 
-        private void CreateBrandQuestion(List<MainBrand> brandList, string brandListName)
+        private void CreateBrandQuestion(IEnumerable<MainBrand> brandList, string brandListName)
         {
             IElements listMainBrands = MDD_Document.CreateElements(brandListName, "");
             MDD_Document.Types.Add(listMainBrands, 0);
@@ -101,7 +98,7 @@ namespace Brandlist_Export_Assistant.Classes
             }
         }
 
-        private void CreateSubBrandQuestion(List<SubBrand> subBrandList, string subBrandListName)
+        private void CreateSubBrandQuestion(IEnumerable<SubBrand> subBrandList, string subBrandListName)
         {
             IElements listSubBrands = MDD_Document.CreateElements(subBrandListName, "");
             MDD_Document.Types.Add(listSubBrands, 1);
@@ -114,9 +111,7 @@ namespace Brandlist_Export_Assistant.Classes
                     subBrand.LocalLabel = subBrand.LocalLabel.Replace("&", "&amp;");
                 }
 
-                IElement element;
-
-                element = MDD_Document.CreateElement(subBrand.TrackerCode, subBrand.GlobalLabel);
+                var element = MDD_Document.CreateElement(subBrand.TrackerCode, subBrand.GlobalLabel);
                 element.Properties["ProductGroup"] = subBrand.ProductGroup;
 
                 listSubBrands.Add(element);
@@ -187,7 +182,7 @@ namespace Brandlist_Export_Assistant.Classes
             IElements listMainBrands = MDD_Document.CreateElements(mainBrandListName, "Brand");
             MDD_Document.Types.Add(listMainBrands, 0);
 
-            foreach (var brand in tobaccoBrandlist.Brands)
+            foreach (var brand in TobaccoBrandlist.Brands)
             {
                 if (brand.GlobalLabel.Contains("&") || brand.LocalLabel.Contains("&"))
                 {
@@ -215,18 +210,11 @@ namespace Brandlist_Export_Assistant.Classes
 
                 listMainBrands.Add(element);
 
-                for (int i = 0; i < MDD_Document.Languages.Count; i++)
+                for (var i = 0; i < MDD_Document.Languages.Count; i++)
                 {
                     MDD_Document.Languages.Current = MDD_Document.Languages[i].Name;
 
-                    if (MDD_Document.Languages.Current == "ENU")
-                    {
-                        element.Label = brand.GlobalLabel;
-                    }
-                    else
-                    {
-                        element.Label = brand.LocalLabel;
-                    }
+                    element.Label = MDD_Document.Languages.Current == "ENU" ? brand.GlobalLabel : brand.LocalLabel;
 
                     if (i == 2)
                     {
@@ -250,7 +238,7 @@ namespace Brandlist_Export_Assistant.Classes
             IElements listSubBrands = MDD_Document.CreateElements(subBrandListName, "SKU");
             MDD_Document.Types.Add(listSubBrands, 1);
 
-            foreach (var subBrand in tobaccoBrandlist.SubBrands)
+            foreach (var subBrand in TobaccoBrandlist.SubBrands)
             {
                 if (subBrand.GlobalLabel.Contains("&") || subBrand.LocalLabel.Contains("&"))
                 {
@@ -264,25 +252,18 @@ namespace Brandlist_Export_Assistant.Classes
                 element.Properties["Value"] = int.Parse(subBrand.TrackerCode.Replace("br_", ""));
                 element.Properties["Salto_Code"] = subBrand.TrackerCode;
                 
-                if (tobaccoBrandlist.ExportCustomProperty)
+                if (TobaccoBrandlist.ExportCustomProperty)
                 {
                     element.Properties["Custom_Property"] = subBrand.CustomProperty;
                 }
 
                 listSubBrands.Add(element);
 
-                for (int i = 0; i < MDD_Document.Languages.Count; i++)
+                for (var i = 0; i < MDD_Document.Languages.Count; i++)
                 {
                     MDD_Document.Languages.Current = MDD_Document.Languages[i].Name;
 
-                    if (MDD_Document.Languages.Current == "ENU")
-                    {
-                        element.Label = subBrand.GlobalLabel;
-                    }
-                    else
-                    {
-                        element.Label = subBrand.LocalLabel;
-                    }
+                    element.Label = MDD_Document.Languages.Current == "ENU" ? subBrand.GlobalLabel : subBrand.LocalLabel;
 
                     if (i == 2)
                     {
@@ -317,7 +298,7 @@ namespace Brandlist_Export_Assistant.Classes
 
             MDD_Document.Fields.Add(country_Q, 0);
 
-            IElement category = MDD_Document.CreateElement("_" + tobaccoBrandlist.MarketCode.ToString());
+            IElement category = MDD_Document.CreateElement("_" + TobaccoBrandlist.MarketCode.ToString());
             country_Q.Elements.Add(category);
 
             for (int i = 0; i < MDD_Document.Languages.Count; i++)
@@ -328,13 +309,13 @@ namespace Brandlist_Export_Assistant.Classes
                 country_Q.Label = "Country";
             }
 
-            var other = tobaccoBrandlist.Brands.First(x => x.BrandCode == "9997").TrackerCode;
-            var none = tobaccoBrandlist.Brands.First(x => x.BrandCode == "9999").TrackerCode;
-            var dontKnow = tobaccoBrandlist.Brands.First(x => x.BrandCode == "9998").TrackerCode;
+            var other = TobaccoBrandlist.Brands.First(x => x.BrandCode == "9997").TrackerCode;
+            var none = TobaccoBrandlist.Brands.First(x => x.BrandCode == "9999").TrackerCode;
+            var dontKnow = TobaccoBrandlist.Brands.First(x => x.BrandCode == "9998").TrackerCode;
 
-            var rmcProducts = tobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.RMC).Select(x => x.TrackerCode);
-            var ryoProducts = tobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.RYO).Select(x => x.TrackerCode);
-            var myoProducts = tobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.MYO).Select(x => x.TrackerCode);
+            var rmcProducts = TobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.RMC).Select(x => x.TrackerCode);
+            var ryoProducts = TobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.RYO).Select(x => x.TrackerCode);
+            var myoProducts = TobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.MYO).Select(x => x.TrackerCode);
 
             category.Properties["ShortName"] = ProjectSettings.CountryCode;
             category.Properties["DayLimit"] = "1";
@@ -351,6 +332,8 @@ namespace Brandlist_Export_Assistant.Classes
                 case ProjectType.Tracker:
                     category.Properties["ProjectType"] = "{tracker}";
                     break;
+                case ProjectType.SwitchingBoost:
+                    break;
                 default:
                     category.Properties["ProjectType"] = "{tracker}";
                     break;
@@ -362,7 +345,7 @@ namespace Brandlist_Export_Assistant.Classes
             category.Properties["NoneResponse"] = "{" + none + "}";
             category.Properties["DKResponse"] = "{" + dontKnow + "}";
             category.Properties["NoneDK"] = "{" + none + "," + dontKnow + "}";
-            category.Properties["OtherResponses"] = "{" + string.Join(",", tobaccoBrandlist.Brands.First(x => x.BrandCode == "9997").SubBrandList.Select(x => x.TrackerCode)) + "}";
+            category.Properties["OtherResponses"] = "{" + string.Join(",", TobaccoBrandlist.Brands.First(x => x.BrandCode == "9997").SubBrandList.Select(x => x.TrackerCode)) + "}";
             category.Properties["RMC_Products"] = "{" + string.Join(",", rmcProducts) + "}";
             category.Properties["MYO_Products"] = "{" + string.Join(",", myoProducts) + "}";
             category.Properties["RYO_Products"] = "{" + string.Join(",", ryoProducts) + "}";
@@ -407,12 +390,5 @@ namespace Brandlist_Export_Assistant.Classes
                 return;
             }
         }
-
-        //public void RestartExport(MainUI UI)
-        //{
-        //    UI.mddRestartBtn.PerformClick();
-
-        //    MDD_Document.Close();
-        //}
     }
 }

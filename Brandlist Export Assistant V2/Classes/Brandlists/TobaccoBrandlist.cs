@@ -1,8 +1,9 @@
-﻿using Brandlist_Export_Assistant.Classes;
-using Brandlist_Export_Assistant_V2.Classes.Brand;
+﻿using Brandlist_Export_Assistant_V2.Classes.Brand;
 using Brandlist_Export_Assistant_V2.Enums;
 using System.Collections.Generic;
 using System.Linq;
+using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
+using Brandlist_Export_Assistant_V2.Controls;
 
 namespace Brandlist_Export_Assistant_V2.Classes.Brandlists
 {
@@ -12,7 +13,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Brandlists
 
         public int MarketCode { get; set; }
 
-        public TobaccoBrandlist(TobaccoSheet sheet) : base(sheet)
+        public TobaccoBrandlist()
         {
             Brands = new List<MainBrand>();
             SubBrands = new List<SubBrand>();

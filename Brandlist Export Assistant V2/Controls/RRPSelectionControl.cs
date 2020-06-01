@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
 using Guna.UI.WinForms;
-using Brandlist_Export_Assistant_V2.Classes;
 
-namespace Brandlist_Export_Assistant_V2
+namespace Brandlist_Export_Assistant_V2.Controls
 {
     public partial class RRPSelectionControl : UserControl
     {
@@ -18,10 +14,6 @@ namespace Brandlist_Export_Assistant_V2
 
         public RRPSheet RRPSheet { get; set; }
         public MainForm MainForm { get; set; }
-
-        public string ControlSheetName => snBox.Text;
-
-        public string ControlTrackerCode => tccBox.Text;
 
         public string ControlGlobalLabel => glcBox.Text;
 
@@ -47,7 +39,7 @@ namespace Brandlist_Export_Assistant_V2
             MainForm = mainForm;
         }
 
-        private void UpdateIcon(GunaComboBox instance, string instanceName, Panel panel)
+        private static void UpdateIcon(GunaComboBox instance, string instanceName, Panel panel)
         {
             var icon = (GunaPictureBox)panel.Controls[instanceName.Replace("Box", "") + "Icon"];
 
@@ -85,7 +77,7 @@ namespace Brandlist_Export_Assistant_V2
                 comboBoxes.ForEach(x => x.Items.Add(column));
             }
 
-            AttachIndexChanedEvent();
+            AttachIndexChangedEvent();
 
             foreach (var box in comboBoxes)
             {
@@ -109,25 +101,22 @@ namespace Brandlist_Export_Assistant_V2
             snBox.Text = RRPSheet.Sheet.Name;
         }
 
-        private void AttachIndexChanedEvent()
+        private void AttachIndexChangedEvent()
         {
-            this.IndexChanged += new EventHandler(MainForm.UpdateColumnIconsEvent);
-            this.IndexChanged += new EventHandler(NextButton_Visability);
+            this.IndexChanged += MainForm.UpdateColumnIconsEvent;
+            this.IndexChanged += NextButton_Visibility;
 
-            foreach (Panel panel in this.Controls.OfType<Panel>())
+            foreach (var panel in this.Controls.OfType<Panel>())
             {
-                foreach (GunaComboBox comboBox in panel.Controls.OfType<GunaComboBox>())
+                foreach (var comboBox in panel.Controls.OfType<GunaComboBox>())
                 {
                     comboBox.SelectedIndexChanged += (sender, eventArgs) => {
-                        GunaComboBox instance = (GunaComboBox)sender;
-                        string instanceName = instance.Name;
+                        var instance = (GunaComboBox)sender;
+                        var instanceName = instance.Name;
 
                         UpdateIcon(instance, instanceName, panel);
 
-                        if (this.IndexChanged != null)
-                        {
-                            this.IndexChanged(this, eventArgs);
-                        }
+                        IndexChanged?.Invoke(this, eventArgs);
                     };
                 }
             }
@@ -148,10 +137,7 @@ namespace Brandlist_Export_Assistant_V2
                 asslSwitchPanel.Location = new Point(36, 352);
             }
 
-            if (this.IndexChanged != null)
-            {
-                this.IndexChanged(this, e);
-            }
+            IndexChanged?.Invoke(this, e);
         }
 
         private void EcpSwitch_CheckedChanged(object sender, EventArgs e)
@@ -169,10 +155,7 @@ namespace Brandlist_Export_Assistant_V2
                 ecpSwitchPanel.Location = new Point(36, 419);
             }
 
-            if (this.IndexChanged != null)
-            {
-                this.IndexChanged(this, e);
-            }
+            IndexChanged?.Invoke(this, e);
         }
 
         private void ColumnSelectionRRP_Load(object sender, EventArgs e)
@@ -183,13 +166,13 @@ namespace Brandlist_Export_Assistant_V2
             ecpSwitchPanel.Location = new Point(36, 419);
         }
 
-        private void NextButton_Visability(object sender, EventArgs e)
+        private void NextButton_Visibility(object sender, EventArgs e)
         {
             GreenIconsCount = 0;
 
-            foreach (Panel panel in this.Controls.OfType<Panel>())
+            foreach (var panel in this.Controls.OfType<Panel>())
             {
-                foreach (GunaPictureBox icon in panel.Controls.OfType<GunaPictureBox>())
+                foreach (var icon in panel.Controls.OfType<GunaPictureBox>())
                 {
                     #pragma warning disable CS0252 // Possible unintended reference comparison; left hand side needs cast
                     if (icon.Tag == "Green")
@@ -205,11 +188,6 @@ namespace Brandlist_Export_Assistant_V2
         private void NextButton_Click(object sender, EventArgs e)
         {
             MainForm.UpdateStage(Stages.Import);
-        }
-
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

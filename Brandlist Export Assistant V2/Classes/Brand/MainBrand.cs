@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Brandlist_Export_Assistant_V2.Classes.Brandlists;
 
 namespace Brandlist_Export_Assistant_V2.Classes.Brand
 {
@@ -25,14 +23,11 @@ namespace Brandlist_Export_Assistant_V2.Classes.Brand
 
         public void PopulateBrandsWithSubBrands(Brandlist brandList, MainBrand brand)
         {
-            foreach (var subBrand in brandList.SubBrands)
+            foreach (var subBrand in brandList.SubBrands.Where(subBrand => subBrand.BrandCode.Contains(brand.BrandCode)))
             {
-                if (subBrand.BrandCode.Contains(brand.BrandCode))
-                {
-                    brand.SubBrandList.Add(subBrand);
-                    subBrand.HasMainBrand = true;
-                    brand.HasAnySubBrands = true;
-                }
+                brand.SubBrandList.Add(subBrand);
+                subBrand.HasMainBrand = true;
+                brand.HasAnySubBrands = true;
             }
         }
     }

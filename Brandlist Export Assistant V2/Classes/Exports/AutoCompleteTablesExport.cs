@@ -1,11 +1,9 @@
 ﻿using System;
 using System.IO;
-using Brandlist_Export_Assistant_V2;
-using Brandlist_Export_Assistant_V2.Classes;
 using Brandlist_Export_Assistant_V2.Classes.Brandlists;
 using Microsoft.Office.Interop.Excel;
 
-namespace Brandlist_Export_Assistant.Classes
+namespace Brandlist_Export_Assistant_V2.Classes.Exports
 {
     public class AutoCompleteTablesExport : Export
     {
@@ -34,9 +32,9 @@ namespace Brandlist_Export_Assistant.Classes
 
             this.MDDFile = MDDFile;
         }
-        public override string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\AutoCompleteTables\";
+        public virtual string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\AutoCompleteTables\";
 
-        public override void ExportData()
+        public virtual void ExportData()
         {
             if (!Directory.Exists(Dir))
             {
@@ -149,7 +147,7 @@ namespace Brandlist_Export_Assistant.Classes
                 localBrandsSheet.Cells[1, "A"].Value2 = "precode";
                 localBrandsSheet.Cells[1, "B"].Value2 = "brand";
 
-                for (int i = 0; i < brandNamesArray.Length; i++)
+                for (var i = 0; i < brandNamesArray.Length; i++)
                 {
                     localBrandsSheet.Cells[i + 2, "A"].Value2 = brandCodesArray[i];
                     localBrandsSheet.Cells[i + 2, "B"].Value2 = brandNamesLocalArray[i];
@@ -169,7 +167,7 @@ namespace Brandlist_Export_Assistant.Classes
                 globalRRPBrandsSheet.Cells[1, "A"].Value2 = "precode";
                 globalRRPBrandsSheet.Cells[1, "B"].Value2 = "brand";
 
-                for (int i = 0; i < brandNamesArray.Length; i++)
+                for (var i = 0; i < brandNamesArray.Length; i++)
                 {
                     globalRRPBrandsSheet.Cells[i + 2, "A"].Value2 = brandCodesArray[i];
                     globalRRPBrandsSheet.Cells[i + 2, "B"].Value2 = brandNamesArray[i];
@@ -182,7 +180,7 @@ namespace Brandlist_Export_Assistant.Classes
                 localRRPBrandsSheet.Cells[1, "A"].Value2 = "precode";
                 localRRPBrandsSheet.Cells[1, "B"].Value2 = "brand";
 
-                for (int i = 0; i < brandNamesArray.Length; i++)
+                for (var i = 0; i < brandNamesArray.Length; i++)
                 {
                     localRRPBrandsSheet.Cells[i + 2, "A"].Value2 = brandCodesArray[i];
                     localRRPBrandsSheet.Cells[i + 2, "B"].Value2 = brandNamesLocalArray[i];

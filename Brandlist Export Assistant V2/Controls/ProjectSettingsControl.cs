@@ -2,14 +2,13 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Guna.UI.WinForms;
 using Brandlist_Export_Assistant_V2.Classes;
+using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
 using Brandlist_Export_Assistant_V2.Enums;
-using Brandlist_Export_Assistant.Classes;
-using System.Collections.Generic;
+using Guna.UI.WinForms;
 using Microsoft.Office.Interop.Excel;
 
-namespace Brandlist_Export_Assistant_V2
+namespace Brandlist_Export_Assistant_V2.Controls
 {
     public partial class ProjectSettingsControl : UserControl
     {
@@ -26,12 +25,12 @@ namespace Brandlist_Export_Assistant_V2
 
         public Platform Platform { get; set; }
 
-        public ProjectSettingsControl(MainForm MainForm, Excel Excel)
+        public ProjectSettingsControl(MainForm mainForm, Excel excel)
         {
             InitializeComponent();
 
-            this.MainForm = MainForm;
-            this.Excel = Excel;
+            this.MainForm = mainForm;
+            this.Excel = excel;
 
             Visible = true;
 
@@ -45,13 +44,13 @@ namespace Brandlist_Export_Assistant_V2
             }
         }
 
-        private void NextButton_Visability(object sender, EventArgs e)
+        private void NextButton_Visibility(object sender, EventArgs e)
         {
             GreenIconsCount = 0;
 
-            foreach (GunaPanel panel in this.Controls.OfType<GunaPanel>())
+            foreach (var panel in this.Controls.OfType<GunaPanel>())
             {
-                foreach (GunaPictureBox icon in panel.Controls.OfType<GunaPictureBox>())
+                foreach (var icon in panel.Controls.OfType<GunaPictureBox>())
                 {
                     #pragma warning disable CS0252 // Possible unintended reference comparison; left hand side needs cast
                     if (icon.Tag == "Green")
@@ -64,46 +63,40 @@ namespace Brandlist_Export_Assistant_V2
             nextButton.Visible = GreenIconsCount >= FieldsToFillCount ? true : false;
         }
 
-        private void AttachIndexChanedEvent()
+        private void AttachIndexChangedEvent()
         {
-            this.SwitchClicked += new EventHandler(NextButton_Visability);
-            this.IndexChanged += new EventHandler(NextButton_Visability);
+            this.SwitchClicked += NextButton_Visibility;
+            this.IndexChanged += NextButton_Visibility;
 
-            foreach (GunaPanel panel in this.Controls.OfType<GunaPanel>())
+            foreach (var panel in this.Controls.OfType<GunaPanel>())
             {
-                foreach (GunaComboBox comboBox in panel.Controls.OfType<GunaComboBox>())
+                foreach (var comboBox in panel.Controls.OfType<GunaComboBox>())
                 {
                     comboBox.SelectedIndexChanged += (sender, eventArgs) => {
-                        GunaComboBox instance = (GunaComboBox)sender;
-                        string instanceName = instance.Name;
+                        var instance = (GunaComboBox)sender;
+                        var instanceName = instance.Name;
 
                         UpdateIconComboBox(instance, instanceName, panel);
 
-                        if (this.IndexChanged != null)
-                        {
-                            this.IndexChanged(this, eventArgs);
-                        }
+                        IndexChanged?.Invoke(this, eventArgs);
                     };
                 }
 
-                foreach (GunaCheckBox comboBox in panel.Controls.OfType<GunaCheckBox>())
+                foreach (var comboBox in panel.Controls.OfType<GunaCheckBox>())
                 {
                     comboBox.CheckedChanged += (sender, eventArgs) => {
-                        GunaCheckBox instance = (GunaCheckBox)sender;
-                        string instanceName = instance.Name;
+                        var instance = (GunaCheckBox)sender;
+                        var instanceName = instance.Name;
 
                         UpdateIconCheckBox(instanceName);
 
-                        if (this.SwitchClicked != null)
-                        {
-                            this.SwitchClicked(this, eventArgs);
-                        }
+                        SwitchClicked?.Invoke(this, eventArgs);
                     };
                 }
             }
         }
 
-        private void UpdateIconComboBox(GunaComboBox instance, string instanceName, Panel panel)
+        private static void UpdateIconComboBox(Control instance, string instanceName, Control panel)
         {
             var icon = (GunaPictureBox)panel.Controls[instanceName.Replace("Box", "") + "Icon"];
 
@@ -137,7 +130,7 @@ namespace Brandlist_Export_Assistant_V2
 
         private void SetItems()
         {
-            AttachIndexChanedEvent();
+            AttachIndexChangedEvent();
         }
 
         private void ProjectSettingsControl_Load(object sender, EventArgs e)

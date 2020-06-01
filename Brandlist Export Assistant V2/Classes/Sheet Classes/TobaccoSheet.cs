@@ -1,11 +1,10 @@
-﻿using Brandlist_Export_Assistant.Classes;
-using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.Office.Interop.Excel;
 
-namespace Brandlist_Export_Assistant_V2.Classes
+namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
 {
     public class TobaccoSheet
     {
@@ -92,7 +91,7 @@ namespace Brandlist_Export_Assistant_V2.Classes
             {
                 var rowData = new string[rangeColumn + 1];
 
-                for (int c = 1; c <= rangeColumn + 1; c++)
+                for (var c = 1; c <= rangeColumn + 1; c++)
                 {
                     rowData[c - 1] = Convert.ToString(values[rowIndex + 1, c]);
                 }

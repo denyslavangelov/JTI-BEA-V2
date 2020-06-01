@@ -1,19 +1,15 @@
-﻿using Brandlist_Export_Assistant_V2;
-using Brandlist_Export_Assistant_V2.Classes;
-using Brandlist_Export_Assistant_V2.Classes.Brand;
-using Brandlist_Export_Assistant_V2.Classes.Brandlists;
-using Microsoft.Office.Interop.Excel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Windows.Forms;
+using Brandlist_Export_Assistant_V2.Classes.Brand;
+using Brandlist_Export_Assistant_V2.Classes.Exports;
+using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
 
-namespace Brandlist_Export_Assistant.Classes
+namespace Brandlist_Export_Assistant_V2.Classes
 {
     public static class Validator
     {
-        public static bool ValidateBrand(Brand brand, int rowIndex)
+        public static bool ValidateBrand(Brand.Brand brand, int rowIndex)
         {
             if (string.IsNullOrEmpty(brand.TrackerCode) || brand.TrackerCode == "br_")
             {
@@ -73,7 +69,7 @@ namespace Brandlist_Export_Assistant.Classes
 
         public static bool IsFileOpen(DimensionsExport export, string mddDirectory)
         {
-            string mdd = mddDirectory.Contains("mdd") ? "" : ".mdd";
+            var mdd = mddDirectory.Contains("mdd") ? "" : ".mdd";
 
             mddDirectory += mdd;
 
@@ -96,13 +92,10 @@ namespace Brandlist_Export_Assistant.Classes
         {
             var mandatoryColumns = new List<string> { "Tracker 2.0 Code", "Scripting Product Type Code", "Market Code", "Status" };
 
-            foreach (var column in mandatoryColumns)
+            if (mandatoryColumns.Any(column => !tobaccoSheet.ColumnNames.Contains(column)))
             {
-                if (!tobaccoSheet.ColumnNames.Contains(column))
-                {
-                    Alert.Show("Invalid brandlist. One of the mandatory columns is not present in the brandlist.", Alert.AlertType.Error, Stages.LoadBrandlist);
-                    return false;
-                }
+                Alert.Show("Invalid brandlist. One of the mandatory columns is not present in the brandlist.", Alert.AlertType.Error, Stages.LoadBrandlist);
+                return false;
             }
             return true;
         }

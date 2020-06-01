@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Brandlist_Export_Assistant_V2
+﻿namespace Brandlist_Export_Assistant_V2.Classes
 {
     public class MDDFile
     {

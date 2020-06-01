@@ -1,4 +1,4 @@
-﻿namespace Brandlist_Export_Assistant_V2
+﻿namespace Brandlist_Export_Assistant_V2.Controls
 {
     partial class RRPSelectionControl
     {
@@ -517,7 +517,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // RRPSelectionControl
             // 

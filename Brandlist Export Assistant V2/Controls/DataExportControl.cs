@@ -1,28 +1,26 @@
-﻿using Brandlist_Export_Assistant.Classes;
-using Brandlist_Export_Assistant_V2.Classes;
-using Brandlist_Export_Assistant_V2.Classes.Brandlists;
-using Brandlist_Export_Assistant_V2.Enums;
-using Guna.UI.WinForms;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Brandlist_Export_Assistant_V2.Classes;
+using Brandlist_Export_Assistant_V2.Classes.Brandlists;
+using Brandlist_Export_Assistant_V2.Classes.Exports;
+using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
+using Brandlist_Export_Assistant_V2.Enums;
+using Guna.UI.WinForms;
 
-namespace Brandlist_Export_Assistant_V2
+namespace Brandlist_Export_Assistant_V2.Controls
 {
     public partial class DataExportControl : UserControl
     {
         private DimensionsExport DimensionsExport { get; set; }
         private IFieldExport IFieldExport { get; set; }
-
         public TobaccoBrandlist TobaccoBrandlist { get; }
         public RRPBrandlist RRPBrandlist { get; }
 
-        public TobaccoSheet tobaccoSheet;
-
-        public Excel excel;
+        public Excel Excel;
 
         private MainForm MainForm { get; }
 
@@ -30,7 +28,7 @@ namespace Brandlist_Export_Assistant_V2
 
         private MDDFile MDDFile { get; set; }
 
-        public DataExportControl(MainForm mainForm, TobaccoBrandlist tobaccoBrandlist, RRPBrandlist rrpBrandlist, Excel Excel, ProjectSettingsControl projectSettingsControl)
+        public DataExportControl(MainForm mainForm, TobaccoBrandlist tobaccoBrandlist, RRPBrandlist rrpBrandlist, Excel excel, ProjectSettingsControl projectSettingsControl)
         {
             InitializeComponent();
 
@@ -39,7 +37,7 @@ namespace Brandlist_Export_Assistant_V2
 
             ProjectSettingsControl = projectSettingsControl;
 
-            excel = Excel;
+            this.Excel = excel;
 
             MainForm = mainForm;
 
@@ -51,16 +49,14 @@ namespace Brandlist_Export_Assistant_V2
 
         public async Task ExecuteAsync()
         {
-            await Task.Run(() => {
-                ExportData();
-            });
+            await Task.Run(ExportData);
         }
 
         private async void ExportDataButton_Click(object sender, EventArgs e)
         {
             if (ProjectSettings.Platform == Platform.Dimensions)
             {
-                OpenFileDialog browseFile = new OpenFileDialog
+                var browseFile = new OpenFileDialog
                 {
                     FilterIndex = 0,
                     RestoreDirectory = true
@@ -84,7 +80,7 @@ namespace Brandlist_Export_Assistant_V2
 
             MainForm.UpdateStage(Stages.Final);
 
-            SucessScreenSetup();
+            SuccessScreenSetup();
         }
 
         private void ExportPanelSetup()
@@ -98,7 +94,7 @@ namespace Brandlist_Export_Assistant_V2
             }
         }
 
-        private void SucessScreenSetup()
+        private void SuccessScreenSetup()
         {
             successPanel.Visible = true;
             browsePanel.Visible = false;
@@ -154,17 +150,19 @@ namespace Brandlist_Export_Assistant_V2
 
         private void SuccessFolderButton_Click(object sender, EventArgs e)
         {
-            if (ProjectSettings.Platform == Platform.Dimensions)
+            switch (ProjectSettings.Platform)
             {
-                //Process.Start(MDDFile.Path);
-                Process.Start(DimensionsExport.Dir);
+                case Platform.Dimensions:
+                    Process.Start(MDDFile.Path);
+                    break;
+                case Platform.iField:
+                    Process.Start(IFieldExport.Dir);
+                    break;
+                case Platform.Dooblo:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-
-            if (ProjectSettings.Platform == Platform.iField)
-            {
-                Process.Start(IFieldExport.Dir);
-            }
-            
         }
     }
 }
