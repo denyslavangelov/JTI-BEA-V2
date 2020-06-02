@@ -12,7 +12,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
         {
             Excel = excel;
 
-            Sheet = excel.Worksheets[sheetName];
+            Sheet = excel.AllWorksheets[sheetName];
 
             SheetName = Sheet.Name;
 

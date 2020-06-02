@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Brandlist_Export_Assistant_V2.Classes;
 using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
 using Brandlist_Export_Assistant_V2.Enums;
+using Brandlist_Export_Assistant_V2.Forms;
 using Guna.UI.WinForms;
 using Microsoft.Office.Interop.Excel;
 
@@ -37,10 +38,13 @@ namespace Brandlist_Export_Assistant_V2.Controls
             Location = new System.Drawing.Point(323, 115);
             Size = new Size(579, 524);
 
-            foreach (Worksheet sheet in this.Excel.Worksheets)
+            foreach (Worksheet sheet in this.Excel.AllWorksheets)
             {
-                tsBox.Items.Add(sheet.Name);
-                rsBox.Items.Add(sheet.Name);
+                if (this.Excel.Worksheets.Any(s => sheet.Name.Contains(s)))
+                {
+                    tsBox.Items.Add(sheet.Name);
+                    rsBox.Items.Add(sheet.Name);
+                }
             }
         }
 
@@ -222,6 +226,12 @@ namespace Brandlist_Export_Assistant_V2.Controls
 
         private void EtTBCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (etTBCheckBox.Checked && !rsPanel.Visible)
+            {
+                tsPanel.Location = new System.Drawing.Point(185, 260);
+                rsPanel.Location = new System.Drawing.Point(185, 320);
+            }
+
             if (etTBCheckBox.Checked)
             {
                 tsPanel.Location = rsPanel.Location == new System.Drawing.Point(185, 260) ? new System.Drawing.Point(185, 320) : new System.Drawing.Point(185, 260);
@@ -234,11 +244,22 @@ namespace Brandlist_Export_Assistant_V2.Controls
                 tsPanel.Hide();
                 FieldsToFillCount--;
             }
-            
+
+            if (!etTBCheckBox.Checked && (tsPanel.Location == new System.Drawing.Point(185, 260)))
+            {
+                rsPanel.Location = new System.Drawing.Point(185, 260);
+            }
+
         }
 
         private void EtRRPCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (etRRPCheckBox.Checked && !tsBox.Visible)
+            {
+                rsPanel.Location = new System.Drawing.Point(185, 260);
+                tsPanel.Location = new System.Drawing.Point(185, 320);
+            }
+
             if (etRRPCheckBox.Checked)
             {
                 rsPanel.Location = tsPanel.Location == new System.Drawing.Point(185, 260) ? new System.Drawing.Point(185, 320) : new System.Drawing.Point(185, 260);
@@ -249,6 +270,11 @@ namespace Brandlist_Export_Assistant_V2.Controls
             {
                 rsPanel.Hide();
                 FieldsToFillCount--;
+            }
+
+            if (!etRRPCheckBox.Checked && (rsPanel.Location == new System.Drawing.Point(185, 260)))
+            {
+                tsPanel.Location = new System.Drawing.Point(185, 260);
             }
         }
 
