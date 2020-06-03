@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Brandlist_Export_Assistant_V2.Classes;
@@ -9,18 +10,23 @@ using Brandlist_Export_Assistant_V2.Classes.Brandlists;
 using Brandlist_Export_Assistant_V2.Classes.Exports;
 using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
 using Brandlist_Export_Assistant_V2.Enums;
+using Brandlist_Export_Assistant_V2.Forms;
 using Guna.UI.WinForms;
 
 namespace Brandlist_Export_Assistant_V2.Controls
 {
     public partial class DataExportControl : UserControl
     {
+        public string ExportString { get; private set; } = @"EXPORTING";
+
         private DimensionsExport DimensionsExport { get; set; }
         private IFieldExport IFieldExport { get; set; }
         public TobaccoBrandlist TobaccoBrandlist { get; }
         public RRPBrandlist RRPBrandlist { get; }
 
         public Excel Excel;
+
+        public LoadingScreen LoadingScreen { get; set; }
 
         private MainForm MainForm { get; }
 
@@ -37,6 +43,8 @@ namespace Brandlist_Export_Assistant_V2.Controls
 
             ProjectSettingsControl = projectSettingsControl;
 
+            LoadingScreen = new LoadingScreen();
+
             this.Excel = excel;
 
             MainForm = mainForm;
@@ -47,7 +55,7 @@ namespace Brandlist_Export_Assistant_V2.Controls
             ExportPanelSetup();
         }
 
-        public async Task ExecuteAsync()
+        public async Task ExportDataAsync()
         {
             await Task.Run(ExportData);
         }
@@ -56,6 +64,8 @@ namespace Brandlist_Export_Assistant_V2.Controls
         {
             if (ProjectSettings.Platform == Platform.Dimensions)
             {
+                ExportString = @"IMPORTING";
+
                 var browseFile = new OpenFileDialog
                 {
                     FilterIndex = 0,
@@ -74,11 +84,13 @@ namespace Brandlist_Export_Assistant_V2.Controls
                 }
             }
 
-            LoadingButton(exportDataButton);
+            this.LoadingScreen.Show(this.Parent, this, ExportString);
 
-            await ExecuteAsync();
+            await ExportDataAsync();
 
             MainForm.UpdateStage(Stages.Final);
+
+            this.LoadingScreen.Hide(this.Parent, this);
 
             SuccessScreenSetup();
         }
@@ -89,7 +101,7 @@ namespace Brandlist_Export_Assistant_V2.Controls
 
             if (ProjectSettings.Platform == Platform.iField)
             {
-                exportDataButton.Text = "EXPORT DATA";
+                exportDataButton.Text = @"EXPORT DATA";
                 exportLabel.Visible = false;
             }
         }
@@ -126,26 +138,6 @@ namespace Brandlist_Export_Assistant_V2.Controls
                 case Platform.Dooblo:
                     break;
             }
-        }
-
-        private void LoadingButton(GunaButton button)
-        {
-            button.BorderColor = ColorTranslator.FromHtml("#3D4853");
-            button.ForeColor = ColorTranslator.FromHtml("#3D4853");
-            button.BorderSize = 4;
-
-            button.BaseColor = Color.Transparent;
-            button.OnHoverBaseColor = Color.Transparent;
-            button.OnHoverBorderColor = ColorTranslator.FromHtml("#3D4853");
-            button.OnHoverForeColor = ColorTranslator.FromHtml("#3D4853");
-            button.OnHoverImage = null;
-            button.Image = null;
-            button.TextOffsetX = 25;
-            button.TextAlign = HorizontalAlignment.Right;
-
-            loadingBarImage.Visible = true;
-
-            button.Text = "IMPORTING";
         }
 
         private void SuccessFolderButton_Click(object sender, EventArgs e)

@@ -4,6 +4,7 @@ using System.Linq;
 using Brandlist_Export_Assistant_V2.Classes.Brand;
 using Brandlist_Export_Assistant_V2.Classes.Exports;
 using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
+using Brandlist_Export_Assistant_V2.Forms;
 
 namespace Brandlist_Export_Assistant_V2.Classes
 {

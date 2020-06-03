@@ -1,4 +1,7 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using System.Collections.Generic;
+using System.Linq;
+using com.sun.tools.javac.util;
+using Microsoft.Office.Interop.Excel;
 
 namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
 {
@@ -9,9 +12,13 @@ namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
             FileName = fileName;
             Open();
 
-            Worksheets = ExcelApplication.Worksheets;
+            AllWorksheets = ExcelApplication.Worksheets;
 
-            WorksheetsCount = VisibleWorksheetsCount(Worksheets);
+            Worksheets = new List<string>();
+
+            Worksheets = GetVisibleSheets(AllWorksheets);
+
+            WorksheetsCount = VisibleWorksheetsCount(AllWorksheets);
         }
         
         public int VisibleWorksheetsCount(Sheets worksheets)
@@ -29,7 +36,19 @@ namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
             return count;
         }
 
-        public Sheets Worksheets { get; set; }
+        public List<string> GetVisibleSheets(Sheets worksheets)
+        {
+            foreach (var sheet in worksheets.Cast<Worksheet>().Where(sheet => sheet.Visible == XlSheetVisibility.xlSheetVisible))
+            {
+                this.Worksheets.Add(sheet.Name);
+            }
+
+            return Worksheets;
+        }
+
+        public List<string> Worksheets { get; set; }
+
+        public Sheets AllWorksheets { get; set; }
 
         public int WorksheetsCount { get; set; }
 

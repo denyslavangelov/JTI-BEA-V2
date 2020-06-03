@@ -31,36 +31,36 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectSettingsControl));
             this.etLabel = new Guna.UI.WinForms.GunaLabel();
             this.settingsPanel = new Guna.UI.WinForms.GunaPanel();
+            this.pIcon = new Guna.UI.WinForms.GunaPictureBox();
             this.pBox = new Guna.UI.WinForms.GunaComboBox();
             this.pLabel = new Guna.UI.WinForms.GunaLabel();
+            this.pmIcon = new Guna.UI.WinForms.GunaPictureBox();
+            this.ptIcon = new Guna.UI.WinForms.GunaPictureBox();
             this.pmBox = new Guna.UI.WinForms.GunaComboBox();
             this.pmLabel = new Guna.UI.WinForms.GunaLabel();
             this.ptBox = new Guna.UI.WinForms.GunaComboBox();
             this.ptLabel = new Guna.UI.WinForms.GunaLabel();
+            this.etIcon = new Guna.UI.WinForms.GunaPictureBox();
             this.etRRPCheckBox = new Guna.UI.WinForms.GunaCheckBox();
             this.etTBCheckBox = new Guna.UI.WinForms.GunaCheckBox();
             this.rsBox = new Guna.UI.WinForms.GunaComboBox();
             this.gunaLabel2 = new Guna.UI.WinForms.GunaLabel();
             this.rsPanel = new Guna.UI.WinForms.GunaPanel();
+            this.rsIcon = new Guna.UI.WinForms.GunaPictureBox();
             this.tsBox = new Guna.UI.WinForms.GunaComboBox();
             this.gunaLabel1 = new Guna.UI.WinForms.GunaLabel();
             this.tsPanel = new Guna.UI.WinForms.GunaPanel();
-            this.rsIcon = new Guna.UI.WinForms.GunaPictureBox();
-            this.nextButton = new Guna.UI.WinForms.GunaButton();
             this.tsIcon = new Guna.UI.WinForms.GunaPictureBox();
-            this.pIcon = new Guna.UI.WinForms.GunaPictureBox();
-            this.pmIcon = new Guna.UI.WinForms.GunaPictureBox();
-            this.ptIcon = new Guna.UI.WinForms.GunaPictureBox();
-            this.etIcon = new Guna.UI.WinForms.GunaPictureBox();
+            this.nextButton = new Guna.UI.WinForms.GunaButton();
             this.settingsPanel.SuspendLayout();
-            this.rsPanel.SuspendLayout();
-            this.tsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rsIcon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tsIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pmIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.etIcon)).BeginInit();
+            this.rsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rsIcon)).BeginInit();
+            this.tsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tsIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // etLabel
@@ -93,6 +93,17 @@
             this.settingsPanel.Name = "settingsPanel";
             this.settingsPanel.Size = new System.Drawing.Size(344, 148);
             this.settingsPanel.TabIndex = 27;
+            // 
+            // pIcon
+            // 
+            this.pIcon.BaseColor = System.Drawing.Color.White;
+            this.pIcon.Image = ((System.Drawing.Image)(resources.GetObject("pIcon.Image")));
+            this.pIcon.Location = new System.Drawing.Point(320, 41);
+            this.pIcon.Name = "pIcon";
+            this.pIcon.Size = new System.Drawing.Size(20, 25);
+            this.pIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pIcon.TabIndex = 45;
+            this.pIcon.TabStop = false;
             // 
             // pBox
             // 
@@ -129,6 +140,28 @@
             this.pLabel.Size = new System.Drawing.Size(73, 17);
             this.pLabel.TabIndex = 43;
             this.pLabel.Text = "PLATFORM";
+            // 
+            // pmIcon
+            // 
+            this.pmIcon.BaseColor = System.Drawing.Color.White;
+            this.pmIcon.Image = ((System.Drawing.Image)(resources.GetObject("pmIcon.Image")));
+            this.pmIcon.Location = new System.Drawing.Point(320, 113);
+            this.pmIcon.Name = "pmIcon";
+            this.pmIcon.Size = new System.Drawing.Size(20, 25);
+            this.pmIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pmIcon.TabIndex = 39;
+            this.pmIcon.TabStop = false;
+            // 
+            // ptIcon
+            // 
+            this.ptIcon.BaseColor = System.Drawing.Color.White;
+            this.ptIcon.Image = ((System.Drawing.Image)(resources.GetObject("ptIcon.Image")));
+            this.ptIcon.Location = new System.Drawing.Point(150, 41);
+            this.ptIcon.Name = "ptIcon";
+            this.ptIcon.Size = new System.Drawing.Size(20, 25);
+            this.ptIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.ptIcon.TabIndex = 38;
+            this.ptIcon.TabStop = false;
             // 
             // pmBox
             // 
@@ -201,6 +234,17 @@
             this.ptLabel.TabIndex = 34;
             this.ptLabel.Text = "PROJECT TYPE";
             // 
+            // etIcon
+            // 
+            this.etIcon.BaseColor = System.Drawing.Color.White;
+            this.etIcon.Image = ((System.Drawing.Image)(resources.GetObject("etIcon.Image")));
+            this.etIcon.Location = new System.Drawing.Point(121, 90);
+            this.etIcon.Name = "etIcon";
+            this.etIcon.Size = new System.Drawing.Size(20, 25);
+            this.etIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.etIcon.TabIndex = 32;
+            this.etIcon.TabStop = false;
+            // 
             // etRRPCheckBox
             // 
             this.etRRPCheckBox.BaseColor = System.Drawing.Color.White;
@@ -246,7 +290,7 @@
             this.rsBox.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.rsBox.OnHoverItemForeColor = System.Drawing.Color.White;
             this.rsBox.Radius = 6;
-            this.rsBox.Size = new System.Drawing.Size(169, 26);
+            this.rsBox.Size = new System.Drawing.Size(187, 26);
             this.rsBox.TabIndex = 50;
             this.rsBox.SelectedIndexChanged += new System.EventHandler(this.RsBox_SelectedIndexChanged);
             // 
@@ -266,11 +310,22 @@
             this.rsPanel.Controls.Add(this.gunaLabel2);
             this.rsPanel.Controls.Add(this.rsIcon);
             this.rsPanel.Controls.Add(this.rsBox);
-            this.rsPanel.Location = new System.Drawing.Point(185, 320);
+            this.rsPanel.Location = new System.Drawing.Point(191, 318);
             this.rsPanel.Name = "rsPanel";
-            this.rsPanel.Size = new System.Drawing.Size(204, 58);
+            this.rsPanel.Size = new System.Drawing.Size(230, 58);
             this.rsPanel.TabIndex = 47;
             this.rsPanel.Visible = false;
+            // 
+            // rsIcon
+            // 
+            this.rsIcon.BaseColor = System.Drawing.Color.White;
+            this.rsIcon.Image = ((System.Drawing.Image)(resources.GetObject("rsIcon.Image")));
+            this.rsIcon.Location = new System.Drawing.Point(193, 25);
+            this.rsIcon.Name = "rsIcon";
+            this.rsIcon.Size = new System.Drawing.Size(20, 25);
+            this.rsIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.rsIcon.TabIndex = 51;
+            this.rsIcon.TabStop = false;
             // 
             // tsBox
             // 
@@ -289,18 +344,18 @@
             this.tsBox.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.tsBox.OnHoverItemForeColor = System.Drawing.Color.White;
             this.tsBox.Radius = 6;
-            this.tsBox.Size = new System.Drawing.Size(169, 26);
+            this.tsBox.Size = new System.Drawing.Size(187, 26);
             this.tsBox.TabIndex = 47;
             this.tsBox.SelectedIndexChanged += new System.EventHandler(this.TsBox_SelectedIndexChanged);
             // 
             // gunaLabel1
             // 
             this.gunaLabel1.AutoSize = true;
-            this.gunaLabel1.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gunaLabel1.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gunaLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(47)))), ((int)(((byte)(68)))));
             this.gunaLabel1.Location = new System.Drawing.Point(10, 10);
             this.gunaLabel1.Name = "gunaLabel1";
-            this.gunaLabel1.Size = new System.Drawing.Size(94, 13);
+            this.gunaLabel1.Size = new System.Drawing.Size(100, 15);
             this.gunaLabel1.TabIndex = 46;
             this.gunaLabel1.Text = "TOBACCO SHEET";
             // 
@@ -309,22 +364,22 @@
             this.tsPanel.Controls.Add(this.gunaLabel1);
             this.tsPanel.Controls.Add(this.tsBox);
             this.tsPanel.Controls.Add(this.tsIcon);
-            this.tsPanel.Location = new System.Drawing.Point(185, 260);
+            this.tsPanel.Location = new System.Drawing.Point(191, 258);
             this.tsPanel.Name = "tsPanel";
-            this.tsPanel.Size = new System.Drawing.Size(204, 58);
+            this.tsPanel.Size = new System.Drawing.Size(230, 58);
             this.tsPanel.TabIndex = 52;
             this.tsPanel.Visible = false;
             // 
-            // rsIcon
+            // tsIcon
             // 
-            this.rsIcon.BaseColor = System.Drawing.Color.White;
-            this.rsIcon.Image = ((System.Drawing.Image)(resources.GetObject("rsIcon.Image")));
-            this.rsIcon.Location = new System.Drawing.Point(175, 25);
-            this.rsIcon.Name = "rsIcon";
-            this.rsIcon.Size = new System.Drawing.Size(20, 25);
-            this.rsIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.rsIcon.TabIndex = 51;
-            this.rsIcon.TabStop = false;
+            this.tsIcon.BaseColor = System.Drawing.Color.White;
+            this.tsIcon.Image = ((System.Drawing.Image)(resources.GetObject("tsIcon.Image")));
+            this.tsIcon.Location = new System.Drawing.Point(193, 26);
+            this.tsIcon.Name = "tsIcon";
+            this.tsIcon.Size = new System.Drawing.Size(20, 25);
+            this.tsIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.tsIcon.TabIndex = 48;
+            this.tsIcon.TabStop = false;
             // 
             // nextButton
             // 
@@ -356,61 +411,6 @@
             this.nextButton.Visible = false;
             this.nextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
-            // tsIcon
-            // 
-            this.tsIcon.BaseColor = System.Drawing.Color.White;
-            this.tsIcon.Image = ((System.Drawing.Image)(resources.GetObject("tsIcon.Image")));
-            this.tsIcon.Location = new System.Drawing.Point(175, 26);
-            this.tsIcon.Name = "tsIcon";
-            this.tsIcon.Size = new System.Drawing.Size(20, 25);
-            this.tsIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.tsIcon.TabIndex = 48;
-            this.tsIcon.TabStop = false;
-            // 
-            // pIcon
-            // 
-            this.pIcon.BaseColor = System.Drawing.Color.White;
-            this.pIcon.Image = ((System.Drawing.Image)(resources.GetObject("pIcon.Image")));
-            this.pIcon.Location = new System.Drawing.Point(320, 41);
-            this.pIcon.Name = "pIcon";
-            this.pIcon.Size = new System.Drawing.Size(20, 25);
-            this.pIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pIcon.TabIndex = 45;
-            this.pIcon.TabStop = false;
-            // 
-            // pmIcon
-            // 
-            this.pmIcon.BaseColor = System.Drawing.Color.White;
-            this.pmIcon.Image = ((System.Drawing.Image)(resources.GetObject("pmIcon.Image")));
-            this.pmIcon.Location = new System.Drawing.Point(320, 113);
-            this.pmIcon.Name = "pmIcon";
-            this.pmIcon.Size = new System.Drawing.Size(20, 25);
-            this.pmIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pmIcon.TabIndex = 39;
-            this.pmIcon.TabStop = false;
-            // 
-            // ptIcon
-            // 
-            this.ptIcon.BaseColor = System.Drawing.Color.White;
-            this.ptIcon.Image = ((System.Drawing.Image)(resources.GetObject("ptIcon.Image")));
-            this.ptIcon.Location = new System.Drawing.Point(150, 41);
-            this.ptIcon.Name = "ptIcon";
-            this.ptIcon.Size = new System.Drawing.Size(20, 25);
-            this.ptIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.ptIcon.TabIndex = 38;
-            this.ptIcon.TabStop = false;
-            // 
-            // etIcon
-            // 
-            this.etIcon.BaseColor = System.Drawing.Color.White;
-            this.etIcon.Image = ((System.Drawing.Image)(resources.GetObject("etIcon.Image")));
-            this.etIcon.Location = new System.Drawing.Point(121, 90);
-            this.etIcon.Name = "etIcon";
-            this.etIcon.Size = new System.Drawing.Size(20, 25);
-            this.etIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.etIcon.TabIndex = 32;
-            this.etIcon.TabStop = false;
-            // 
             // ProjectSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -424,16 +424,16 @@
             this.Load += new System.EventHandler(this.ProjectSettingsControl_Load);
             this.settingsPanel.ResumeLayout(false);
             this.settingsPanel.PerformLayout();
-            this.rsPanel.ResumeLayout(false);
-            this.rsPanel.PerformLayout();
-            this.tsPanel.ResumeLayout(false);
-            this.tsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rsIcon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tsIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pmIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etIcon)).EndInit();
+            this.rsPanel.ResumeLayout(false);
+            this.rsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rsIcon)).EndInit();
+            this.tsPanel.ResumeLayout(false);
+            this.tsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tsIcon)).EndInit();
             this.ResumeLayout(false);
 
         }

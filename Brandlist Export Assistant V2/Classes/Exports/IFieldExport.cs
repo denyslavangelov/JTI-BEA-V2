@@ -15,11 +15,17 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
         private string TobaccoBrands { get; set; }
         private string TobaccoSubBrands { get; set; }
         private string TobaccoSubBrandsNoImage { get; set; }
+
         private string RRPBrands { get; set; }
         private string RRPSubBrands { get; set; }
         private string RRPSubBrandsNoImage { get; set; }
         private string RRPCoreList { get; set; }
         private string RRPBIList { get; set; }
+        private string RRPBrandsNoImage { get; set; }
+        private string RRPCoreListNoImage { get; set; }
+
+        private string TobaccoExportDirectory => Dir + @"Tobacco BL\";
+        private string RRPExportDirectory => Dir + @"RRP BL\";
 
         public virtual string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\iFieldExport\";
 
@@ -37,7 +43,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
             foreach (var brand in brandlist.Brands)
             {
-                string isExclusive = brand.IsExclusive ? "1" : "0";
+                var isExclusive = brand.IsExclusive ? "1" : "0";
 
                 TobaccoBrands += brand.GlobalLabel + "\t" + brand.TrackerCode + "\t" + "{\"skuList\":\"" + string.Join(",", brand.SubBrandList.Select(x => x.TrackerCode)) + "\"}" + "\t" + isExclusive + Environment.NewLine;
             }
@@ -49,7 +55,6 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
             foreach (var sku in brandlist.SubBrands)
             {
                 TobaccoSubBrands += "{#resource:\"" + sku.TrackerCode + ".jpg\",enlargeable:true,size:\"{#enImgSize#}%\"#}<br/>" + sku.GlobalLabel + "\t" + sku.TrackerCode + Environment.NewLine;
-
             }
         }
         private void ExportTobaccoSubBrandsNoImage(TobaccoBrandlist brandlist)
@@ -62,16 +67,56 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
             }
         }
 
-
         private void ExportRRPBrands(RRPBrandlist brandlist)
         {
-            RRPBrands = @"Text" + "\t" + "Object Name" + "\t" + "Extended Properties" + "\t" + "Exclusive" + Environment.NewLine;
+            RRPBrands = @"Text" + "\t" + "Object Name" + "\t" + "Extended Properties" + "\t" + "Exclusive" +
+                        Environment.NewLine;
 
             foreach (var brand in brandlist.Brands)
             {
-                string isExclusive = brand.IsExclusive ? "1" : "0";
+                var isExclusive = brand.IsExclusive ? "1" : "0";
 
-                RRPBrands += brand.GlobalLabel + "\t" + brand.TrackerCode + "\t" + "{\"skuList\":\"" + string.Join(",", brand.SubBrandList.Select(x => x.TrackerCode)) + "\"}" + "\t" + isExclusive + Environment.NewLine;
+                RRPBrands += "{#resource:\"" + brand.TrackerCode +
+                             ".jpg\",enlargeable:true,size:\"{#enImgSize#}%\"#}<br/>" + brand.GlobalLabel + "\t" +
+                             brand.TrackerCode + "\t" + "{\"skuList\":\"" +
+                             string.Join(",", brand.SubBrandList.Select(x => x.TrackerCode)) + "\"}" + "\t" +
+                             isExclusive + Environment.NewLine;
+            }
+        }
+        private void ExportRRPBIList(RRPBrandlist brandlist)
+        {
+            RRPBIList = @"Text" + "\t" + "Object Name" + Environment.NewLine;
+
+            foreach (var sku in brandlist.BIList)
+            {
+                RRPBIList += "{#resource:\"" + sku.TrackerCode + ".jpg\",enlargeable:true,size:\"{#enImgSize#}%\"#}<br/>" + sku.GlobalLabel + "\t" + sku.TrackerCode + Environment.NewLine;
+            }
+        }
+        private void ExportRRPBrandsNoImage(RRPBrandlist brandlist)
+        {
+            RRPBrandsNoImage = @"Text" + "\t" + "Object Name" + Environment.NewLine;
+
+            foreach (var sku in brandlist.Brands)
+            {
+                RRPBrandsNoImage += sku.GlobalLabel + "\t" + sku.TrackerCode + Environment.NewLine;
+            }
+        }
+        private void ExportRRPCoreList(RRPBrandlist brandlist)
+        {
+            RRPCoreList = @"Text" + "\t" + "Object Name" + "\t" + "Extended Properties" + "\t" + "Exclusive" + Environment.NewLine;
+
+            foreach (var sku in brandlist.CoreList)
+            {
+                RRPCoreList += "{#resource:\"" + sku.TrackerCode + ".jpg\",enlargeable:true,size:\"{#enImgSize#}%\"#}<br/>" + sku.GlobalLabel + "\t" + sku.TrackerCode + Environment.NewLine;
+            }
+        }
+        private void ExportRRPCoreListNoImage(RRPBrandlist brandlist)
+        {
+            RRPCoreListNoImage = @"Text" + "\t" + "Object Name" + Environment.NewLine;
+
+            foreach (var sku in brandlist.CoreList)
+            {
+                RRPCoreListNoImage += sku.GlobalLabel + "\t" + sku.TrackerCode + Environment.NewLine;
             }
         }
         private void ExportRRPSubBrands(RRPBrandlist brandlist)
@@ -81,7 +126,6 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
             foreach (var sku in brandlist.SubBrands)
             {
                 RRPSubBrands += "{#resource:\"" + sku.TrackerCode + ".jpg\",enlargeable:true,size:\"{#enImgSize#}%\"#}<br/>" + sku.GlobalLabel + "\t" + sku.TrackerCode + Environment.NewLine;
-
             }
         }
         private void ExportRRPSubBrandsNoImage(RRPBrandlist brandlist)
@@ -93,64 +137,67 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
                 RRPSubBrandsNoImage += sku.GlobalLabel + "\t" + sku.TrackerCode + Environment.NewLine;
             }
         }
-        private void ExportRRPCoreList(RRPBrandlist brandlist)
-        {
-            RRPCoreList = @"Text" + "\t" + "Object Name" + Environment.NewLine;
-
-            foreach (var sku in brandlist.CoreList)
-            {
-                RRPCoreList += sku.GlobalLabel + "\t" + sku.TrackerCode + Environment.NewLine;
-            }
-        }
-        private void ExportRRPBIList(RRPBrandlist brandlist)
-        {
-            RRPBIList = @"Text" + "\t" + "Object Name" + Environment.NewLine;
-
-            foreach (var sku in brandlist.BIList)
-            {
-                RRPBIList += sku.GlobalLabel + "\t" + sku.TrackerCode + Environment.NewLine;
-            }
-        }
+        
 
         public virtual void ExportData()
         {
-            if (!Directory.Exists(Dir))
-            {
-                Directory.CreateDirectory(Dir);
-            }
-
             if (ProjectSettings.TobaccoExport)
             {
+                if (!Directory.Exists(TobaccoExportDirectory))
+                {
+                    Directory.CreateDirectory(TobaccoExportDirectory);
+                }
+
                 ExportTobaccoBrands(TobaccoBrandlist);
                 ExportTobaccoSubBrands(TobaccoBrandlist);
                 ExportTobaccoSubBrandsNoImage(TobaccoBrandlist);
 
-                CreateTXT(TobaccoBrands, "TobaccoBrandsList");
-                CreateTXT(TobaccoSubBrands, "TobaccoSubBrandsList");
-                CreateTXT(TobaccoSubBrandsNoImage, "TobaccoSubBrandsList_NoImage");
+                CreateTXT(TobaccoBrands, "1. List - brandList");
+                CreateTXT(TobaccoSubBrands, "2. List - skuList");
+                CreateTXT(TobaccoSubBrandsNoImage, "3. List - skuListNoImage");
             }
 
             if (ProjectSettings.RRPExport)
             {
-                ExportRRPBrands(RrpBrandlist);
-                ExportRRPSubBrands(RrpBrandlist);
-                ExportRRPSubBrandsNoImage(RrpBrandlist);
-                ExportRRPCoreList(RrpBrandlist);
-                ExportRRPBIList(RrpBrandlist);
+                if (!Directory.Exists(RRPExportDirectory))
+                {
+                    Directory.CreateDirectory(RRPExportDirectory);
+                }
 
-                CreateTXT(RRPBrands, "RRPBrandsList");
-                CreateTXT(RRPSubBrands, "RRPSubBrandsList");
-                CreateTXT(RRPSubBrandsNoImage, "RRPSubBrandsList_NoImage");
-                CreateTXT(RRPCoreList, "RRPCoreList");
-                CreateTXT(RRPBIList, "RRPBIList");
+                ExportRRPBrands(RRPBrandList);
+                ExportRRPBIList(RRPBrandList);
+                ExportRRPBrandsNoImage(RRPBrandList);
+                ExportRRPCoreList(RRPBrandList);
+                ExportRRPCoreListNoImage(RRPBrandList);
+                ExportRRPSubBrands(RRPBrandList);
+                ExportRRPSubBrandsNoImage(RRPBrandList);
+
+                CreateTXT(RRPBrands, "1. List - ecigBrandsList");
+                CreateTXT(RRPBIList, "2. List - ecigBrandsBrandImageList");
+                CreateTXT(RRPBrandsNoImage, "3. List - ecigBrandsListNoImage");
+                CreateTXT(RRPCoreList, "4. List - ecigBrandsCoreList");
+                CreateTXT(RRPCoreListNoImage, "5. List - ecigBrandsCoreListNoImage");
+                CreateTXT(RRPSubBrands, "6. List - ecigBrandsSkuList");
+                CreateTXT(RRPSubBrandsNoImage, "7. List - ecigSkuListNoImage");
             }
 
             //if (ui.exportTranslationsCheckBox.Checked)
             //{
             //    CreateTXT(TranslationExport(ui), "Translations");
             //}
+        }
 
-            //System.Diagnostics.Process.Start(Dir);
+        private void CreateTXT(string listContent, string listName)
+        {
+            if (listName.Contains("Tobacco"))
+            {
+                File.WriteAllText(Path.Combine(TobaccoExportDirectory, listName + ".txt"), listContent);
+            }
+
+            if (listName.Contains("ecigBrands"))
+            {
+                File.WriteAllText(Path.Combine(RRPExportDirectory, listName + ".txt"), listContent);
+            }
         }
 
         //public string TranslationExport(MainForm ui)
@@ -160,7 +207,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
         //    var localLanguage = "";
         //    var secondLocalLanguage = "";
 
-        //    var languages = Countries.ExportLanguages(_brandlist.Country);
+        //    var languages = Countries.ExportLanguages(ProjectSettings.CountryName);
 
         //    localLanguage = languages.Where(x => x == ui.localLanguagesComboBox.Text).First();
 
@@ -227,9 +274,5 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
         //    return translationExport;
         //}
 
-        private void CreateTXT(string listContent, string listName)
-        {
-            File.WriteAllText(Path.Combine(Dir, listName + ".txt"), listContent);
-        }
     }
 }

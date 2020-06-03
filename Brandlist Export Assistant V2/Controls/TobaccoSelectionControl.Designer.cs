@@ -60,7 +60,6 @@
             this.tccPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.nextButton = new Guna.UI.WinForms.GunaButton();
-            this.zeroitSmoothAnimator1 = new Zeroit.Framework.Transitions.SmoothTransitions.ZeroitSmoothAnimator();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.llcPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.llcIcon)).BeginInit();
@@ -499,19 +498,6 @@
             this.nextButton.Visible = false;
             this.nextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
-            // zeroitSmoothAnimator1
-            // 
-            this.zeroitSmoothAnimator1.AnimationType = Zeroit.Framework.Transitions.SmoothTransitions.AnimationTypes.MoveRight;
-            this.zeroitSmoothAnimator1.Control = this;
-            this.zeroitSmoothAnimator1.Duration = 500;
-            this.zeroitSmoothAnimator1.Mover = 10F;
-            this.zeroitSmoothAnimator1.Offset = 100F;
-            this.zeroitSmoothAnimator1.Reverse = true;
-            this.zeroitSmoothAnimator1.SmoothOut = true;
-            this.zeroitSmoothAnimator1.StartValue = 100;
-            this.zeroitSmoothAnimator1.TimerInterval = 5;
-            this.zeroitSmoothAnimator1.TimerPassed = 0;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -599,7 +585,6 @@
         public Guna.UI.WinForms.GunaSwitch ecpSwitch;
         public Guna.UI.WinForms.GunaComboBox sllcBox;
         private Guna.UI.WinForms.GunaButton nextButton;
-        private Zeroit.Framework.Transitions.SmoothTransitions.ZeroitSmoothAnimator zeroitSmoothAnimator1;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
