@@ -189,14 +189,13 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
         private void CreateTXT(string listContent, string listName)
         {
-            if (listName.Contains("Tobacco"))
-            {
-                File.WriteAllText(Path.Combine(TobaccoExportDirectory, listName + ".txt"), listContent);
-            }
-
             if (listName.Contains("ecigBrands"))
             {
                 File.WriteAllText(Path.Combine(RRPExportDirectory, listName + ".txt"), listContent);
+            }
+            else
+            {
+                File.WriteAllText(Path.Combine(TobaccoExportDirectory, listName + ".txt"), listContent);
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Brandlist_Export_Assistant_V2.Forms;
 using Microsoft.Office.Interop.Excel;
 
 namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
@@ -17,7 +18,14 @@ namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
 
             ColumnNames = new List<string>();
 
-            Data = CollectData(Sheet);
+            try
+            {
+                Data = CollectData(Sheet);
+            }
+            catch (Exception)
+            {
+                Alert.Show("Invalid brandlist.", Alert.AlertType.Error, Stages.ColumnSelection);
+            }
 
             SetColumnIndexes(Data);
 

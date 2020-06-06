@@ -252,3 +252,4 @@ C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Forms.Alert.resources
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Forms.MainForm.resources
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Controls.LoadingScreen.resources
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Controls.Alert.resources
