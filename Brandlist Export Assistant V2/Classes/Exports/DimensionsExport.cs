@@ -162,15 +162,15 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
             var masterBrandListName = $"List_Main_Brands_HUN";
             var mastersubBrandListName = $"List_SubBrands_HUN";
 
-            var mainBrandListName = $"List_Main_Brands_" + ProjectSettings.CountryCode;
-            var subBrandListName = $"List_SubBrands_" + ProjectSettings.CountryCode;
+            var mainBrandListName = $"List_Main_Brands_TEST" + ProjectSettings.CountryCode;
+            var subBrandListName = $"List_SubBrands_TEST" + ProjectSettings.CountryCode;
 
             var xxxMainListName = "List_Main_Brands_XXX";
             var xxxSubBrandListName = "List_SubBrands_XXX";
 
-            string[] lists = { masterBrandListName, mastersubBrandListName, mainBrandListName, subBrandListName, xxxMainListName, xxxSubBrandListName };
+            string[] lists = { masterBrandListName, mastersubBrandListName, mainBrandListName, subBrandListName };
 
-            // Remove all lists + master lists.
+            //Remove all lists (except the XXX ones).
             foreach (var list in lists)
             {
                 if (MDD_Document.Types.Exist[list])
@@ -178,7 +178,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
                     MDD_Document.Types.Remove(list);
                 }
             }
-            
+
             IElements listMainBrands = MDD_Document.CreateElements(mainBrandListName, "Brand");
             MDD_Document.Types.Add(listMainBrands, 0);
 
@@ -224,15 +224,8 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
             }
             // {Main Brand List Creation End}
 
-            // {Main XXX List Creation Start}
-            IElements xxxMainBrands = MDD_Document.CreateElements(xxxMainListName);
-            MDD_Document.Types.Add(xxxMainBrands);
-
+            IElements xxxMainBrands = MDD_Document.Types["List_Main_Brands_XXX"];
             xxxMainBrands.Reference = listMainBrands;
-            xxxMainBrands.Namespace = false;
-            xxxMainBrands.Inline = true;
-            // {Main XXX List Creation End}
-
 
             // {Sub Brand List Creation Start}
             IElements listSubBrands = MDD_Document.CreateElements(subBrandListName, "SKU");
@@ -251,7 +244,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
                 element = MDD_Document.CreateElement(subBrand.TrackerCode, subBrand.GlobalLabel);
                 element.Properties["Value"] = int.Parse(subBrand.TrackerCode.Replace("br_", ""));
                 element.Properties["Salto_Code"] = subBrand.TrackerCode;
-                
+
                 if (TobaccoBrandlist.ExportCustomProperty)
                 {
                     element.Properties["Custom_Property"] = subBrand.CustomProperty;
@@ -273,82 +266,76 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
             }
             // {Sub Brand List Creation End}
 
-            // {SubBrands XXX List Creation Start}
-            IElements xxxSubBrands = MDD_Document.CreateElements(xxxSubBrandListName);
-            MDD_Document.Types.Add(xxxSubBrands);
-
+            IElements xxxSubBrands = MDD_Document.Types["List_SubBrands_XXX"];
             xxxSubBrands.Reference = listSubBrands;
-            xxxSubBrands.Namespace = false;
-            xxxSubBrands.Inline = true;
-            // {SubBrands XXX List Creation End}
         }
 
         public void ExportCountry_Q()
         {
-            if (MDD_Document.Fields.Exist["COUNTRY_Q"])
-            {
-                MDD_Document.Fields.Remove("COUNTRY_Q");
-            }
+            //if (MDD_Document.Fields.Exist["COUNTRY_Q"])
+            //{
+            //    MDD_Document.Fields.Remove("COUNTRY_Q");
+            //}
 
-            IVariable country_Q = MDD_Document.CreateVariable("COUNTRY_Q");
+            //IVariable country_Q = MDD_Document.CreateVariable("COUNTRY_Q");
 
-            country_Q.DataType = DataTypeConstants.mtCategorical;
-            country_Q.MinValue = 1;
-            country_Q.MaxValue = 1;
+            //country_Q.DataType = DataTypeConstants.mtCategorical;
+            //country_Q.MinValue = 1;
+            //country_Q.MaxValue = 1;
 
-            MDD_Document.Fields.Add(country_Q, 0);
+            //MDD_Document.Fields.Add(country_Q, 0);
 
-            IElement category = MDD_Document.CreateElement("_" + TobaccoBrandlist.MarketCode.ToString());
-            country_Q.Elements.Add(category);
+            //IElement category = MDD_Document.CreateElement("_" + TobaccoBrandlist.MarketCode.ToString());
+            //country_Q.Elements.Add(category);
 
-            for (int i = 0; i < MDD_Document.Languages.Count; i++)
-            {
-                MDD_Document.Languages.Current = MDD_Document.Languages[i].Name;
+            //for (int i = 0; i < MDD_Document.Languages.Count; i++)
+            //{
+            //    MDD_Document.Languages.Current = MDD_Document.Languages[i].Name;
 
-                category.Label = ProjectSettings.CountryName;
-                country_Q.Label = "Country";
-            }
+            //    category.Label = ProjectSettings.CountryName;
+            //    country_Q.Label = "Country";
+            //}
 
-            var other = TobaccoBrandlist.Brands.First(x => x.BrandCode == "9997").TrackerCode;
-            var none = TobaccoBrandlist.Brands.First(x => x.BrandCode == "9999").TrackerCode;
-            var dontKnow = TobaccoBrandlist.Brands.First(x => x.BrandCode == "9998").TrackerCode;
+            //var other = TobaccoBrandlist.Brands.First(x => x.BrandCode == "9997").TrackerCode;
+            //var none = TobaccoBrandlist.Brands.First(x => x.BrandCode == "9999").TrackerCode;
+            //var dontKnow = TobaccoBrandlist.Brands.First(x => x.BrandCode == "9998").TrackerCode;
 
-            var rmcProducts = TobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.RMC).Select(x => x.TrackerCode);
-            var ryoProducts = TobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.RYO).Select(x => x.TrackerCode);
-            var myoProducts = TobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.MYO).Select(x => x.TrackerCode);
+            //var rmcProducts = TobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.RMC).Select(x => x.TrackerCode);
+            //var ryoProducts = TobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.RYO).Select(x => x.TrackerCode);
+            //var myoProducts = TobaccoBrandlist.SubBrands.Where(x => x.Type == ProductType.MYO).Select(x => x.TrackerCode);
 
-            category.Properties["ShortName"] = ProjectSettings.CountryCode;
-            category.Properties["DayLimit"] = "1";
-            category.Properties["WeekLimit"] = "7";
+            //category.Properties["ShortName"] = ProjectSettings.CountryCode;
+            //category.Properties["DayLimit"] = "1";
+            //category.Properties["WeekLimit"] = "7";
 
-            switch (ProjectSettings.ProjectType)
-            {
-                case ProjectType.Incidence:
-                    category.Properties["ProjectType"] = "{incidence}";
-                    break;
-                case ProjectType.OneTracker:
-                    category.Properties["ProjectType"] = "{onetracker}";
-                    break;
-                case ProjectType.Tracker:
-                    category.Properties["ProjectType"] = "{tracker}";
-                    break;
-                case ProjectType.SwitchingBoost:
-                    break;
-                default:
-                    category.Properties["ProjectType"] = "{tracker}";
-                    break;
-            }
+            //switch (ProjectSettings.ProjectType)
+            //{
+            //    case ProjectType.Incidence:
+            //        category.Properties["ProjectType"] = "{incidence}";
+            //        break;
+            //    case ProjectType.OneTracker:
+            //        category.Properties["ProjectType"] = "{onetracker}";
+            //        break;
+            //    case ProjectType.Tracker:
+            //        category.Properties["ProjectType"] = "{tracker}";
+            //        break;
+            //    case ProjectType.SwitchingBoost:
+            //        break; 
+            //    default:
+            //        category.Properties["ProjectType"] = "{tracker}";
+            //        break;
+            //}
 
-            category.Properties["ImagesLink"] = ProjectSettings.Methodology == Methodology.CAWI ? $"https://images1.ipsosinteractive.com/GOHBG/Programs/JTI/Tracker/{ProjectSettings.CountryName}/{ProjectSettings.ProjectType}/" : "";
-            category.Properties["CurrentWave"] = ProjectSettings.Wave;
-            category.Properties["OtherResponse"] = "{" + other + "}";
-            category.Properties["NoneResponse"] = "{" + none + "}";
-            category.Properties["DKResponse"] = "{" + dontKnow + "}";
-            category.Properties["NoneDK"] = "{" + none + "," + dontKnow + "}";
-            category.Properties["OtherResponses"] = "{" + string.Join(",", TobaccoBrandlist.Brands.First(x => x.BrandCode == "9997").SubBrandList.Select(x => x.TrackerCode)) + "}";
-            category.Properties["RMC_Products"] = "{" + string.Join(",", rmcProducts) + "}";
-            category.Properties["MYO_Products"] = "{" + string.Join(",", myoProducts) + "}";
-            category.Properties["RYO_Products"] = "{" + string.Join(",", ryoProducts) + "}";
+            //category.Properties["ImagesLink"] = ProjectSettings.Methodology == Methodology.CAWI ? $"https://images1.ipsosinteractive.com/GOHBG/Programs/JTI/Tracker/{ProjectSettings.CountryName}/{ProjectSettings.ProjectType}/" : "";
+            //category.Properties["CurrentWave"] = ProjectSettings.Wave;
+            //category.Properties["OtherResponse"] = "{" + other + "}";
+            //category.Properties["NoneResponse"] = "{" + none + "}";
+            //category.Properties["DKResponse"] = "{" + dontKnow + "}";
+            //category.Properties["NoneDK"] = "{" + none + "," + dontKnow + "}";
+            //category.Properties["OtherResponses"] = "{" + string.Join(",", TobaccoBrandlist.Brands.First(x => x.BrandCode == "9997").SubBrandList.Select(x => x.TrackerCode)) + "}";
+            //category.Properties["RMC_Products"] = "{" + string.Join(",", rmcProducts) + "}";
+            //category.Properties["MYO_Products"] = "{" + string.Join(",", myoProducts) + "}";
+            //category.Properties["RYO_Products"] = "{" + string.Join(",", ryoProducts) + "}";
         }
 
         public void SaveAndOpen()
