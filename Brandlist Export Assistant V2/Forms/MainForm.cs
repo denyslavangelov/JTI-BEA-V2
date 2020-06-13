@@ -6,14 +6,13 @@ using Brandlist_Export_Assistant_V2.Classes;
 using Brandlist_Export_Assistant_V2.Classes.Brandlists;
 using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
 using Brandlist_Export_Assistant_V2.Controls;
-using Guna.UI.WinForms;
 
 namespace Brandlist_Export_Assistant_V2.Forms
 {
     public partial class MainForm : Form
     {
         public Excel Excel { get; private set; }
-        public TobaccoSheet Sheet { get; private set; }
+        public TobaccoSheet TobaccoSheet { get; private set; }
         public RRPSheet RRPSheet { get; private set; }
         public TobaccoBrandlist TobaccoBrandlist { get; private set; }
         public RRPBrandlist RrpBrandlist { get; private set; }
@@ -256,7 +255,7 @@ namespace Brandlist_Export_Assistant_V2.Forms
                             ExportCustomProperty = SelectionControl.ecpSwitch.Checked
                         };
 
-                        TobaccoBrandlist.PopulateBrands(Sheet, SelectionControl);
+                        TobaccoBrandlist.PopulateBrands(TobaccoSheet, SelectionControl);
                     }
 
                     if (RRPSelectionControl != null)
@@ -267,7 +266,7 @@ namespace Brandlist_Export_Assistant_V2.Forms
                         RrpBrandlist.PopulateBrands(RRPSheet, RRPSelectionControl);
                     }
 
-                    FinalExportControl = new DataExportControl(this,TobaccoBrandlist, RrpBrandlist, Excel, SettingsControl);
+                    FinalExportControl = new DataExportControl(this,TobaccoBrandlist, RrpBrandlist, SettingsControl);
                     this.Controls.Add(FinalExportControl);
 
                     columnSelectionPanel.Visible = false;
@@ -284,8 +283,8 @@ namespace Brandlist_Export_Assistant_V2.Forms
 
         public void TobaccoSelectionSetup()
         {
-            Sheet = new TobaccoSheet(Excel, ProjectSettings.TobaccoSheetName);
-            SelectionControl = new TobaccoSelectionControl(Sheet, this);
+            TobaccoSheet = new TobaccoSheet(Excel, ProjectSettings.TobaccoSheetName);
+            SelectionControl = new TobaccoSelectionControl(TobaccoSheet, this);
         }
 
         public void RRPSelectionSetup()
@@ -372,10 +371,9 @@ namespace Brandlist_Export_Assistant_V2.Forms
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void GunaTransfarantPictureBox2_Click(object sender, EventArgs e)
         {
-            LoadingScreen lc = new LoadingScreen();
-            lc.Show();
+            Alert.Show($"The sub brand named CHESTERFIELD doesn't have a main brand.", Stages.LoadBrandlist);
         }
     }
 }

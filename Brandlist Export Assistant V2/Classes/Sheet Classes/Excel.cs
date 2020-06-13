@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using com.sun.tools.javac.util;
 using Microsoft.Office.Interop.Excel;
 
@@ -19,6 +20,8 @@ namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
             Worksheets = GetVisibleSheets(AllWorksheets);
 
             WorksheetsCount = VisibleWorksheetsCount(AllWorksheets);
+
+            ProjectSettings.Wave = Regex.Match(this.FileName, @"(W\d{1,1})").Groups[1].Value;
         }
         
         public int VisibleWorksheetsCount(Sheets worksheets)

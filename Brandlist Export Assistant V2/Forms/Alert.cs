@@ -1,44 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Brandlist_Export_Assistant_V2.Forms
 {
     public partial class Alert : Form
     {
-        private Stages Stage { get; set; }
+        private Stages Stage { get; }
 
-        public Alert(string message, AlertType type, Stages stage)
+        public Alert(string message, Stages stage)
         {
             InitializeComponent();
 
+            var x = (errorMessagePanel.Size.Width - errorMessage.Size.Width) / 2;
+            errorMessage.Location = new Point(x, errorMessage.Location.Y);
+
+            this.CenterToScreen();
+
             this.Stage = stage;
-
             this.errorMessage.Text = WrapText(message, 40, false);
-
-            switch (type)
-            {
-                case AlertType.Success:
-                    this.BackColor = Color.SeaGreen;
-                    break;
-                case AlertType.Info:
-                    this.BackColor = Color.Gray;
-                    break;
-                case AlertType.Warning:
-                    this.BackColor = Color.Crimson;
-                    break;
-                case AlertType.Error:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
-            }
-        }
-
-        public sealed override Color BackColor
-        {
-            get => base.BackColor;
-            set => base.BackColor = value;
         }
 
         public static string WrapText(string text, int width, bool overflow)
@@ -105,72 +91,22 @@ namespace Brandlist_Export_Assistant_V2.Forms
             return result.ToString();
         }
 
-        public static void Show(string message, AlertType type, Stages stage)
+        public static void Show(string message, Stages stage)
         {
-            new Alert(message, type, stage).ShowDialog();
+            new Alert(message, stage).ShowDialog();
         }
 
-        public enum AlertType
+        private void DismissButton_Click(object sender, EventArgs e)
         {
-            Success, Info, Warning, Error
-        }
-
-        private void Alert_Load(object sender, EventArgs e)
-        {
-            this.CenterToScreen();
-            ShowAlert.Start();
-        }
-
-        private int interval = 0;
-
-        private void ShowAlert_Tick(object sender, EventArgs e)
-        {
-            if (this.Top < 60)
+            if (this.Stage == Stages.ProjectSettings || this.Stage == Stages.Import)
             {
-                this.Top += interval;
-                interval += 2;
-            } else
-            {
-                ShowAlert.Stop();
-            }
-        }
-
-        private void CloseAlert_Tick(object sender, EventArgs e)
-        {
-            if (this.Opacity > 0)
-            {
-                this.Opacity -= 0.5;
+                this.Hide();
             }
             else
             {
-                this.Close();
-            }
-        }
-
-        private void Panel1_Click(object sender, EventArgs e)
-        {
-            if (this.Stage == Stages.ProjectSettings)
-            {
-                this.Close();
-            }
-            else
-            {
-                this.CloseAlert.Start();
                 Application.Restart();
             }
-        }
 
-        private void Label1_Click(object sender, EventArgs e)
-        {
-            if (this.Stage == Stages.ProjectSettings)
-            {
-                this.Close();
-            }
-            else
-            {
-                this.CloseAlert.Start();
-                Application.Restart();
-            }
         }
     }
 }

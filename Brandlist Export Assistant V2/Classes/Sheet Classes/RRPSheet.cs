@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Brandlist_Export_Assistant_V2.Forms;
 using Microsoft.Office.Interop.Excel;
-using Alert = Brandlist_Export_Assistant_V2.Controls.Alert;
 
 namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
 {
@@ -28,12 +27,10 @@ namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
             {
                 Alert.Show("Invalid brandlist.", Stages.ColumnSelection);
             }
-            
 
             SetColumnIndexes(Data);
 
             ProjectSettings.CountryName = Data.SelectMany(x => x.Value).ElementAt(this.CountryColumnIndex).Value.ElementAt(this.CountryColumnIndex);
-            ProjectSettings.Wave = Regex.Match(this.Sheet.Name, @"(W\d{1,1})").Groups[1].Value;
             ProjectSettings.CountryCode = Countries.ExportCountries(Regex.Replace(ProjectSettings.CountryName, @"\s+", "")).FirstOrDefault(x => x.Key == Regex.Replace(ProjectSettings.CountryName, @"\s+", "")).Value;
         }
         private Excel Excel { get; set; }
@@ -81,6 +78,10 @@ namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
             var fullRowData = new Dictionary<int, string[]>();
             var wholeData = new Dictionary<Dictionary<int, string>, Dictionary<int, string[]>>();
 
+            var initialRowsCount = usedRange.Rows.Count;
+
+            Validator.ValidateDataRows(initialRowsCount);
+
             foreach (Range row in usedRange.Rows)
             {
                 var columnData = new string[row.Columns.Count];
@@ -98,6 +99,8 @@ namespace Brandlist_Export_Assistant_V2.Classes.Sheet_Classes
                 }
                 break;
             }
+
+            Validator.ValidateRRPColumns(this);
 
             var rangeColumn = fullColumnData.Keys.Count - 1;
             var values = (object[,])usedRange.Value2;

@@ -21,20 +21,15 @@ namespace Brandlist_Export_Assistant_V2.Controls
 
         private DimensionsExport DimensionsExport { get; set; }
         private IFieldExport IFieldExport { get; set; }
-        public TobaccoBrandlist TobaccoBrandlist { get; }
-        public RRPBrandlist RRPBrandlist { get; }
-
-        public Excel Excel;
-
+        private TobaccoBrandlist TobaccoBrandlist { get; }
+        private RRPBrandlist RRPBrandlist { get; }
+        public AutoCompleteTablesExport AutoCompleteTablesExport { get; set; }
         public LoadingScreen LoadingScreen { get; set; }
-
         private MainForm MainForm { get; }
-
         public ProjectSettingsControl ProjectSettingsControl { get; }
-
         private MDDFile MDDFile { get; set; }
 
-        public DataExportControl(MainForm mainForm, TobaccoBrandlist tobaccoBrandlist, RRPBrandlist rrpBrandlist, Excel excel, ProjectSettingsControl projectSettingsControl)
+        public DataExportControl(MainForm mainForm, TobaccoBrandlist tobaccoBrandlist, RRPBrandlist rrpBrandlist, ProjectSettingsControl projectSettingsControl)
         {
             InitializeComponent();
 
@@ -44,8 +39,6 @@ namespace Brandlist_Export_Assistant_V2.Controls
             ProjectSettingsControl = projectSettingsControl;
 
             LoadingScreen = new LoadingScreen();
-
-            this.Excel = excel;
 
             MainForm = mainForm;
 
@@ -122,17 +115,41 @@ namespace Brandlist_Export_Assistant_V2.Controls
             switch (ProjectSettings.Platform)
             {
                 case Platform.Dimensions:
-                    DimensionsExport = new DimensionsExport(MDDFile, TobaccoBrandlist, RRPBrandlist, ProjectSettingsControl);
-                    DimensionsExport.ExportData();
-
-                    if (ProjectSettings.Methodology == Methodology.CAWI && ProjectSettings.Platform == Platform.Dimensions)
+                    if (ProjectSettings.TobaccoExport)
                     {
-                        var autoCompleteExport = new AutoCompleteTablesExport(TobaccoBrandlist, RRPBrandlist, MDDFile);
-                        autoCompleteExport.ExportData();
+                        DimensionsExport = new DimensionsExport(MDDFile, TobaccoBrandlist);
+
+                        if (ProjectSettings.Methodology == Methodology.CAWI && ProjectSettings.Platform == Platform.Dimensions)
+                        {
+                            AutoCompleteTablesExport = new AutoCompleteTablesExport(TobaccoBrandlist, MDDFile);
+                            AutoCompleteTablesExport.ExportData("Tobacco");
+                        }
                     }
+
+                    if (ProjectSettings.RRPExport)
+                    {
+                        DimensionsExport = new DimensionsExport(MDDFile, RRPBrandlist);
+
+                        if (ProjectSettings.Methodology == Methodology.CAWI && ProjectSettings.Platform == Platform.Dimensions)
+                        {
+                            AutoCompleteTablesExport = new AutoCompleteTablesExport(RRPBrandlist, MDDFile);
+                            AutoCompleteTablesExport.ExportData("RRP");
+                        }
+                    }
+
+                    DimensionsExport.ExportData();
                     break;
                 case Platform.iField:
-                    IFieldExport = new IFieldExport(TobaccoBrandlist, RRPBrandlist, ProjectSettingsControl);
+                    if (ProjectSettings.TobaccoExport)
+                    {
+                        IFieldExport = new IFieldExport(TobaccoBrandlist, ProjectSettingsControl);
+                    }
+
+                    if (ProjectSettings.RRPExport)
+                    {
+                        IFieldExport = new IFieldExport(RRPBrandlist, ProjectSettingsControl);
+                    }
+
                     IFieldExport.ExportData();
                     break;
                 case Platform.Dooblo:
@@ -155,6 +172,15 @@ namespace Brandlist_Export_Assistant_V2.Controls
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            AutoCompleteTablesExport = new AutoCompleteTablesExport(TobaccoBrandlist, MDDFile);
+            AutoCompleteTablesExport.ExportData("Tobacco");
+
+            AutoCompleteTablesExport = new AutoCompleteTablesExport(RRPBrandlist, MDDFile);
+            AutoCompleteTablesExport.ExportData("RRP");
         }
     }
 }

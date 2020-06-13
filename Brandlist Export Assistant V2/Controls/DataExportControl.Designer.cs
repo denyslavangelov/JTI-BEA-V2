@@ -38,6 +38,7 @@
             this.successFolderButton = new Guna.UI.WinForms.GunaButton();
             this.successPanel = new System.Windows.Forms.Panel();
             this.browsePanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.loadingBarImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.successPanel.SuspendLayout();
@@ -187,10 +188,21 @@
             this.browsePanel.Size = new System.Drawing.Size(294, 171);
             this.browsePanel.TabIndex = 18;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // DataExportControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.browsePanel);
             this.Controls.Add(this.successPanel);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -216,5 +228,6 @@
         private Guna.UI.WinForms.GunaButton successFolderButton;
         private System.Windows.Forms.Panel successPanel;
         private System.Windows.Forms.Panel browsePanel;
+        private System.Windows.Forms.Button button1;
     }
 }

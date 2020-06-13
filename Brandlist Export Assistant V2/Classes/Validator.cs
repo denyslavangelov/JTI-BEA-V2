@@ -5,6 +5,7 @@ using Brandlist_Export_Assistant_V2.Classes.Brand;
 using Brandlist_Export_Assistant_V2.Classes.Exports;
 using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
 using Brandlist_Export_Assistant_V2.Forms;
+using Microsoft.Office.Interop.Excel;
 
 namespace Brandlist_Export_Assistant_V2.Classes
 {
@@ -14,19 +15,19 @@ namespace Brandlist_Export_Assistant_V2.Classes
         {
             if (string.IsNullOrEmpty(brand.TrackerCode) || brand.TrackerCode == "br_")
             {
-                Alert.Show($"There is an invalid tracker code at row {rowIndex + 1}.", Alert.AlertType.Error, Stages.LoadBrandlist);
+                Alert.Show($"There is an invalid tracker code at row {rowIndex + 1}.", Stages.LoadBrandlist);
                 return false;
             }
 
             if (string.IsNullOrEmpty(brand.GlobalLabel) || brand.GlobalLabel == "n/a")
             {
-                Alert.Show($"There is an invalid global label at row {rowIndex + 1}.", Alert.AlertType.Error, Stages.LoadBrandlist);
+                Alert.Show($"There is an invalid global label at row {rowIndex + 1}.", Stages.LoadBrandlist);
                 return false;
             }
 
             if (string.IsNullOrEmpty(brand.LocalLabel) || brand.LocalLabel == "n/a")
             {
-                Alert.Show($"There is an invalid local label at row {rowIndex + 1}.", Alert.AlertType.Error, Stages.LoadBrandlist);
+                Alert.Show($"There is an invalid local label at row {rowIndex + 1}.", Stages.LoadBrandlist);
                 return false;
             }
 
@@ -40,7 +41,8 @@ namespace Brandlist_Export_Assistant_V2.Classes
             {
                 if (!subBrand.HasMainBrand)
                 {
-                    Alert.Show($"The sub brand named {subBrand.GlobalLabel} doesn't have a main brand.", Alert.AlertType.Error, Stages.LoadBrandlist);
+                    Alert.Show($"The sub brand named {subBrand.GlobalLabel} doesn't have a main brand.",
+                        Stages.LoadBrandlist);
                 }
             }
         }
@@ -51,9 +53,51 @@ namespace Brandlist_Export_Assistant_V2.Classes
             {
                 if (!mainBrandList[i].HasAnySubBrands)
                 {
-                    Alert.Show($"The brand named {mainBrandList[i].GlobalLabel} doesn't have any sub brands.", Alert.AlertType.Error, Stages.LoadBrandlist);
+                    Alert.Show($"The brand named {mainBrandList[i].GlobalLabel} doesn't have any sub brands.",
+                        Stages.LoadBrandlist);
                 }
             }
+        }
+
+        public static void ValidateDataRows(int rowCount)
+        {
+            if (rowCount < 5)
+            {
+                Alert.Show("Invalid brandlist.", Stages.ColumnSelection);
+            }
+        }
+
+        public static bool ValidateTobaccoColumns(TobaccoSheet tobaccoSheet)
+        {
+            var mandatoryColumns = new List<string>
+                {"Tracker 2.0 Code", "Scripting Product Type Code", "Market Code", "Status", "Flavor"};
+
+            if (mandatoryColumns.Any(column => !tobaccoSheet.ColumnNames.Contains(column)))
+            {
+                Alert.Show("Invalid brandlist. One of the mandatory columns is not present in the brandlist.",
+                    Stages.LoadBrandlist);
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool ValidateRRPColumns(RRPSheet rrpSheet)
+        {
+            var mandatoryColumns = new List<string>
+            {
+                "Tracker 2.0 Code", "Scripting Product Type Code", "Market Code", "Status",
+                "BI list (max 10 Brands = 8 global + 2 local)"
+            };
+
+            if (mandatoryColumns.Any(column => !rrpSheet.ColumnNames.Contains(column)))
+            {
+                Alert.Show("Invalid brandlist. One of the mandatory columns is not present in the brandlist.",
+                    Stages.LoadBrandlist);
+                return false;
+            }
+
+            return true;
         }
 
         //public static bool ValidateiFieldExport(MainUI UI)
@@ -89,19 +133,23 @@ namespace Brandlist_Export_Assistant_V2.Classes
             return false;
         }
 
-        public static bool ValidateBrandlist(TobaccoSheet tobaccoSheet)
+        public static bool IsExcelOpen(string path, Workbook workbook)
         {
-            var mandatoryColumns = new List<string> { "Tracker 2.0 Code", "Scripting Product Type Code", "Market Code", "Status" };
-
-            if (mandatoryColumns.Any(column => !tobaccoSheet.ColumnNames.Contains(column)))
+            try
             {
-                Alert.Show("Invalid brandlist. One of the mandatory columns is not present in the brandlist.", Alert.AlertType.Error, Stages.LoadBrandlist);
-                return false;
+                workbook.SaveAs(path);
             }
-            return true;
+            catch
+            {
+                Alert.Show("The autocomplete table file is open. Please close it and try again.", Stages.Import);
+                return true;
+            }
+
+            return false;
         }
 
-        //public static void ValidateLanguages(MainUI UI, List<string> languages, ExcelProcessor _brandlist)
+
+    //public static void ValidateLanguages(MainUI UI, List<string> languages, ExcelProcessor _brandlist)
         //{
         //    if (languages.Count == 0)
         //    {
