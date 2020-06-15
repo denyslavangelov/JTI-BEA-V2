@@ -250,6 +250,10 @@ namespace Brandlist_Export_Assistant_V2.Controls
                 rsPanel.Location = new System.Drawing.Point(185, 260);
             }
 
+            if (etTBCheckBox.Checked && Excel.WorksheetsCount == 1)
+            {
+                etRRPCheckBox.Checked = false;
+            }
         }
 
         private void EtRRPCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -275,6 +279,11 @@ namespace Brandlist_Export_Assistant_V2.Controls
             if (!etRRPCheckBox.Checked && (rsPanel.Location == new System.Drawing.Point(185, 260)))
             {
                 tsPanel.Location = new System.Drawing.Point(185, 260);
+            }
+
+            if (etRRPCheckBox.Checked && Excel.WorksheetsCount == 1)
+            {
+                etTBCheckBox.Checked = false;
             }
         }
 

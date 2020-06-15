@@ -28,26 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.uploadButton = new Guna.UI.WinForms.GunaButton();
             this.topPanel = new Guna.UI.WinForms.GunaElipsePanel();
+            this.minimizeButton = new System.Windows.Forms.PictureBox();
+            this.closeButton = new Guna.UI.WinForms.GunaPictureBox();
             this.currentStageLabel = new Guna.UI.WinForms.GunaLabel();
             this.columnSelectionPanel = new Guna.UI.WinForms.GunaPanel();
             this.rbPanel = new Guna.UI.WinForms.GunaPanel();
+            this.rbIcon = new Guna.UI.WinForms.GunaPictureBox();
+            this.rbIndicator = new System.Windows.Forms.PictureBox();
             this.rbLabel = new Guna.UI.WinForms.GunaLabel();
             this.gunaElipsePanel3 = new Guna.UI.WinForms.GunaElipsePanel();
             this.tbPanel = new Guna.UI.WinForms.GunaPanel();
-            this.tbLabel = new Guna.UI.WinForms.GunaLabel();
-            this.gunaDragControl1 = new Guna.UI.WinForms.GunaDragControl(this.components);
-            this.uploadPanel = new Guna.UI.WinForms.GunaPanel();
-            this.bunifuCheckbox1 = new Bunifu.Framework.UI.BunifuCheckbox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.rbIcon = new Guna.UI.WinForms.GunaPictureBox();
-            this.rbIndicator = new System.Windows.Forms.PictureBox();
             this.tbIcon = new Guna.UI.WinForms.GunaPictureBox();
+            this.tbLabel = new Guna.UI.WinForms.GunaLabel();
             this.tbIndicator = new System.Windows.Forms.PictureBox();
+            this.uploadPanel = new Guna.UI.WinForms.GunaPanel();
             this.loadingBarImage = new Guna.UI.WinForms.GunaPictureBox();
+            this.bunifuCheckbox1 = new Bunifu.Framework.UI.BunifuCheckbox();
             this.gunaGradientPanel1 = new Guna.UI.WinForms.GunaGradientPanel();
             this.gunaTransfarantPictureBox2 = new Guna.UI.WinForms.GunaTransfarantPictureBox();
             this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
@@ -64,17 +63,17 @@
             this.iLabel = new Guna.UI.WinForms.GunaLabel();
             this.psLabel = new Guna.UI.WinForms.GunaLabel();
             this.csLabel = new Guna.UI.WinForms.GunaLabel();
-            this.minimizeButton = new System.Windows.Forms.PictureBox();
-            this.closeButton = new Guna.UI.WinForms.GunaPictureBox();
             this.topPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeButton)).BeginInit();
             this.columnSelectionPanel.SuspendLayout();
             this.rbPanel.SuspendLayout();
-            this.tbPanel.SuspendLayout();
-            this.uploadPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rbIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbIndicator)).BeginInit();
+            this.tbPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbIndicator)).BeginInit();
+            this.uploadPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingBarImage)).BeginInit();
             this.gunaGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaTransfarantPictureBox2)).BeginInit();
@@ -82,8 +81,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.csIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.psIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbIcon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.closeButton)).BeginInit();
             this.SuspendLayout();
             // 
             // uploadButton
@@ -131,6 +128,31 @@
             this.topPanel.Size = new System.Drawing.Size(578, 46);
             this.topPanel.TabIndex = 1;
             // 
+            // minimizeButton
+            // 
+            this.minimizeButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.minimizeButton.Image = ((System.Drawing.Image)(resources.GetObject("minimizeButton.Image")));
+            this.minimizeButton.Location = new System.Drawing.Point(533, 6);
+            this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Size = new System.Drawing.Size(15, 18);
+            this.minimizeButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.minimizeButton.TabIndex = 3;
+            this.minimizeButton.TabStop = false;
+            this.minimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
+            // 
+            // closeButton
+            // 
+            this.closeButton.BaseColor = System.Drawing.Color.White;
+            this.closeButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.closeButton.Image = ((System.Drawing.Image)(resources.GetObject("closeButton.Image")));
+            this.closeButton.Location = new System.Drawing.Point(556, 6);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(15, 15);
+            this.closeButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.closeButton.TabIndex = 3;
+            this.closeButton.TabStop = false;
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
             // currentStageLabel
             // 
             this.currentStageLabel.AutoSize = true;
@@ -164,6 +186,27 @@
             this.rbPanel.Size = new System.Drawing.Size(175, 45);
             this.rbPanel.TabIndex = 8;
             // 
+            // rbIcon
+            // 
+            this.rbIcon.BaseColor = System.Drawing.Color.White;
+            this.rbIcon.Image = ((System.Drawing.Image)(resources.GetObject("rbIcon.Image")));
+            this.rbIcon.Location = new System.Drawing.Point(140, 16);
+            this.rbIcon.Name = "rbIcon";
+            this.rbIcon.Size = new System.Drawing.Size(17, 17);
+            this.rbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.rbIcon.TabIndex = 19;
+            this.rbIcon.TabStop = false;
+            // 
+            // rbIndicator
+            // 
+            this.rbIndicator.Image = ((System.Drawing.Image)(resources.GetObject("rbIndicator.Image")));
+            this.rbIndicator.Location = new System.Drawing.Point(54, 37);
+            this.rbIndicator.Name = "rbIndicator";
+            this.rbIndicator.Size = new System.Drawing.Size(56, 3);
+            this.rbIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.rbIndicator.TabIndex = 20;
+            this.rbIndicator.TabStop = false;
+            // 
             // rbLabel
             // 
             this.rbLabel.AutoSize = true;
@@ -195,6 +238,17 @@
             this.tbPanel.Size = new System.Drawing.Size(175, 45);
             this.tbPanel.TabIndex = 21;
             // 
+            // tbIcon
+            // 
+            this.tbIcon.BaseColor = System.Drawing.Color.White;
+            this.tbIcon.Image = ((System.Drawing.Image)(resources.GetObject("tbIcon.Image")));
+            this.tbIcon.Location = new System.Drawing.Point(151, 14);
+            this.tbIcon.Name = "tbIcon";
+            this.tbIcon.Size = new System.Drawing.Size(17, 17);
+            this.tbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.tbIcon.TabIndex = 18;
+            this.tbIcon.TabStop = false;
+            // 
             // tbLabel
             // 
             this.tbLabel.AutoSize = true;
@@ -207,9 +261,15 @@
             this.tbLabel.TabIndex = 6;
             this.tbLabel.Text = "TOBACCO BRANDLIST";
             // 
-            // gunaDragControl1
+            // tbIndicator
             // 
-            this.gunaDragControl1.TargetControl = this.topPanel;
+            this.tbIndicator.Image = ((System.Drawing.Image)(resources.GetObject("tbIndicator.Image")));
+            this.tbIndicator.Location = new System.Drawing.Point(49, 34);
+            this.tbIndicator.Name = "tbIndicator";
+            this.tbIndicator.Size = new System.Drawing.Size(56, 3);
+            this.tbIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.tbIndicator.TabIndex = 8;
+            this.tbIndicator.TabStop = false;
             // 
             // uploadPanel
             // 
@@ -219,6 +279,17 @@
             this.uploadPanel.Name = "uploadPanel";
             this.uploadPanel.Size = new System.Drawing.Size(207, 77);
             this.uploadPanel.TabIndex = 13;
+            // 
+            // loadingBarImage
+            // 
+            this.loadingBarImage.BaseColor = System.Drawing.Color.White;
+            this.loadingBarImage.Image = ((System.Drawing.Image)(resources.GetObject("loadingBarImage.Image")));
+            this.loadingBarImage.Location = new System.Drawing.Point(27, 9);
+            this.loadingBarImage.Name = "loadingBarImage";
+            this.loadingBarImage.Size = new System.Drawing.Size(62, 58);
+            this.loadingBarImage.TabIndex = 10;
+            this.loadingBarImage.TabStop = false;
+            this.loadingBarImage.Visible = false;
             // 
             // bunifuCheckbox1
             // 
@@ -231,63 +302,6 @@
             this.bunifuCheckbox1.Name = "bunifuCheckbox1";
             this.bunifuCheckbox1.Size = new System.Drawing.Size(20, 20);
             this.bunifuCheckbox1.TabIndex = 14;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 40;
-            // 
-            // rbIcon
-            // 
-            this.rbIcon.BaseColor = System.Drawing.Color.White;
-            this.rbIcon.Image = ((System.Drawing.Image)(resources.GetObject("rbIcon.Image")));
-            this.rbIcon.Location = new System.Drawing.Point(140, 16);
-            this.rbIcon.Name = "rbIcon";
-            this.rbIcon.Size = new System.Drawing.Size(17, 17);
-            this.rbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.rbIcon.TabIndex = 19;
-            this.rbIcon.TabStop = false;
-            // 
-            // rbIndicator
-            // 
-            this.rbIndicator.Image = ((System.Drawing.Image)(resources.GetObject("rbIndicator.Image")));
-            this.rbIndicator.Location = new System.Drawing.Point(54, 37);
-            this.rbIndicator.Name = "rbIndicator";
-            this.rbIndicator.Size = new System.Drawing.Size(56, 3);
-            this.rbIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.rbIndicator.TabIndex = 20;
-            this.rbIndicator.TabStop = false;
-            // 
-            // tbIcon
-            // 
-            this.tbIcon.BaseColor = System.Drawing.Color.White;
-            this.tbIcon.Image = ((System.Drawing.Image)(resources.GetObject("tbIcon.Image")));
-            this.tbIcon.Location = new System.Drawing.Point(151, 14);
-            this.tbIcon.Name = "tbIcon";
-            this.tbIcon.Size = new System.Drawing.Size(17, 17);
-            this.tbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.tbIcon.TabIndex = 18;
-            this.tbIcon.TabStop = false;
-            // 
-            // tbIndicator
-            // 
-            this.tbIndicator.Image = ((System.Drawing.Image)(resources.GetObject("tbIndicator.Image")));
-            this.tbIndicator.Location = new System.Drawing.Point(49, 34);
-            this.tbIndicator.Name = "tbIndicator";
-            this.tbIndicator.Size = new System.Drawing.Size(56, 3);
-            this.tbIndicator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.tbIndicator.TabIndex = 8;
-            this.tbIndicator.TabStop = false;
-            // 
-            // loadingBarImage
-            // 
-            this.loadingBarImage.BaseColor = System.Drawing.Color.White;
-            this.loadingBarImage.Image = ((System.Drawing.Image)(resources.GetObject("loadingBarImage.Image")));
-            this.loadingBarImage.Location = new System.Drawing.Point(27, 9);
-            this.loadingBarImage.Name = "loadingBarImage";
-            this.loadingBarImage.Size = new System.Drawing.Size(62, 58);
-            this.loadingBarImage.TabIndex = 10;
-            this.loadingBarImage.TabStop = false;
-            this.loadingBarImage.Visible = false;
             // 
             // gunaGradientPanel1
             // 
@@ -326,10 +340,11 @@
             this.gunaTransfarantPictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("gunaTransfarantPictureBox2.Image")));
             this.gunaTransfarantPictureBox2.Location = new System.Drawing.Point(46, -1);
             this.gunaTransfarantPictureBox2.Name = "gunaTransfarantPictureBox2";
-            this.gunaTransfarantPictureBox2.Size = new System.Drawing.Size(233, 271);
+            this.gunaTransfarantPictureBox2.Size = new System.Drawing.Size(228, 240);
             this.gunaTransfarantPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.gunaTransfarantPictureBox2.TabIndex = 16;
             this.gunaTransfarantPictureBox2.TabStop = false;
+            this.gunaTransfarantPictureBox2.Click += new System.EventHandler(this.GunaTransfarantPictureBox2_Click);
             // 
             // gunaElipsePanel1
             // 
@@ -354,7 +369,7 @@
             this.iIcon.BackColor = System.Drawing.Color.Transparent;
             this.iIcon.BaseColor = System.Drawing.Color.Black;
             this.iIcon.Image = global::Brandlist_Export_Assistant_V2.Properties.Resources.export_low_op;
-            this.iIcon.Location = new System.Drawing.Point(64, 415);
+            this.iIcon.Location = new System.Drawing.Point(64, 416);
             this.iIcon.Name = "iIcon";
             this.iIcon.Size = new System.Drawing.Size(19, 19);
             this.iIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -390,7 +405,7 @@
             this.lbIcon.BackColor = System.Drawing.Color.Transparent;
             this.lbIcon.BaseColor = System.Drawing.Color.Black;
             this.lbIcon.Image = ((System.Drawing.Image)(resources.GetObject("lbIcon.Image")));
-            this.lbIcon.Location = new System.Drawing.Point(64, 269);
+            this.lbIcon.Location = new System.Drawing.Point(64, 270);
             this.lbIcon.Name = "lbIcon";
             this.lbIcon.Size = new System.Drawing.Size(19, 19);
             this.lbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -480,31 +495,6 @@
             this.csLabel.TabIndex = 2;
             this.csLabel.Text = "SELECTION";
             // 
-            // minimizeButton
-            // 
-            this.minimizeButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.minimizeButton.Image = ((System.Drawing.Image)(resources.GetObject("minimizeButton.Image")));
-            this.minimizeButton.Location = new System.Drawing.Point(533, 6);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(15, 18);
-            this.minimizeButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.minimizeButton.TabIndex = 3;
-            this.minimizeButton.TabStop = false;
-            this.minimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
-            // 
-            // closeButton
-            // 
-            this.closeButton.BaseColor = System.Drawing.Color.White;
-            this.closeButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.closeButton.Image = ((System.Drawing.Image)(resources.GetObject("closeButton.Image")));
-            this.closeButton.Location = new System.Drawing.Point(556, 6);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(15, 15);
-            this.closeButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.closeButton.TabIndex = 3;
-            this.closeButton.TabStop = false;
-            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -519,21 +509,23 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "JTI BEA";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.topPanel.ResumeLayout(false);
             this.topPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.closeButton)).EndInit();
             this.columnSelectionPanel.ResumeLayout(false);
             this.rbPanel.ResumeLayout(false);
             this.rbPanel.PerformLayout();
-            this.tbPanel.ResumeLayout(false);
-            this.tbPanel.PerformLayout();
-            this.uploadPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rbIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbIndicator)).EndInit();
+            this.tbPanel.ResumeLayout(false);
+            this.tbPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbIndicator)).EndInit();
+            this.uploadPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.loadingBarImage)).EndInit();
             this.gunaGradientPanel1.ResumeLayout(false);
             this.gunaGradientPanel1.PerformLayout();
@@ -542,8 +534,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.csIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.psIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbIcon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minimizeButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.closeButton)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -576,7 +566,6 @@
         public Guna.UI.WinForms.GunaPictureBox tbIcon;
         private System.Windows.Forms.PictureBox tbIndicator;
         private System.Windows.Forms.PictureBox rbIndicator;
-        private Guna.UI.WinForms.GunaDragControl gunaDragControl1;
         private Guna.UI.WinForms.GunaPanel tbPanel;
         private Guna.UI.WinForms.GunaPanel rbPanel;
         private Guna.UI.WinForms.GunaButton uploadButton;
@@ -584,7 +573,6 @@
         private Guna.UI.WinForms.GunaPanel uploadPanel;
         private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel1;
         private Bunifu.Framework.UI.BunifuCheckbox bunifuCheckbox1;
-        private System.Windows.Forms.Timer timer1;
         private Guna.UI.WinForms.GunaTransfarantPictureBox gunaTransfarantPictureBox2;
     }
 }

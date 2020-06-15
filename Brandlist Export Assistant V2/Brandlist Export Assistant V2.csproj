@@ -364,12 +364,6 @@
     <Compile Include="Controls\LoadingScreen.Designer.cs">
       <DependentUpon>LoadingScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Alert.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Alert.Designer.cs">
-      <DependentUpon>Alert.cs</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Brandlists\RRPBrandlist.cs" />
     <Compile Include="Classes\Brandlists\TobaccoBrandlist.cs" />
     <Compile Include="Classes\Brand\Brand.cs" />
@@ -416,6 +410,12 @@
       <DependentUpon>TobaccoSelectionControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Enums\Status.cs" />
+    <Compile Include="Forms\Alert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Alert.Designer.cs">
+      <DependentUpon>Alert.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -429,9 +429,6 @@
     <EmbeddedResource Include="Controls\LoadingScreen.resx">
       <DependentUpon>LoadingScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Alert.resx">
-      <DependentUpon>Alert.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataExportControl.resx">
       <DependentUpon>DataExportControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -443,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TobaccoSelectionControl.resx">
       <DependentUpon>TobaccoSelectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Alert.resx">
+      <DependentUpon>Alert.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

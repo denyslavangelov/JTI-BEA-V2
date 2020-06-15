@@ -1,6 +1,4 @@
-﻿using Bunifu.Framework.UI;
-
-namespace Brandlist_Export_Assistant_V2.Forms
+﻿namespace Brandlist_Export_Assistant_V2.Forms
 {
     partial class Alert
     {
@@ -30,123 +28,119 @@ namespace Brandlist_Export_Assistant_V2.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Alert));
-            this.ShowAlert = new System.Windows.Forms.Timer(this.components);
-            this.CloseAlert = new System.Windows.Forms.Timer(this.components);
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.bunifuImageButton1 = new Bunifu.Framework.UI.BunifuImageButton();
+            this.dismissButton = new Guna.UI.WinForms.GunaButton();
             this.errorMessage = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.errorTitle = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.gunaPictureBox1 = new Guna.UI.WinForms.GunaPictureBox();
+            this.errorMessagePanel = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).BeginInit();
+            this.errorMessagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ShowAlert
+            // dismissButton
             // 
-            this.ShowAlert.Tick += new System.EventHandler(this.ShowAlert_Tick);
-            // 
-            // CloseAlert
-            // 
-            this.CloseAlert.Tick += new System.EventHandler(this.CloseAlert_Tick);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // bunifuImageButton1
-            // 
-            this.bunifuImageButton1.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuImageButton1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuImageButton1.Image")));
-            this.bunifuImageButton1.ImageActive = null;
-            this.bunifuImageButton1.Location = new System.Drawing.Point(101, 12);
-            this.bunifuImageButton1.Name = "bunifuImageButton1";
-            this.bunifuImageButton1.Size = new System.Drawing.Size(75, 63);
-            this.bunifuImageButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.bunifuImageButton1.TabIndex = 0;
-            this.bunifuImageButton1.TabStop = false;
-            this.bunifuImageButton1.Zoom = 10;
+            this.dismissButton.Animated = true;
+            this.dismissButton.AnimationHoverSpeed = 2.5F;
+            this.dismissButton.AnimationSpeed = 0.03F;
+            this.dismissButton.BackColor = System.Drawing.Color.Transparent;
+            this.dismissButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.dismissButton.BaseColor = System.Drawing.Color.IndianRed;
+            this.dismissButton.BorderColor = System.Drawing.Color.Black;
+            this.dismissButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dismissButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dismissButton.FocusedColor = System.Drawing.Color.Empty;
+            this.dismissButton.Font = new System.Drawing.Font("Malgun Gothic Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dismissButton.ForeColor = System.Drawing.Color.White;
+            this.dismissButton.Image = null;
+            this.dismissButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.dismissButton.ImageOffsetX = 5;
+            this.dismissButton.ImageSize = new System.Drawing.Size(25, 25);
+            this.dismissButton.Location = new System.Drawing.Point(181, 353);
+            this.dismissButton.Name = "dismissButton";
+            this.dismissButton.OnHoverBaseColor = System.Drawing.Color.LightCoral;
+            this.dismissButton.OnHoverBorderColor = System.Drawing.Color.LightCoral;
+            this.dismissButton.OnHoverForeColor = System.Drawing.Color.White;
+            this.dismissButton.OnHoverImage = null;
+            this.dismissButton.OnPressedColor = System.Drawing.Color.LightCoral;
+            this.dismissButton.Radius = 15;
+            this.dismissButton.Size = new System.Drawing.Size(177, 49);
+            this.dismissButton.TabIndex = 14;
+            this.dismissButton.Text = "DISMISS";
+            this.dismissButton.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.dismissButton.UseTransfarantBackground = true;
+            this.dismissButton.Click += new System.EventHandler(this.DismissButton_Click);
             // 
             // errorMessage
             // 
-            this.errorMessage.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.errorMessage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.errorMessage.Location = new System.Drawing.Point(19, 103);
+            this.errorMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.errorMessage.Font = new System.Drawing.Font("Malgun Gothic Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorMessage.ForeColor = System.Drawing.Color.DimGray;
+            this.errorMessage.Location = new System.Drawing.Point(3, 3);
             this.errorMessage.Name = "errorMessage";
-            this.errorMessage.Size = new System.Drawing.Size(257, 75);
-            this.errorMessage.TabIndex = 1;
-            this.errorMessage.Text = "Your brandlist has too many worksheets.";
+            this.errorMessage.Size = new System.Drawing.Size(375, 83);
+            this.errorMessage.TabIndex = 13;
+            this.errorMessage.Text = "Invalid brandlist.";
             this.errorMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // errorTitle
             // 
             this.errorTitle.AutoSize = true;
-            this.errorTitle.Font = new System.Drawing.Font("Malgun Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.errorTitle.Location = new System.Drawing.Point(96, 87);
+            this.errorTitle.Font = new System.Drawing.Font("Malgun Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(46)))), ((int)(((byte)(78)))));
+            this.errorTitle.Location = new System.Drawing.Point(132, 222);
             this.errorTitle.Name = "errorTitle";
-            this.errorTitle.Size = new System.Drawing.Size(90, 25);
-            this.errorTitle.TabIndex = 2;
-            this.errorTitle.Text = "Oh snap!";
+            this.errorTitle.Size = new System.Drawing.Size(276, 32);
+            this.errorTitle.TabIndex = 12;
+            this.errorTitle.Text = "Something went wrong!";
             // 
-            // panel1
+            // gunaPictureBox1
             // 
-            this.panel1.BackColor = System.Drawing.Color.IndianRed;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 181);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(288, 38);
-            this.panel1.TabIndex = 3;
-            this.panel1.Click += new System.EventHandler(this.Panel1_Click);
+            this.gunaPictureBox1.BaseColor = System.Drawing.Color.White;
+            this.gunaPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("gunaPictureBox1.Image")));
+            this.gunaPictureBox1.Location = new System.Drawing.Point(181, 69);
+            this.gunaPictureBox1.Name = "gunaPictureBox1";
+            this.gunaPictureBox1.Size = new System.Drawing.Size(177, 141);
+            this.gunaPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.gunaPictureBox1.TabIndex = 11;
+            this.gunaPictureBox1.TabStop = false;
             // 
-            // label1
+            // errorMessagePanel
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(114, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Dismiss";
-            this.label1.Click += new System.EventHandler(this.Label1_Click);
+            this.errorMessagePanel.Controls.Add(this.errorMessage);
+            this.errorMessagePanel.Location = new System.Drawing.Point(78, 253);
+            this.errorMessagePanel.Name = "errorMessagePanel";
+            this.errorMessagePanel.Size = new System.Drawing.Size(381, 94);
+            this.errorMessagePanel.TabIndex = 15;
             // 
             // Alert
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(288, 219);
-            this.Controls.Add(this.panel1);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(511, 425);
+            this.ControlBox = false;
+            this.Controls.Add(this.errorMessagePanel);
+            this.Controls.Add(this.dismissButton);
             this.Controls.Add(this.errorTitle);
-            this.Controls.Add(this.errorMessage);
-            this.Controls.Add(this.bunifuImageButton1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Controls.Add(this.gunaPictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Alert";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alert";
-            this.Load += new System.EventHandler(this.Alert_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bunifuImageButton1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.TopMost = true;
+            ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).EndInit();
+            this.errorMessagePanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Timer ShowAlert;
-        private System.Windows.Forms.Timer CloseAlert;
-        private System.Windows.Forms.ImageList imageList1;
-        private BunifuImageButton bunifuImageButton1;
-        private BunifuCustomLabel errorMessage;
-        private BunifuCustomLabel errorTitle;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
+
+        private Guna.UI.WinForms.GunaButton dismissButton;
+        private Bunifu.Framework.UI.BunifuCustomLabel errorMessage;
+        private Bunifu.Framework.UI.BunifuCustomLabel errorTitle;
+        private Guna.UI.WinForms.GunaPictureBox gunaPictureBox1;
+        private System.Windows.Forms.Panel errorMessagePanel;
     }
 }

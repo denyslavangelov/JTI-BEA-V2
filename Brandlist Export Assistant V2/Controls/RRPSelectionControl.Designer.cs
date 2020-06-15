@@ -60,7 +60,6 @@
             this.tccPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.nextButton = new Guna.UI.WinForms.GunaButton();
-            this.zeroitSmoothAnimator1 = new Zeroit.Framework.Transitions.SmoothTransitions.ZeroitSmoothAnimator();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.snIcon)).BeginInit();
             this.llcPanel.SuspendLayout();
@@ -496,22 +495,10 @@
             this.nextButton.Visible = false;
             this.nextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
-            // zeroitSmoothAnimator1
-            // 
-            this.zeroitSmoothAnimator1.AnimationType = Zeroit.Framework.Transitions.SmoothTransitions.AnimationTypes.FadeIn;
-            this.zeroitSmoothAnimator1.Duration = 1000;
-            this.zeroitSmoothAnimator1.Mover = 10F;
-            this.zeroitSmoothAnimator1.Offset = 10F;
-            this.zeroitSmoothAnimator1.Reverse = true;
-            this.zeroitSmoothAnimator1.SmoothOut = false;
-            this.zeroitSmoothAnimator1.StartValue = 100;
-            this.zeroitSmoothAnimator1.TimerInterval = 10;
-            this.zeroitSmoothAnimator1.TimerPassed = 0;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(345, 32);
+            this.pictureBox1.Location = new System.Drawing.Point(340, 20);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(224, 221);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -595,7 +582,6 @@
         private System.Windows.Forms.Panel tccPanel;
         private System.Windows.Forms.Panel panel1;
         private Guna.UI.WinForms.GunaButton nextButton;
-        private Zeroit.Framework.Transitions.SmoothTransitions.ZeroitSmoothAnimator zeroitSmoothAnimator1;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

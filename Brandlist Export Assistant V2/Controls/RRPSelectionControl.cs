@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Brandlist_Export_Assistant_V2.Classes;
 using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
 using Brandlist_Export_Assistant_V2.Forms;
 using Guna.UI.WinForms;
@@ -188,6 +189,16 @@ namespace Brandlist_Export_Assistant_V2.Controls
 
         private void NextButton_Click(object sender, EventArgs e)
         {
+            if (this.asllSwitch.Checked)
+            {
+                ProjectSettings.RRPSecondLocalExported = true;
+            }
+
+            if (this.ecpSwitch.Checked)
+            {
+                ProjectSettings.RRPCustomPropertyExported = true;
+            }
+
             MainForm.UpdateStage(Stages.Import);
         }
     }

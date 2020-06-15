@@ -14,6 +14,10 @@ namespace Brandlist_Export_Assistant_V2.Classes
         public static string TobaccoSheetName { get; set; }
         public static string RRPSheetName { get; set; }
         public static string CountryCode { get; set; }
+        public static bool TobaccoSecondLocalExported { get; set; }
+        public static bool TobaccoCustomPropertyExported { get; set; }
+        public static bool RRPSecondLocalExported { get; set; }
+        public static bool RRPCustomPropertyExported { get; set; }
 
         public static void SetProjectSettings(bool rrpExport, bool tobaccoExport, Methodology methodology, ProjectType projectType, Platform platform,string tobaccoSheetName,string rrpSheetName)
         {

@@ -73,7 +73,7 @@
             this.uploadButton.Radius = 15;
             this.uploadButton.Size = new System.Drawing.Size(180, 70);
             this.uploadButton.TabIndex = 9;
-            this.uploadButton.Text = "CHOOSE FILE";
+            this.uploadButton.Text = "LOADING";
             this.uploadButton.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uploadButton.UseTransfarantBackground = true;
             // 

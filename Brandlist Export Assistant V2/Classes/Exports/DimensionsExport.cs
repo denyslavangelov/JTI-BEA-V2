@@ -13,23 +13,26 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
     public class DimensionsExport : Export
     {
-        public TobaccoBrandlist TobaccoBrandList { get; }
+        private TobaccoBrandlist TobaccoBrandList { get; }
 
-        public RRPBrandlist RRPBrandList { get; }
+        private RRPBrandlist RRPBrandList { get; }
 
-        public MDDFile MDDFile { get; }
-
-        public ProjectSettingsControl ProjectSettingsControl { get; }
+        private MDDFile MDDFile { get; }
 
         public Document MDD_Document { get; set; }
 
-        public DimensionsExport(MDDFile mddFile, TobaccoBrandlist tobaccoBrandList, RRPBrandlist rrpBrandlist, ProjectSettingsControl projectSettingsControl) : base(tobaccoBrandList, rrpBrandlist)
+        public DimensionsExport(MDDFile mddFile, TobaccoBrandlist tobaccoBrandList) : base(tobaccoBrandList)
         {
             TobaccoBrandList = tobaccoBrandList;
-            RRPBrandList = rrpBrandlist;
             MDDFile = mddFile;
 
-            ProjectSettingsControl = projectSettingsControl;
+            CreateAndOpenDocument();
+        }
+
+        public DimensionsExport(MDDFile mddFile, RRPBrandlist rrpBrandlist) : base(rrpBrandlist)
+        {
+            RRPBrandList = rrpBrandlist;
+            MDDFile = mddFile;
 
             CreateAndOpenDocument();
         }
@@ -224,7 +227,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
             }
             // {Main Brand List Creation End}
 
-            IElements xxxMainBrands = MDD_Document.Types["List_Main_Brands_XXX"];
+            IElements xxxMainBrands = MDD_Document.Types[xxxMainListName];
             xxxMainBrands.Reference = listMainBrands;
 
             // {Sub Brand List Creation Start}
@@ -266,7 +269,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
             }
             // {Sub Brand List Creation End}
 
-            IElements xxxSubBrands = MDD_Document.Types["List_SubBrands_XXX"];
+            IElements xxxSubBrands = MDD_Document.Types[xxxSubBrandListName];
             xxxSubBrands.Reference = listSubBrands;
         }
 
@@ -368,7 +371,6 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
             if (!Validator.IsFileOpen(this, MDDFile.FullName))
             {
-                
                 IsSuccessful = true;
             }
             else

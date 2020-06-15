@@ -151,7 +151,6 @@ namespace Brandlist_Export_Assistant_V2.Classes.Brandlists
             Validator.Validate_HasSubBrandList(this.Brands);
 
             Validator.Validate_HasMainBrand(this.SubBrands);
-
         }
 
         public void MoveExclusiveAnswersToTheEnd()

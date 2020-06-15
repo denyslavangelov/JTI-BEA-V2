@@ -29,9 +29,15 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
         public virtual string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\iFieldExport\";
 
-        public IFieldExport(TobaccoBrandlist tobaccoBrandList, RRPBrandlist rrpBrandlist, ProjectSettingsControl projectSettingsControl): base(tobaccoBrandList, rrpBrandlist)
+        public IFieldExport(TobaccoBrandlist tobaccoBrandList,ProjectSettingsControl projectSettingsControl): base(tobaccoBrandList)
         {
             TobaccoBrandList = tobaccoBrandList;
+
+            ProjectSettingsControl = projectSettingsControl;
+        }
+
+        public IFieldExport(RRPBrandlist rrpBrandlist, ProjectSettingsControl projectSettingsControl) : base(rrpBrandlist)
+        {
             RRPBrandList = rrpBrandlist;
 
             ProjectSettingsControl = projectSettingsControl;
@@ -189,7 +195,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
         private void CreateTXT(string listContent, string listName)
         {
-            if (listName.Contains("ecig"))
+            if (listName.Contains("ecigBrands"))
             {
                 File.WriteAllText(Path.Combine(RRPExportDirectory, listName + ".txt"), listContent);
             }
