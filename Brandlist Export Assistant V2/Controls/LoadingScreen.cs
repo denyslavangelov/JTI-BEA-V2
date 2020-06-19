@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
-using Brandlist_Export_Assistant_V2.Forms;
 using Guna.UI.WinForms;
 
 namespace Brandlist_Export_Assistant_V2.Controls
@@ -46,24 +38,28 @@ namespace Brandlist_Export_Assistant_V2.Controls
 
         public void Show(Control form, Control currentControl, string buttonText)
         {
+            this.Visible = true;
+
             uploadButton.Text = buttonText;
 
             if (form != currentControl)
             {
-                currentControl.Visible = false;
+                form.Controls.Remove(currentControl);
             }
             
             form.Controls.Add(this);
+            this.Visible = true;
         }
 
         public void Hide(Control form, Control currentControl)
         {
             if (form != currentControl)
             {
-                currentControl.Visible = true;
+                //form.Controls.Add(currentControl);
             }
 
             form.Controls.Remove(this);
+            this.Visible = false;
         }
     }
 }

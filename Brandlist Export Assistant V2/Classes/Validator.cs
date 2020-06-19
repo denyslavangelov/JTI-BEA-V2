@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Brandlist_Export_Assistant_V2.Classes.Brand;
 using Brandlist_Export_Assistant_V2.Classes.Exports;
 using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
+using Brandlist_Export_Assistant_V2.Controls;
 using Brandlist_Export_Assistant_V2.Forms;
 using Microsoft.Office.Interop.Excel;
 
@@ -126,6 +128,7 @@ namespace Brandlist_Export_Assistant_V2.Classes
                 }
                 catch
                 {
+                    Alert.Show("File is already open. Please close it and try again.", Stages.Import);
                     return true;
                 }
             }
@@ -133,7 +136,7 @@ namespace Brandlist_Export_Assistant_V2.Classes
             return false;
         }
 
-        public static bool IsExcelOpen(string path, Workbook workbook)
+        public static bool SaveExcel(string path, Workbook workbook)
         {
             try
             {
@@ -145,6 +148,7 @@ namespace Brandlist_Export_Assistant_V2.Classes
                 return true;
             }
 
+            workbook.Close(true);
             return false;
         }
 

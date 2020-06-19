@@ -38,7 +38,6 @@
             this.successFolderButton = new Guna.UI.WinForms.GunaButton();
             this.successPanel = new System.Windows.Forms.Panel();
             this.browsePanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.loadingBarImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.successPanel.SuspendLayout();
@@ -56,7 +55,7 @@
             this.exportDataButton.BorderColor = System.Drawing.Color.Black;
             this.exportDataButton.DialogResult = System.Windows.Forms.DialogResult.None;
             this.exportDataButton.FocusedColor = System.Drawing.Color.Empty;
-            this.exportDataButton.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportDataButton.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportDataButton.ForeColor = System.Drawing.Color.White;
             this.exportDataButton.Image = null;
             this.exportDataButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -93,7 +92,7 @@
             // 
             this.loadingBarImage.BaseColor = System.Drawing.Color.White;
             this.loadingBarImage.Image = ((System.Drawing.Image)(resources.GetObject("loadingBarImage.Image")));
-            this.loadingBarImage.Location = new System.Drawing.Point(68, 88);
+            this.loadingBarImage.Location = new System.Drawing.Point(62, 88);
             this.loadingBarImage.Name = "loadingBarImage";
             this.loadingBarImage.Size = new System.Drawing.Size(54, 48);
             this.loadingBarImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -183,28 +182,17 @@
             this.browsePanel.Controls.Add(this.loadingBarImage);
             this.browsePanel.Controls.Add(this.exportDataButton);
             this.browsePanel.Controls.Add(this.exportLabel);
-            this.browsePanel.Location = new System.Drawing.Point(155, 404);
+            this.browsePanel.Location = new System.Drawing.Point(155, 401);
             this.browsePanel.Name = "browsePanel";
             this.browsePanel.Size = new System.Drawing.Size(294, 171);
             this.browsePanel.TabIndex = 18;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // DataExportControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.browsePanel);
             this.Controls.Add(this.successPanel);
+            this.Controls.Add(this.browsePanel);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "DataExportControl";
             this.Size = new System.Drawing.Size(579, 517);
@@ -228,6 +216,5 @@
         private Guna.UI.WinForms.GunaButton successFolderButton;
         private System.Windows.Forms.Panel successPanel;
         private System.Windows.Forms.Panel browsePanel;
-        private System.Windows.Forms.Button button1;
     }
 }

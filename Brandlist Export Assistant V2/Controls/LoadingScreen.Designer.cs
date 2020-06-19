@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadingScreen));
             this.uploadPanel = new Guna.UI.WinForms.GunaPanel();
-            this.uploadButton = new Guna.UI.WinForms.GunaButton();
             this.loadingBarImage = new Guna.UI.WinForms.GunaPictureBox();
+            this.uploadButton = new Guna.UI.WinForms.GunaButton();
             this.uploadPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingBarImage)).BeginInit();
             this.SuspendLayout();
@@ -45,6 +45,17 @@
             this.uploadPanel.Size = new System.Drawing.Size(207, 77);
             this.uploadPanel.TabIndex = 15;
             // 
+            // loadingBarImage
+            // 
+            this.loadingBarImage.BaseColor = System.Drawing.Color.White;
+            this.loadingBarImage.Image = ((System.Drawing.Image)(resources.GetObject("loadingBarImage.Image")));
+            this.loadingBarImage.Location = new System.Drawing.Point(25, 9);
+            this.loadingBarImage.Name = "loadingBarImage";
+            this.loadingBarImage.Size = new System.Drawing.Size(62, 58);
+            this.loadingBarImage.TabIndex = 10;
+            this.loadingBarImage.TabStop = false;
+            this.loadingBarImage.Visible = false;
+            // 
             // uploadButton
             // 
             this.uploadButton.Animated = true;
@@ -57,7 +68,7 @@
             this.uploadButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.uploadButton.DialogResult = System.Windows.Forms.DialogResult.None;
             this.uploadButton.FocusedColor = System.Drawing.Color.Empty;
-            this.uploadButton.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadButton.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uploadButton.ForeColor = System.Drawing.Color.White;
             this.uploadButton.Image = null;
             this.uploadButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -76,17 +87,6 @@
             this.uploadButton.Text = "LOADING";
             this.uploadButton.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uploadButton.UseTransfarantBackground = true;
-            // 
-            // loadingBarImage
-            // 
-            this.loadingBarImage.BaseColor = System.Drawing.Color.White;
-            this.loadingBarImage.Image = ((System.Drawing.Image)(resources.GetObject("loadingBarImage.Image")));
-            this.loadingBarImage.Location = new System.Drawing.Point(27, 9);
-            this.loadingBarImage.Name = "loadingBarImage";
-            this.loadingBarImage.Size = new System.Drawing.Size(62, 58);
-            this.loadingBarImage.TabIndex = 10;
-            this.loadingBarImage.TabStop = false;
-            this.loadingBarImage.Visible = false;
             // 
             // LoadingScreen
             // 

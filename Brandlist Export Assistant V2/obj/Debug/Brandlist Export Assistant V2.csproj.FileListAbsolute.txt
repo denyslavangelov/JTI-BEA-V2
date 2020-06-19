@@ -183,16 +183,8 @@ C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\IKVM.Runtime.JNI.dll
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\IronXL.dll
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\Zeroit.Framework.Transitions.dll
-C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\Microsoft.VisualBasic.PowerPacks.dll
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\IronXL.xml
-C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\Microsoft.VisualBasic.PowerPacks.xml
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.csprojAssemblyReference.cache
-C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Alert.resources
-C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.DataExportControl.resources
-C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.ProjectSettingsControl.resources
-C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.RRPSelectionControl.resources
-C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.TobaccoSelectionControl.resources
-C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.MainForm.resources
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Properties.Resources.resources
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.csproj.GenerateResource.cache
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.csproj.CoreCompileInputs.cache
@@ -252,3 +244,10 @@ C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Forms.MainForm.resources
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Controls.LoadingScreen.resources
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Forms.Alert.resources
+C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Controls.LoadingScreen.resources
+C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Controls.DataExportControl.resources
+C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Controls.ProjectSettingsControl.resources
+C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Controls.RRPSelectionControl.resources
+C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Controls.TobaccoSelectionControl.resources
+C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Forms.Alert.resources
+C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Forms.MainForm.resources

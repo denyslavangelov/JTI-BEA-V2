@@ -268,6 +268,7 @@ namespace Brandlist_Export_Assistant_V2.Forms
 
                     FinalExportControl = new DataExportControl(this,TobaccoBrandlist, RrpBrandlist, SettingsControl);
                     this.Controls.Add(FinalExportControl);
+                    
 
                     columnSelectionPanel.Visible = false;
 
@@ -371,9 +372,9 @@ namespace Brandlist_Export_Assistant_V2.Forms
             }
         }
 
+        public LoadingScreen sc = null;
         private void GunaTransfarantPictureBox2_Click(object sender, EventArgs e)
         {
-            Alert.Show($"The sub brand named CHESTERFIELD doesn't have a main brand.", Stages.LoadBrandlist);
         }
     }
 }
