@@ -30,7 +30,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
             this.RRPBrandList = rrpBrandList;
             this.MDDFile = MDDFile;
         }
-        public virtual string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\AutoCompleteTables\";
+        public virtual string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\DimensionsExport\AutoCompleteTables\";
 
         public virtual void ExportData(string exportType)
         {
@@ -45,8 +45,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
                 PopulateTobaccoBrandCodes();
 
                 var tobaccoSecondLocalLanguage = ProjectSettings.TobaccoSecondLocalExported;
-                ExportAutoCompleteTables("Tobacco", Dir + "AutoComplete_Tables_Tobacco", "S20039391", "_AC_Tobbaco_Global", "_AC_Tobacco_Local", tobaccoSecondLocalLanguage);
-                //ExportAutoCompleteTables("Tobacco", Dir + "AutoComplete_Tables_Tobacco", MDDFile.ShortName.Replace(".mdd", ""), "_AC_Tobbaco_Global", "_AC_Tobacco_Local", tobaccoSecondLocalLanguage);
+                ExportAutoCompleteTables("Tobacco", Dir + "AutoComplete_Tables_Tobacco.xlsx", MDDFile.ShortName.Replace(".mdd", ""), "_MainBrands_AC_Global", "_MainBrands_AC_Local", tobaccoSecondLocalLanguage);
             }
 
             if (ProjectSettings.RRPExport && exportType == "RRP")
@@ -55,8 +54,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
                 PopulateRRPCodes();
 
                 var rrpSecondLocalLanguage = ProjectSettings.RRPSecondLocalExported;
-                //ExportAutoCompleteTables("RRP",Dir + "AutoComplete_Tables_RRP", MDDFile.ShortName.Replace(".mdd", ""), "_AC_RRP_Global", "_AC_RRP_Local", rrpSecondLocalLanguage);
-                ExportAutoCompleteTables("RRP", Dir + "AutoComplete_Tables_RRP", "S20039391", "_AC_RRP_Global", "_AC_RRP_Local", rrpSecondLocalLanguage);
+                ExportAutoCompleteTables("RRP",Dir + "AutoComplete_Tables_RRP.xlsx", MDDFile.ShortName.Replace(".mdd", ""), "_RRP_AC_SP_Global", "_RRP_AC_SP_Local", rrpSecondLocalLanguage);
             }
         }
 
@@ -126,9 +124,9 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
         private void ExportAutoCompleteTables(string exportType, string path, string mddDocument, string globalSheetName, string localSheetName, bool exportSecondLocalLanguage)
         {
-            if (File.Exists(path))
+            if (File.Exists(@path))
             {
-                File.Delete(path);
+                File.Delete(@path);
             }
 
             var excel = new Application { Visible = false };
@@ -169,7 +167,6 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
                 }
             }
 
-
             Worksheet globalBrandsSheet = workBook.Worksheets.Add();
             workBook.Sheets[globalBrandsSheet.Name].Move(workBook.Sheets[workBook.Sheets.Count]);
 
@@ -184,6 +181,12 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
                 globalBrandsSheet.Cells[i + 2, "B"].Value2 = brandNamesArray[i];
             }
 
+            globalBrandsSheet.Cells[brandNamesArray.Length + 2, "A"].Value2 = "_98";
+            globalBrandsSheet.Cells[brandNamesArray.Length + 2, "B"].Value2 = "Other Brand";
+
+            globalBrandsSheet.Cells[brandNamesArray.Length + 3, "A"].Value2 = "_99";
+            globalBrandsSheet.Cells[brandNamesArray.Length + 3, "B"].Value2 = "Don't know any brand";
+
             Worksheet localBrandsSheet = workBook.Sheets.Add();
             workBook.Sheets[localBrandsSheet.Name].Move(workBook.Sheets[workBook.Sheets.Count]);
 
@@ -197,6 +200,12 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
                 localBrandsSheet.Cells[i + 2, "A"].Value2 = brandCodesArray[i];
                 localBrandsSheet.Cells[i + 2, "B"].Value2 = brandNamesLocalArray[i];
             }
+
+            localBrandsSheet.Cells[brandNamesArray.Length + 2, "A"].Value2 = "_98";
+            localBrandsSheet.Cells[brandNamesArray.Length + 2, "B"].Value2 = "Other Brand";
+
+            localBrandsSheet.Cells[brandNamesArray.Length + 3, "A"].Value2 = "_99";
+            localBrandsSheet.Cells[brandNamesArray.Length + 3, "B"].Value2 = "Don't know any brand";
 
             if (exportSecondLocalLanguage)
             {
@@ -213,21 +222,21 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
                     secondLocalBrandsSheet.Cells[i + 2, "A"].Value2 = brandCodesArray[i];
                     secondLocalBrandsSheet.Cells[i + 2, "B"].Value2 = brandNamesSecondLocalArray[i];
                 }
+
+                secondLocalBrandsSheet.Cells[brandNamesArray.Length + 2, "A"].Value2 = "_98";
+                secondLocalBrandsSheet.Cells[brandNamesArray.Length + 2, "B"].Value2 = "Other Brand";
+
+                secondLocalBrandsSheet.Cells[brandNamesArray.Length + 3, "A"].Value2 = "_99";
+                secondLocalBrandsSheet.Cells[brandNamesArray.Length + 3, "B"].Value2 = "Don't know any brand";
             }
 
             workBook.Worksheets["Sheet1"].Delete();
 
             workBook.Sheets[1].Activate();
 
-            if (Validator.IsExcelOpen(path, workBook))
-            {
-                excel.Quit();
-            }
-            else
-            {
-                workBook.SaveAs(path);
-                workBook.Close(true);
-            }
+            Validator.SaveExcel(path, workBook);
+
+            excel.Quit();
         }
 
     }

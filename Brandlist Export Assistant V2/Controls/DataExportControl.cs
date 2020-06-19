@@ -38,9 +38,9 @@ namespace Brandlist_Export_Assistant_V2.Controls
 
             ProjectSettingsControl = projectSettingsControl;
 
-            LoadingScreen = new LoadingScreen();
-
             MainForm = mainForm;
+
+            LoadingScreen = new LoadingScreen();
 
             Location = new Point(323, 115);
             Size = new Size(579, 524);
@@ -77,15 +77,21 @@ namespace Brandlist_Export_Assistant_V2.Controls
                 }
             }
 
-            this.LoadingScreen.Show(this.Parent, this, ExportString);
+            this.LoadingScreen.Show(this.MainForm, this, ExportString);
 
             await ExportDataAsync();
 
-            MainForm.UpdateStage(Stages.Final);
+            this.LoadingScreen.Hide(this.MainForm, this);
 
-            this.LoadingScreen.Hide(this.Parent, this);
-
-            SuccessScreenSetup();
+            if (DimensionsExport.IsSuccessfulyOpen)
+            {
+                MainForm.UpdateStage(Stages.Final);
+                SuccessScreenSetup();
+            }
+            else
+            {
+                MainForm.UpdateStage(Stages.Import);
+            }
         }
 
         private void ExportPanelSetup()
@@ -115,29 +121,34 @@ namespace Brandlist_Export_Assistant_V2.Controls
             switch (ProjectSettings.Platform)
             {
                 case Platform.Dimensions:
+                    DimensionsExport = new DimensionsExport(MDDFile, RRPBrandlist,TobaccoBrandlist);
+
                     if (ProjectSettings.TobaccoExport)
                     {
-                        DimensionsExport = new DimensionsExport(MDDFile, TobaccoBrandlist);
-
                         if (ProjectSettings.Methodology == Methodology.CAWI && ProjectSettings.Platform == Platform.Dimensions)
                         {
                             AutoCompleteTablesExport = new AutoCompleteTablesExport(TobaccoBrandlist, MDDFile);
                             AutoCompleteTablesExport.ExportData("Tobacco");
                         }
+
+                        DimensionsExport.ExportData();
+
+                        if (!DimensionsExport.IsSuccessfulyOpen)
+                        {
+                            return;
+                        }
                     }
 
                     if (ProjectSettings.RRPExport)
                     {
-                        DimensionsExport = new DimensionsExport(MDDFile, RRPBrandlist);
-
                         if (ProjectSettings.Methodology == Methodology.CAWI && ProjectSettings.Platform == Platform.Dimensions)
                         {
                             AutoCompleteTablesExport = new AutoCompleteTablesExport(RRPBrandlist, MDDFile);
                             AutoCompleteTablesExport.ExportData("RRP");
                         }
-                    }
 
-                    DimensionsExport.ExportData();
+                        DimensionsExport.ExportData();
+                    }
                     break;
                 case Platform.iField:
                     if (ProjectSettings.TobaccoExport)
@@ -162,7 +173,7 @@ namespace Brandlist_Export_Assistant_V2.Controls
             switch (ProjectSettings.Platform)
             {
                 case Platform.Dimensions:
-                    Process.Start(MDDFile.Path);
+                    Process.Start(DimensionsExport.Dir);
                     break;
                 case Platform.iField:
                     Process.Start(IFieldExport.Dir);

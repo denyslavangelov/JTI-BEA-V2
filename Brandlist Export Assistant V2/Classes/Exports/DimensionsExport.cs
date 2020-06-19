@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Brandlist_Export_Assistant_V2.Classes.Brand;
 using Brandlist_Export_Assistant_V2.Classes.Brandlists;
 using Brandlist_Export_Assistant_V2.Controls;
 using Brandlist_Export_Assistant_V2.Enums;
+using Brandlist_Export_Assistant_V2.Forms;
 using MDMLib;
 
 namespace Brandlist_Export_Assistant_V2.Classes.Exports
@@ -21,23 +23,14 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
         public Document MDD_Document { get; set; }
 
-        public DimensionsExport(MDDFile mddFile, TobaccoBrandlist tobaccoBrandList) : base(tobaccoBrandList)
+        public DimensionsExport(MDDFile mddFile, RRPBrandlist rrpBrandlist,TobaccoBrandlist tobaccoBrandList) : base(tobaccoBrandList)
         {
             TobaccoBrandList = tobaccoBrandList;
-            MDDFile = mddFile;
-
-            CreateAndOpenDocument();
-        }
-
-        public DimensionsExport(MDDFile mddFile, RRPBrandlist rrpBrandlist) : base(rrpBrandlist)
-        {
             RRPBrandList = rrpBrandlist;
             MDDFile = mddFile;
-
-            CreateAndOpenDocument();
         }
 
-        private bool IsSuccessful { get; set; }
+        public bool IsSuccessfulyOpen { get; set; }
 
         public virtual string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\DimensionsExport\";
 
@@ -48,18 +41,23 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
                 Directory.CreateDirectory(Dir);
             }
 
-            if (ProjectSettings.RRPExport)
-            {
-                ExportRRPBrandlists();
-            }
+            CreateAndOpenDocument();
 
-            if (ProjectSettings.TobaccoExport)
+            if (IsSuccessfulyOpen)
             {
-                ExportTobaccoBrandlist();
-                ExportCountry_Q();
-            }
+                if (ProjectSettings.RRPExport)
+                {
+                    ExportRRPBrandlists();
+                }
 
-            SaveAndOpen();
+                if (ProjectSettings.TobaccoExport)
+                {
+                    ExportTobaccoBrandlist();
+                    ExportCountry_Q();
+                }
+
+                SaveAndOpen();
+            }
         }
 
         private void CreateBrandQuestion(IEnumerable<MainBrand> brandList, string brandListName)
@@ -69,9 +67,13 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
             foreach (var brand in brandList)
             {
-                if (brand.GlobalLabel.Contains("&") || brand.LocalLabel.Contains("&"))
+                if (brand.GlobalLabel.Contains("&"))
                 {
                     brand.GlobalLabel = brand.GlobalLabel.Replace("&", "&amp;");
+                }
+
+                if (brand.LocalLabel.Contains("&"))
+                {
                     brand.LocalLabel = brand.LocalLabel.Replace("&", "&amp;");
                 }
 
@@ -108,9 +110,13 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
             foreach (var subBrand in subBrandList)
             {
-                if (subBrand.GlobalLabel.Contains("&") || subBrand.LocalLabel.Contains("&"))
+                if (subBrand.GlobalLabel.Contains("&"))
                 {
                     subBrand.GlobalLabel = subBrand.GlobalLabel.Replace("&", "&amp;");
+                }
+
+                if (subBrand.LocalLabel.Contains("&"))
+                {
                     subBrand.LocalLabel = subBrand.LocalLabel.Replace("&", "&amp;");
                 }
 
@@ -343,21 +349,22 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
         public void SaveAndOpen()
         {
-            var mddDirectory = MDDFile.FullName.Substring(0, MDDFile.FullName.Length - 4);
+            var mddDirectory = Dir + MDDFile.ShortName;
 
-            if (!mddDirectory.Contains("_Updated"))
+            if (!mddDirectory.Contains("_UpdatedBrandlist"))
             {
-                mddDirectory += "_Updated";
+                mddDirectory += "_UpdatedBrandlist";
             }
 
-            if (!Validator.IsFileOpen(this, mddDirectory) && IsSuccessful)
+            mddDirectory = mddDirectory.Replace(".mdd", "");
+
+            if (!Validator.IsFileOpen(this, mddDirectory))
             {
-                MDD_Document.Save(Dir + MDDFile.ShortName);
                 MDD_Document.Save(mddDirectory + ".mdd");
             }
             else
             {
-                return;
+                IsSuccessfulyOpen = false;
             }
 
             MDD_Document.Close();
@@ -367,16 +374,21 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
         {
             MDD_Document = new Document();
 
-            MDD_Document.Open(MDDFile.FullName);
-
             if (!Validator.IsFileOpen(this, MDDFile.FullName))
             {
-                IsSuccessful = true;
+                MDD_Document.Open(MDDFile.FullName);
+                IsSuccessfulyOpen = true;
             }
             else
             {
-                IsSuccessful = false;
-                return;
+                IsSuccessfulyOpen = false;
+            }
+
+            var mddDirectory = Dir + MDDFile.ShortName.Replace(".mdd", "") + "_UpdatedBrandlist.mdd";
+
+            if (File.Exists(mddDirectory))
+            {
+                File.Delete(mddDirectory);
             }
         }
     }
