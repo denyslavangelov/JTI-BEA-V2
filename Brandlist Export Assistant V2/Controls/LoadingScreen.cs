@@ -36,30 +36,29 @@ namespace Brandlist_Export_Assistant_V2.Controls
             button.Text = @"LOADING";
         }
 
-        public void Show(Control form, Control currentControl, string buttonText)
+        public void Show(Control mainForm, Control currentControl, string buttonText)
         {
-            this.Visible = true;
-
             uploadButton.Text = buttonText;
 
-            if (form != currentControl)
+            if (mainForm != currentControl)
             {
-                form.Controls.Remove(currentControl);
+                mainForm.Controls.Remove(currentControl);
             }
-            
-            form.Controls.Add(this);
-            this.Visible = true;
+
+            mainForm.Controls.Add(this);
         }
 
-        public void Hide(Control form, Control currentControl)
+        public void Hide(Control mainForm, Control currentControl)
         {
-            if (form != currentControl)
+            if (mainForm != currentControl)
             {
-                //form.Controls.Add(currentControl);
+                if (!mainForm.Controls.Contains(currentControl))
+                {
+                    mainForm.Controls.Add(currentControl);
+                }
             }
 
-            form.Controls.Remove(this);
-            this.Visible = false;
+            mainForm.Controls.Remove(this);
         }
     }
 }

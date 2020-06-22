@@ -118,61 +118,82 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="asde1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5e924b7324e57970325407.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Countries" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Countries.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
-  <data name="check" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\check.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Countries_iField" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Countries_iField.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="ErrorScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ErrorScreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="export_high_op" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\export_high_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="export_high_op1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\export_high_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="export_low_op" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\export_low_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="export_low_op1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\export_low_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="green" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Jersey_M54" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Jersey M54.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="loading_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\loading_1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="green1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="rotate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rotate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="right1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="select_high_op" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\select_high_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="select_high_op1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\select_high_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="select_low_op" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\select_low_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="select_low_op1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\select_low_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="settings_high_op" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings_high_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings_high_op1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings_high_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="settings_low_op" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings_low_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="stopwatch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stopwatch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="settings_low_op1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings_low_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SuccessScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SuccessScreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="upload_high_op" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\upload_high_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upload_high_op1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\upload_high_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="upload_low_op" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\upload_low_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="upload_not_static" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\upload-not-static.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="upload_static" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\upload-static.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="upload_low_op1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\upload_low_op.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="yellow1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

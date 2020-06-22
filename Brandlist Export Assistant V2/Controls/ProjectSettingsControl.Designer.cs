@@ -119,8 +119,7 @@
             this.pBox.FormattingEnabled = true;
             this.pBox.Items.AddRange(new object[] {
             "Dimensions",
-            "iField",
-            "Dooblo"});
+            "iField"});
             this.pBox.Location = new System.Drawing.Point(189, 41);
             this.pBox.Name = "pBox";
             this.pBox.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));

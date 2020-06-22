@@ -10,7 +10,6 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
     {
         public TobaccoBrandlist TobaccoBrandList { get; }
         public RRPBrandlist RRPBrandList { get; }
-        public ProjectSettingsControl ProjectSettingsControl { get; }
 
         private string TobaccoBrands { get; set; }
         private string TobaccoSubBrands { get; set; }
@@ -29,18 +28,10 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
 
         public virtual string Dir => $@"C:\Users\{Environment.UserName}\Documents\Brandlist Export Assistant\{ProjectSettings.CountryName}\JTI - {ProjectSettings.CountryName} {ProjectSettings.ProjectType} {ProjectSettings.Wave}\iFieldExport\";
 
-        public IFieldExport(TobaccoBrandlist tobaccoBrandList,ProjectSettingsControl projectSettingsControl): base(tobaccoBrandList)
+        public IFieldExport(TobaccoBrandlist tobaccoBrandList, RRPBrandlist rrpBrandlist): base(tobaccoBrandList)
         {
             TobaccoBrandList = tobaccoBrandList;
-
-            ProjectSettingsControl = projectSettingsControl;
-        }
-
-        public IFieldExport(RRPBrandlist rrpBrandlist, ProjectSettingsControl projectSettingsControl) : base(rrpBrandlist)
-        {
             RRPBrandList = rrpBrandlist;
-
-            ProjectSettingsControl = projectSettingsControl;
         }
 
         private void ExportTobaccoBrands(TobaccoBrandlist brandlist)

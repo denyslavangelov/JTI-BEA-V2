@@ -24,7 +24,11 @@ namespace Brandlist_Export_Assistant_V2.Controls
 
         private int FieldsToFillCount { get; set; } = 4;
 
-        public Platform Platform { get; set; }
+        private Platform Platform { get; set; }
+
+        private Methodology Methodology { get; set; }
+        
+        private ProjectType ProjectType { get; set; }
 
         public ProjectSettingsControl(MainForm mainForm, Excel excel)
         {
@@ -152,9 +156,19 @@ namespace Brandlist_Export_Assistant_V2.Controls
                 case "iField":
                     Platform = Platform.iField;
                     break;
-                case "Dooblo":
-                    Platform = Platform.Dooblo;
-                    break;
+            }
+
+            if (Platform == Platform.iField)
+            {
+                this.pmBox.Items.Remove("CAWI");
+                this.pmBox.SelectedItem = "CAPI";
+            }
+            else
+            {
+                if (!this.pmBox.Items.Contains("CAWI"))
+                {
+                    this.pmBox.Items.Add("CAWI");
+                }
             }
         }
 
@@ -163,55 +177,46 @@ namespace Brandlist_Export_Assistant_V2.Controls
             var rrpExportBoolean = this.etRRPCheckBox.Checked;
             var tobaccoExportBoolean = this.etTBCheckBox.Checked;
 
-            Methodology methodology = 0;
-
             switch (this.pmBox.Text)
             {
                 case "CAWI":
-                    methodology = Methodology.CAWI;
+                    Methodology = Methodology.CAWI;
                     break;
                 case "CAPI":
-                    methodology = Methodology.CAPI;
+                    Methodology = Methodology.CAPI;
                     break;
                 case "CATI":
-                    methodology = Methodology.CATI;
+                    Methodology = Methodology.CATI;
                     break;
             }
-
-            ProjectType projectType = 0;
 
             switch (this.ptBox.Text)
             {
                 case "One Tracker":
-                    projectType = ProjectType.OneTracker;
+                    ProjectType = ProjectType.OneTracker;
                     break;
                 case "Tracker":
-                    projectType = ProjectType.Tracker;
+                    ProjectType = ProjectType.Tracker;
                     break;
                 case "Incidence":
-                    projectType = ProjectType.Incidence;
+                    ProjectType = ProjectType.Incidence;
                     break;
                 case "SwitchingBoost":
-                    projectType = ProjectType.SwitchingBoost;
+                    ProjectType = ProjectType.SwitchingBoost;
                     break;
             }
-
-            Platform platform = 0;
 
             switch (this.pBox.Text)
             {
                 case "Dimensions":
-                    platform = Platform.Dimensions;
+                    Platform = Platform.Dimensions;
                     break;
                 case "iField":
-                    platform = Platform.iField;
-                    break;
-                case "Dooblo":
-                    platform = Platform.Dooblo;
+                    Platform = Platform.iField;
                     break;
             }
 
-            ProjectSettings.SetProjectSettings(rrpExportBoolean, tobaccoExportBoolean, methodology, projectType, platform, this.tsBox.Text, this.rsBox.Text);
+            ProjectSettings.SetProjectSettings(rrpExportBoolean, tobaccoExportBoolean, Methodology, ProjectType, Platform, this.tsBox.Text, this.rsBox.Text);
 
             if (ProjectSettings.TobaccoExport || (ProjectSettings.TobaccoExport && ProjectSettings.RRPExport))
             {

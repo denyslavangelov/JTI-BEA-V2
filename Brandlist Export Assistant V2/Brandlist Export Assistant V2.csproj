@@ -7,12 +7,27 @@
     <ProjectGuid>{67B2CAF6-EBA0-4C07-A4A9-0D51DCA6D358}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Brandlist_Export_Assistant_V2</RootNamespace>
-    <AssemblyName>Brandlist Export Assistant V2</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <AssemblyName>JTI BEA - V2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,8 +51,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>Brandlist_Export_Assistant_V2.Engine</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -379,6 +393,12 @@
     <Compile Include="Classes\Sheet Classes\RRPSheet.cs" />
     <Compile Include="Classes\Sheet Classes\TobaccoSheet.cs" />
     <Compile Include="Classes\Validator.cs" />
+    <Compile Include="Controls\SuccessScreenControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SuccessScreenControl.Designer.cs">
+      <DependentUpon>SuccessScreenControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Countries.cs" />
     <Compile Include="Enums\Methodology.cs" />
     <Compile Include="Enums\Platform.cs" />
@@ -424,7 +444,7 @@
     </Compile>
     <Compile Include="Enums\ProductType.cs" />
     <Compile Include="Classes\MDDFile.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\LoadingScreen.resx">
       <DependentUpon>LoadingScreen.cs</DependentUpon>
@@ -438,6 +458,9 @@
     <EmbeddedResource Include="Controls\RRPSelectionControl.resx">
       <DependentUpon>RRPSelectionControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SuccessScreenControl.resx">
+      <DependentUpon>SuccessScreenControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\TobaccoSelectionControl.resx">
       <DependentUpon>TobaccoSelectionControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -450,19 +473,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -473,15 +496,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Jersey M54.ttf" />
-    <None Include="Resources\yellow.png" />
-    <None Include="Resources\green.png" />
+    <None Include="Resources\ErrorScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Countries.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Countries_iField.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\export_high_op.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\export_low_op.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\select_high_op.png" />
@@ -496,43 +529,23 @@
     <None Include="Resources\settings_low_op.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\SuccessScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\upload_high_op.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\upload_low_op.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\right.png" />
+    <None Include="Resources\yellow.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\stopwatch.png" />
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\rotate.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\5e924b7324e57970325407.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\check.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\loading bar.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\loading_1.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\upload-not-static.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\upload-static.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Countries.txt" />
-    <Content Include="Resources\Countries_iField.txt" />
-    <None Include="Resources\Jersey M54.png" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

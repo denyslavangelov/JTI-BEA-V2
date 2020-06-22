@@ -2,16 +2,13 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Brandlist_Export_Assistant_V2.Classes;
 using Brandlist_Export_Assistant_V2.Classes.Brandlists;
 using Brandlist_Export_Assistant_V2.Classes.Exports;
-using Brandlist_Export_Assistant_V2.Classes.Sheet_Classes;
 using Brandlist_Export_Assistant_V2.Enums;
 using Brandlist_Export_Assistant_V2.Forms;
-using Guna.UI.WinForms;
 
 namespace Brandlist_Export_Assistant_V2.Controls
 {
@@ -28,8 +25,11 @@ namespace Brandlist_Export_Assistant_V2.Controls
         private MainForm MainForm { get; }
         public ProjectSettingsControl ProjectSettingsControl { get; }
         private MDDFile MDDFile { get; set; }
+        private string PathLocation { get; set; }
 
-        public DataExportControl(MainForm mainForm, TobaccoBrandlist tobaccoBrandlist, RRPBrandlist rrpBrandlist, ProjectSettingsControl projectSettingsControl)
+        private SuccessScreenControl SuccessScreenControl { get; set; }
+
+            public DataExportControl(MainForm mainForm, TobaccoBrandlist tobaccoBrandlist, RRPBrandlist rrpBrandlist, ProjectSettingsControl projectSettingsControl)
         {
             InitializeComponent();
 
@@ -83,36 +83,46 @@ namespace Brandlist_Export_Assistant_V2.Controls
 
             this.LoadingScreen.Hide(this.MainForm, this);
 
-            if (DimensionsExport.IsSuccessfulyOpen)
+            FinalScreenSetup();
+        }
+
+        private void FinalScreenSetup()
+        {
+            var pathLocation = "";
+
+            switch (ProjectSettings.Platform)
             {
-                MainForm.UpdateStage(Stages.Final);
-                SuccessScreenSetup();
+                case Platform.Dimensions:
+                    if (DimensionsExport.IsSuccessfulyOpen)
+                    {
+                        pathLocation = DimensionsExport.Dir;
+                    }
+                    else
+                    {
+                        MainForm.UpdateStage(Stages.Import);
+                    }
+                    break;
+                case Platform.iField:
+                    pathLocation = IFieldExport.Dir;
+                    break;
             }
-            else
-            {
-                MainForm.UpdateStage(Stages.Import);
-            }
+
+            this.PathLocation = pathLocation;
+            SuccessScreenControl = new SuccessScreenControl(PathLocation);
+
+            this.MainForm.Controls.Remove(this);
+            this.MainForm.Controls.Add(SuccessScreenControl);
+
+            MainForm.UpdateStage(Stages.Final);
         }
 
         private void ExportPanelSetup()
         {
-            browsePanel.Location = new Point(155,80);
+            //browsePanel.Location = new Point(155,80);
 
             if (ProjectSettings.Platform == Platform.iField)
             {
                 exportDataButton.Text = @"EXPORT DATA";
-                exportLabel.Visible = false;
-            }
-        }
-
-        private void SuccessScreenSetup()
-        {
-            successPanel.Visible = true;
-            browsePanel.Visible = false;
-
-            if (ProjectSettings.Platform == Platform.iField)
-            {
-                successBodyText.Text = successBodyText.Text.Replace("imported", "exported");
             }
         }
 
@@ -121,7 +131,7 @@ namespace Brandlist_Export_Assistant_V2.Controls
             switch (ProjectSettings.Platform)
             {
                 case Platform.Dimensions:
-                    DimensionsExport = new DimensionsExport(MDDFile, RRPBrandlist,TobaccoBrandlist);
+                    DimensionsExport = new DimensionsExport(MDDFile,RRPBrandlist,TobaccoBrandlist);
 
                     if (ProjectSettings.TobaccoExport)
                     {
@@ -151,19 +161,8 @@ namespace Brandlist_Export_Assistant_V2.Controls
                     }
                     break;
                 case Platform.iField:
-                    if (ProjectSettings.TobaccoExport)
-                    {
-                        IFieldExport = new IFieldExport(TobaccoBrandlist, ProjectSettingsControl);
-                    }
-
-                    if (ProjectSettings.RRPExport)
-                    {
-                        IFieldExport = new IFieldExport(RRPBrandlist, ProjectSettingsControl);
-                    }
-
+                    IFieldExport = new IFieldExport(TobaccoBrandlist,RRPBrandlist);
                     IFieldExport.ExportData();
-                    break;
-                case Platform.Dooblo:
                     break;
             }
         }
@@ -178,20 +177,9 @@ namespace Brandlist_Export_Assistant_V2.Controls
                 case Platform.iField:
                     Process.Start(IFieldExport.Dir);
                     break;
-                case Platform.Dooblo:
-                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            AutoCompleteTablesExport = new AutoCompleteTablesExport(TobaccoBrandlist, MDDFile);
-            AutoCompleteTablesExport.ExportData("Tobacco");
-
-            AutoCompleteTablesExport = new AutoCompleteTablesExport(RRPBrandlist, MDDFile);
-            AutoCompleteTablesExport.ExportData("RRP");
         }
     }
 }

@@ -175,7 +175,7 @@ namespace Brandlist_Export_Assistant_V2.Classes.Exports
             var subBrandListName = $"List_SubBrands_" + ProjectSettings.CountryCode;
 
             var xxxMainListName = "List_Main_Brands_XXX";
-            var xxxS bBrandListName = "List_SubBrands_XXX";
+            var xxxSubBrandListName = "List_SubBrands_XXX";
 
             string[] lists = { masterBrandListName, mastersubBrandListName, mainBrandListName, subBrandListName };
 

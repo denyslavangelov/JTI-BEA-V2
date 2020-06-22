@@ -191,15 +191,9 @@ C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.csproj.CopyComplete
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.exe
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.pdb
-C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.csprojAssemblyReference.cache
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Properties.Resources.resources
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.csproj.GenerateResource.cache
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.csproj.CoreCompileInputs.cache
-C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.exe
-C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist Export Assistant V2.pdb
-C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\Brandlist Export Assistant V2.exe.config
-C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\Brandlist Export Assistant V2.exe
-C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\Brandlist Export Assistant V2.pdb
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\FlatButton.dll
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\IKVM.AWT.WinForms.dll
 C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\IKVM.OpenJDK.Beans.dll
@@ -251,3 +245,9 @@ C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Controls.TobaccoSelectionControl.resources
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Forms.Alert.resources
 C:\Users\Denislav.Angelov\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Forms.MainForm.resources
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\JTI BEA - V2.exe.config
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\JTI BEA - V2.exe
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\bin\Debug\JTI BEA - V2.pdb
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\JTI BEA - V2.exe
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\JTI BEA - V2.pdb
+C:\Users\PC\Documents\GitHub\JTI-BEA-V2\Brandlist Export Assistant V2\obj\Debug\Brandlist_Export_Assistant_V2.Controls.SuccessScreenControl.resources

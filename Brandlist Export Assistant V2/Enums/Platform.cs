@@ -3,7 +3,6 @@
     public enum Platform
     {
         Dimensions,
-        iField,
-        Dooblo
+        iField
     };
 }
