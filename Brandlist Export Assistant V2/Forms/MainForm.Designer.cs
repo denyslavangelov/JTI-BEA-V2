@@ -92,7 +92,7 @@
             this.uploadButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.uploadButton.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(184)))), ((int)(((byte)(148)))));
             this.uploadButton.BorderColor = System.Drawing.Color.Black;
-            this.uploadButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uploadButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uploadButton.DialogResult = System.Windows.Forms.DialogResult.None;
             this.uploadButton.FocusedColor = System.Drawing.Color.Empty;
             this.uploadButton.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -103,15 +103,15 @@
             this.uploadButton.ImageSize = new System.Drawing.Size(25, 25);
             this.uploadButton.Location = new System.Drawing.Point(16, 4);
             this.uploadButton.Name = "uploadButton";
-            this.uploadButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(184)))), ((int)(((byte)(148)))));
-            this.uploadButton.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(184)))), ((int)(((byte)(148)))));
+            this.uploadButton.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(142)))), ((int)(((byte)(220)))));
+            this.uploadButton.OnHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(142)))), ((int)(((byte)(220)))));
             this.uploadButton.OnHoverForeColor = System.Drawing.Color.White;
             this.uploadButton.OnHoverImage = null;
             this.uploadButton.OnPressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(184)))), ((int)(((byte)(148)))));
             this.uploadButton.Radius = 15;
             this.uploadButton.Size = new System.Drawing.Size(180, 70);
             this.uploadButton.TabIndex = 9;
-            this.uploadButton.Text = "CHOOSE FILE";
+            this.uploadButton.Text = "LOAD BRANDLIST";
             this.uploadButton.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.uploadButton.UseTransfarantBackground = true;
             this.uploadButton.Click += new System.EventHandler(this.UploadButton_Click);
@@ -127,6 +127,7 @@
             this.topPanel.Name = "topPanel";
             this.topPanel.Size = new System.Drawing.Size(578, 46);
             this.topPanel.TabIndex = 1;
+            this.topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
             // 
             // minimizeButton
             // 
@@ -344,7 +345,6 @@
             this.gunaTransfarantPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.gunaTransfarantPictureBox2.TabIndex = 16;
             this.gunaTransfarantPictureBox2.TabStop = false;
-            this.gunaTransfarantPictureBox2.Click += new System.EventHandler(this.GunaTransfarantPictureBox2_Click);
             // 
             // gunaElipsePanel1
             // 
@@ -505,8 +505,8 @@
             this.Controls.Add(this.columnSelectionPanel);
             this.Controls.Add(this.bunifuCheckbox1);
             this.Controls.Add(this.gunaGradientPanel1);
-            this.Controls.Add(this.topPanel);
             this.Controls.Add(this.uploadPanel);
+            this.Controls.Add(this.topPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";

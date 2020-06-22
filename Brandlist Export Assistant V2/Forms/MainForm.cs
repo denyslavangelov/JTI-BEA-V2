@@ -357,6 +357,20 @@ namespace Brandlist_Export_Assistant_V2.Forms
             this.CenterToScreen();
         }
 
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case 0x84:
+                    base.WndProc(ref m);
+                    if ((int)m.Result == 0x1)
+                        m.Result = (IntPtr)0x2;
+                    return;
+            }
+
+            base.WndProc(ref m);
+        }
+
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             try
@@ -372,9 +386,21 @@ namespace Brandlist_Export_Assistant_V2.Forms
             }
         }
 
-        public LoadingScreen sc = null;
-        private void GunaTransfarantPictureBox2_Click(object sender, EventArgs e)
+        private void TopPanel_MouseDown(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Left)
+            {
+                // Release the mouse capture started by the mouse down.
+                topPanel.Capture = false; //select control
+
+                // Create and send a WM_NCLBUTTONDOWN message.
+                const int WM_NCLBUTTONDOWN = 0x00A1;
+                const int HTCAPTION = 2;
+                Message msg =
+                    Message.Create(this.Handle, WM_NCLBUTTONDOWN,
+                        new IntPtr(HTCAPTION), IntPtr.Zero);
+                this.DefWndProc(ref msg);
+            }
         }
     }
 }

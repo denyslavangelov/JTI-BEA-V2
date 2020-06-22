@@ -1,0 +1,59 @@
+Afghanistan$[PRS-AF] Dari (Afghanistan),[PS-AF] Pashto (Afghanistan)
+Albania$[SQ] Albanian
+Algeria$[AR] Arabic,[FR] French
+Angola$[PT] Portuguese
+Austria$[DE] German,[DE-AT] German - Austria
+Belgium$[FR] French,[NL] Dutch,[DE] German
+Bolivia$[ES] Spanish
+Bosnia and Herzegovina$[HR] Croatian,[SR-SP] Serbian - Cyrillic,[BS] Bosnian
+Bulgaria$[BG] Bulgarian
+Canada$[FR] French
+Croatia$[HR] Croatian
+Czech Republic$[CS] Czech,[SK] Slovak
+Denmark$[DA] Danish
+Dominican Republic$[ES] Spanish
+Egypt$[AR] Arabic
+Estonia$[RU] Russian,[ET] Estonian
+France$[FR] French
+Georgia$[RU] Russian,[GE] Georgian
+Germany$[DE] German
+Greece$[EL] Greek
+Hungary$[HU] Hungarian
+Iran$[FA] Farsi
+Iraq$[AR] Arabic,[KU] Kurdish
+Ireland$[EN] English
+Italy$[IT] Italian
+Jordan$[AR] Arabic
+Kazakhstan$[RU] Russian,[KZ] Kazakh
+Kosovo$[SR-SP] Serbian - Cyrillic,[SQ] Albanian
+KSA$[HI] Hindi,[AR] Arabic,[UR] Urdu
+Kuwait$[AR] Arabic
+Latvia$[RU] Russian,[LV] Latvian
+Lebanon$[AR] Arabic,[FR] French
+Lithuania$[LT] Lithuanian
+Macedonia$[SQ] Albanian,[MK] FYRO Macedonian
+Mexico$[ES] Spanish
+Morocco$[AR] Arabic,[FR] French
+Mozambique$[PT] Portuguese,[MA] Macua,[NU] Ndau,[SZ] Sena,[TS] Tsonga
+Namibia$[AF] Afrikaans
+Netherlands$[NL] Dutch
+Nigeria$[IG] Igbo,[HA] Hausa,[YO] Yoruba
+Poland$[PL] Polish
+Portugal$[PT] Portuguese
+Qatar$[AR] Arabic
+Romania$[RO] Romanian - Romania
+Russia$[RU] Russian
+Serbia$[SR-SP] Serbian - Cyrillic,[SQ] Albanian,[HU] Hungarian
+Slovakia$[CS] Czech,[SK] Slovak
+Slovenia$[SL] Slovenian
+South Africa$[AF] Afrikaans,[ZU] Zulu,[XH] Xhosa,[ST] Sotho,[SP] Sepedi
+Spain$[CA] Catalan,[ES-ES] Spanish - Spain
+Sweden$[SV] Swedish
+Switzerland$[FR] French,[DE] German,[IT] Italian
+Tanzania$[SW] Swahili
+Tunisia$[AR] Arabic,[FR] French
+Turkey$[TR] Turkish
+UAE$[HI] Hindi,[AR] Arabic,[ZH] Chinese,[FA] Farsi,[RU] Russian,[UR] Urdu
+Ukraine$[RU] Russian,[UK] Ukrainian
+United Kingdom$[EN] English
+Zambia$[BB] Bemba,[KD] Kaonde,[LZ] Lozi,[LD] Lunda,[LX] Luvale,[NY] Nyanja,[TZ] Tonga (Zambezi)

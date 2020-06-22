@@ -61,21 +61,77 @@ namespace Brandlist_Export_Assistant_V2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to AfghanistanAFG
+        ///AlandIslandsALA
+        ///AlbaniaALB
+        ///AlgeriaDZA
+        ///AmericanSamoaASM
+        ///AndorraAND
+        ///AngolaAGO
+        ///AnguillaAIA
+        ///AntarcticaATA
+        ///AntiguaandBarbudaATG
+        ///ArgentinaARG
+        ///ArmeniaARM
+        ///ArubaABW
+        ///AustraliaAUS
+        ///AustriaAUT
+        ///AzerbaijanAZE
+        ///BahamasBHS
+        ///BahrainBHR
+        ///BangladeshBGD
+        ///BarbadosBRB
+        ///BelarusBLR
+        ///BelgiumBEL
+        ///BelizeBLZ
+        ///BeninBEN
+        ///BermudaBMU
+        ///BhutanBTN
+        ///BoliviaBOL
+        ///BonaireSintEustatiusandSabaBES
+        ///BosniaandHerzegovinaBIH
+        ///BotswanaBWA
+        ///BouvetIslandBVT
+        ///BrazilBRA
+        ///BritishIndianOceanTerritoryIOT
+        ///BruneiDarussalamBRN
+        ///Bulg [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static System.Drawing.Bitmap asde1 {
+        internal static string Countries {
             get {
-                object obj = ResourceManager.GetObject("asde1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("Countries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Afghanistan$[PRS-AF] Dari (Afghanistan),[PS-AF] Pashto (Afghanistan)
+        ///Albania$[SQ] Albanian
+        ///Algeria$[AR] Arabic,[FR] French
+        ///Angola$[PT] Portuguese
+        ///Austria$[DE] German,[DE-AT] German - Austria
+        ///Belgium$[FR] French,[NL] Dutch,[DE] German
+        ///Bolivia$[ES] Spanish
+        ///Bosnia and Herzegovina$[HR] Croatian,[SR-SP] Serbian - Cyrillic,[BS] Bosnian
+        ///Bulgaria$[BG] Bulgarian
+        ///Canada$[FR] French
+        ///Croatia$[HR] Croatian
+        ///Czech Republic$[CS] Czech,[SK] Slovak
+        ///Denmark$[DA] Danish
+        ///Dominican Republic$[ES] Spanish
+        ///Egypt$[AR]  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Countries_iField {
+            get {
+                return ResourceManager.GetString("Countries_iField", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap check {
+        internal static System.Drawing.Bitmap ErrorScreen {
             get {
-                object obj = ResourceManager.GetObject("check", resourceCulture);
+                object obj = ResourceManager.GetObject("ErrorScreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +149,29 @@ namespace Brandlist_Export_Assistant_V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap export_high_op1 {
+            get {
+                object obj = ResourceManager.GetObject("export_high_op1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap export_low_op {
             get {
                 object obj = ResourceManager.GetObject("export_low_op", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap export_low_op1 {
+            get {
+                object obj = ResourceManager.GetObject("export_low_op1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -111,21 +187,11 @@ namespace Brandlist_Export_Assistant_V2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] Jersey_M54 {
-            get {
-                object obj = ResourceManager.GetObject("Jersey_M54", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap loading_1 {
+        internal static System.Drawing.Bitmap green1 {
             get {
-                object obj = ResourceManager.GetObject("loading_1", resourceCulture);
+                object obj = ResourceManager.GetObject("green1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +209,9 @@ namespace Brandlist_Export_Assistant_V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rotate {
+        internal static System.Drawing.Bitmap right1 {
             get {
-                object obj = ResourceManager.GetObject("rotate", resourceCulture);
+                object obj = ResourceManager.GetObject("right1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +229,29 @@ namespace Brandlist_Export_Assistant_V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap select_high_op1 {
+            get {
+                object obj = ResourceManager.GetObject("select_high_op1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap select_low_op {
             get {
                 object obj = ResourceManager.GetObject("select_low_op", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap select_low_op1 {
+            get {
+                object obj = ResourceManager.GetObject("select_low_op1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,6 +269,16 @@ namespace Brandlist_Export_Assistant_V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap settings_high_op1 {
+            get {
+                object obj = ResourceManager.GetObject("settings_high_op1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap settings_low_op {
             get {
                 object obj = ResourceManager.GetObject("settings_low_op", resourceCulture);
@@ -193,9 +289,19 @@ namespace Brandlist_Export_Assistant_V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap stopwatch {
+        internal static System.Drawing.Bitmap settings_low_op1 {
             get {
-                object obj = ResourceManager.GetObject("stopwatch", resourceCulture);
+                object obj = ResourceManager.GetObject("settings_low_op1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SuccessScreen {
+            get {
+                object obj = ResourceManager.GetObject("SuccessScreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,6 +319,16 @@ namespace Brandlist_Export_Assistant_V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap upload_high_op1 {
+            get {
+                object obj = ResourceManager.GetObject("upload_high_op1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap upload_low_op {
             get {
                 object obj = ResourceManager.GetObject("upload_low_op", resourceCulture);
@@ -223,19 +339,9 @@ namespace Brandlist_Export_Assistant_V2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap upload_not_static {
+        internal static System.Drawing.Bitmap upload_low_op1 {
             get {
-                object obj = ResourceManager.GetObject("upload_not_static", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap upload_static {
-            get {
-                object obj = ResourceManager.GetObject("upload_static", resourceCulture);
+                object obj = ResourceManager.GetObject("upload_low_op1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,6 +352,16 @@ namespace Brandlist_Export_Assistant_V2.Properties {
         internal static System.Drawing.Bitmap yellow {
             get {
                 object obj = ResourceManager.GetObject("yellow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yellow1 {
+            get {
+                object obj = ResourceManager.GetObject("yellow1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

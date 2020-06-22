@@ -49,7 +49,7 @@
             // 
             this.loadingBarImage.BaseColor = System.Drawing.Color.White;
             this.loadingBarImage.Image = ((System.Drawing.Image)(resources.GetObject("loadingBarImage.Image")));
-            this.loadingBarImage.Location = new System.Drawing.Point(25, 9);
+            this.loadingBarImage.Location = new System.Drawing.Point(29, 9);
             this.loadingBarImage.Name = "loadingBarImage";
             this.loadingBarImage.Size = new System.Drawing.Size(62, 58);
             this.loadingBarImage.TabIndex = 10;
@@ -68,7 +68,7 @@
             this.uploadButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.uploadButton.DialogResult = System.Windows.Forms.DialogResult.None;
             this.uploadButton.FocusedColor = System.Drawing.Color.Empty;
-            this.uploadButton.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uploadButton.Font = new System.Drawing.Font("Malgun Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uploadButton.ForeColor = System.Drawing.Color.White;
             this.uploadButton.Image = null;
             this.uploadButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;

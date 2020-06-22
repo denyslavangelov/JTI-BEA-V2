@@ -12,27 +12,11 @@ namespace Brandlist_Export_Assistant_V2.Forms
 {
     public partial class Alert : Form
     {
-        private MainForm MainForm { get; set; }
         private Stages Stage { get; }
 
         public Alert(string message, Stages stage)
         {
             InitializeComponent();
-
-            var x = (errorMessagePanel.Size.Width - errorMessage.Size.Width) / 2;
-            errorMessage.Location = new Point(x, errorMessage.Location.Y);
-
-            this.CenterToScreen();
-
-            this.Stage = stage;
-            this.errorMessage.Text = WrapText(message, 40, false);
-        }
-
-        public Alert(MainForm mainForm,string message, Stages stage)
-        {
-            InitializeComponent();
-
-            this.MainForm = mainForm;
 
             var x = (errorMessagePanel.Size.Width - errorMessage.Size.Width) / 2;
             errorMessage.Location = new Point(x, errorMessage.Location.Y);
